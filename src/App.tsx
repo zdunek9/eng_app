@@ -1,25 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import Layout from "./components/Layout/Layout";
+import SignUpModal from "./components/Modals/SignUpModal";
+import { GlobalStyle } from "./components/styles/globalStyles";
+import HomePageNotAuth from "./Pages/HomePageNotAuth";
+
 
 function App() {
+  const [showLogModal, setShowLogModal] = useState<boolean>(false)
+  const changeLogModalHandler = () =>{
+    setShowLogModal(prevState=>!prevState)
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Layout changeLogModalHandler={changeLogModalHandler}>
+    <GlobalStyle />
+    {showLogModal && <SignUpModal changeLogModalHandler={changeLogModalHandler} />}
+    <HomePageNotAuth changeLogModalHandler={changeLogModalHandler} />
+    </Layout>
   );
 }
 
