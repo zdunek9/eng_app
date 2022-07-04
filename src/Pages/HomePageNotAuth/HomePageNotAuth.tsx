@@ -1,5 +1,5 @@
 import { Wrapper } from "./HomePageNotAuth.style"
-import image_eng from '../components/styles/Images/english.jpg'
+import image_eng from '../../components/styles/Images/english.jpg'
 const HomePageNotAuth:React.FC<{changeLogModalHandler:()=>void}> = (props) =>{
     return (
         <Wrapper>

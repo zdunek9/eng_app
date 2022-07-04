@@ -26,10 +26,11 @@ export const Wrapper = styled.div`
   }
   button:last-child {
     border-radius: 30px;
-    padding: 10px 20px;
+    padding: 15px 30px;
     height: auto;
     background-color: rgb(204, 204, 0);
     opacity: 1;
+    font-weight: 600;
   }
   button:last-child:hover::before {
     display: none;

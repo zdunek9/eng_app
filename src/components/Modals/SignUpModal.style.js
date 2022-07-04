@@ -85,6 +85,11 @@ export const Wrapper = styled.div`
     font-size: 2rem;
     cursor: pointer;
   }
+  p{
+    color:red;
+    font-style: italic;
+    margin-top:0;
+  }
 
   .btn {
     position: relative;
