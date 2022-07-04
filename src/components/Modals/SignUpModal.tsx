@@ -15,7 +15,7 @@ const SignUpModal:React.FC<{changeLogModalHandler:()=>void}> = (props) =>{
         const enteredLogin = inputEmail.current?.value
         const enteredPassword = inputPassword.current?.value
 
-        const URL = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDODpOjzPbv1NJF8vzdK7baNfiWgwP-yb0'
+        const URL = ''
         fetch(URL,{
             method: 'POST',
             body:JSON.stringify({
