@@ -15,7 +15,7 @@ const SignUpModal:React.FC<{changeLogModalHandler:()=>void}> = (props) =>{
         const enteredLogin = inputEmail.current?.value
         const enteredPassword = inputPassword.current?.value
 
-        const URL = ''
+        const URL = 'add you api token'
         fetch(URL,{
             method: 'POST',
             body:JSON.stringify({
