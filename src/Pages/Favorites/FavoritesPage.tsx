@@ -5,11 +5,11 @@ const FavoritesPage = () =>{
     return(
         <Wrapper>
             <ItemWrapper>
-                <div><p>Favorites 1</p> <Hearth /></div>
-                <div><p>Favorites 1</p> <Hearth /></div>
-                <div><p>Favorites 1</p> <Hearth /></div>
-                <div><p>Favorites 1</p> <Hearth /></div>
-                <div><p>Favorites 1</p> <Hearth /></div>
+                <div> <Hearth /><p>Favorites 1</p></div>
+                <div> <Hearth /><p>Favorites 1</p></div>
+                <div> <Hearth /><p>Favorites 1</p></div>
+                <div> <Hearth /><p>Favorites 1</p></div>
+                <div> <Hearth /><p>Favorites 1</p></div>
             </ItemWrapper>
         </Wrapper>
         
