@@ -24,7 +24,7 @@ export const Wrapper = styled.div`
     position: relative;
     opacity: 0.6;
   }
-  button:last-child {
+  button:last-child{
     border-radius: 30px;
     padding: 15px 30px;
     height: auto;

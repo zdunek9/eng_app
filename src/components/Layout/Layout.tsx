@@ -1,11 +1,8 @@
 import Navigation from "./Navigation"
-const Layout: React.FC<{children:React.ReactNode, changeLogModalHandler:()=>void}> = (props) =>{
-    const changeLogModalHandler = () =>{
-        props.changeLogModalHandler()
-    }
+const Layout: React.FC<{children:React.ReactNode}> = (props) =>{
     return(
         <>
-        <Navigation changeLogModalHandler={changeLogModalHandler}/>
+        <Navigation/>
         <main>{props.children}</main>
         </>
     )

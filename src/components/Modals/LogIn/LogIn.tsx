@@ -16,7 +16,7 @@ const Login:React.FC = () =>{
         const enteredLogin = inputEmail.current?.value
         const enteredPassword = inputPassword.current?.value
 
-        const URL = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBHUfAvKzVxV87R8PiJRURuCNfVf2V85ZE'
+        const URL = ''
         fetch(URL,{
             method: 'POST',
             body:JSON.stringify({

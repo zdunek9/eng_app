@@ -1,6 +1,10 @@
 import { Wrapper } from "./HomePageNotAuth.style"
 import image_eng from '../../components/styles/Images/english.jpg'
-const HomePageNotAuth:React.FC<{changeLogModalHandler:()=>void}> = (props) =>{
+import { useNavigate } from "react-router-dom";
+
+const HomePageNotAuth:React.FC= (props) =>{
+    let navigate = useNavigate();
+
     return (
         <Wrapper>
             <img src={image_eng} alt="eng_img" />
@@ -12,7 +16,7 @@ const HomePageNotAuth:React.FC<{changeLogModalHandler:()=>void}> = (props) =>{
                 Randomly generated questions.
                 </h1>
                 <h1>Create your favorites and keep coming back to them!</h1>
-                <span onClick={props.changeLogModalHandler}><a href="#"></a></span>
+                <span onClick={()=>navigate(`/login`)}><a href="#"></a></span>
             </div>
         </Wrapper>
     )

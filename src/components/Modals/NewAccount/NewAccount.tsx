@@ -1,5 +1,6 @@
 import { useRef, useState } from "react"
 import { Wrapper } from "./NewAccount.style"
+import { useNavigate } from "react-router-dom";
 
 
 const NewAccount = () =>{
@@ -9,6 +10,7 @@ const NewAccount = () =>{
     const inputEmailRef = useRef<HTMLInputElement>(null)
     const inputPasswordRef = useRef<HTMLInputElement>(null)
     const inputPasswordSecondRef = useRef<HTMLInputElement>(null)
+    let navigate = useNavigate();
 
     const createNewAccount = (event:React.FormEvent) =>{
         event.preventDefault()
@@ -20,7 +22,7 @@ const NewAccount = () =>{
             setWrongCredentials(true)
             return
         }
-        const URL = "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBHUfAvKzVxV87R8PiJRURuCNfVf2V85ZE"
+        const URL = ""
         fetch(URL,{
             method: 'POST',
             body:JSON.stringify({
@@ -41,7 +43,7 @@ const NewAccount = () =>{
                 })
             }
         }})  
-
+        navigate("/home");
     }
     return(
         <Wrapper>
