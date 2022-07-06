@@ -2,7 +2,8 @@ import styled from "styled-components";
 
 export const Wrapper = styled.div`
   height: 90vh;
-  width: 100%;
+  width: 1800px;
+  position: relative;
   font-family: "Inter", sans-serif;
 `;
 export const MainWrapper = styled.div`

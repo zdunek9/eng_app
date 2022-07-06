@@ -21,6 +21,7 @@ export const GlobalStyle = createGlobalStyle`
         background-image: linear-gradient(315deg, #f3e6e8 0%, #d5d0e5 74%);
         display: flex;
         flex-direction: column;
+        align-items: center;
     }
     
     a,button{

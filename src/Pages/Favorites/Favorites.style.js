@@ -1,8 +1,9 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-  width: 100%;
+ width: 1800px;
   height: 90vh;
+  position: relative;
 `;
 export const ItemWrapper = styled.div`
   display: flex;
