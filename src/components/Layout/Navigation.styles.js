@@ -14,41 +14,50 @@ export const Wrapper = styled.div`
     margin: 0;
     font-size: 2.5rem;
   }
-  button {
-    padding: 20px;
-    border: none;
-    height: 100%;
-    background-color: unset;
-    font-size: 1.5rem;
-    cursor: pointer;
-    position: relative;
-    opacity: 0.6;
-  }
-  button:last-child{
-    border-radius: 30px;
-    padding: 15px 30px;
-    height: auto;
-    background-color: rgb(204, 204, 0);
-    opacity: 1;
-    font-weight: 600;
-  }
-  button:last-child:hover::before {
-    display: none;
-  }
-  button:last-child:hover{
-    background-color:rgb(220, 220, 0);
-  }
-  button::before {
+`;
+
+export const TabLogg = styled.button`
+  padding: 20px;
+  border: none;
+  height: 100%;
+  background-color: unset;
+  font-size: 1.5rem;
+  cursor: pointer;
+  position: relative;
+  opacity: 0.6;
+
+  &::before {
     content: "";
     left: 0;
-    bottom: -2px;
+    bottom: -7px;
     position: absolute;
     width: 100%;
+
     border-bottom: 3px solid rgb(77, 77, 77);
     display: none;
   }
-  button:hover::before {
+  &:hover::before {
     display: block;
     opacity: 1;
+  }
+`;
+
+export const TabLoggLast = styled.button`
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  position: relative;
+  opacity: 0.6;
+  border-radius: 30px;
+  padding: 15px 30px;
+  height: auto;
+  background-color: rgb(204, 204, 0);
+  opacity: 1;
+  font-weight: 600;
+  &:last-child:hover::before {
+    display: none;
+  }
+  &:last-child:hover {
+    background-color: rgb(220, 220, 0);
   }
 `;

@@ -2,12 +2,14 @@ import { configureStore, createSlice } from "@reduxjs/toolkit";
 export interface CounterState {
     questions: [],
     favoritesQuestions:[],
-    isLogged: boolean
+    isLogged: boolean,
+    randomQuestion: any
 }
 const initialState:CounterState ={
     questions: [],
     favoritesQuestions: [],
     isLogged: false,
+    randomQuestion:[]
 }
 const counterSlice = createSlice({
     name: "counter",
@@ -18,7 +20,15 @@ const counterSlice = createSlice({
         },
         logout(state){
             state.isLogged = false
+        },
+        updateQuestion(state, action){
+            state.questions = action.payload
+        },
+        rollRandomQuestion(state){
+            const randomNumber = Math.floor(Math.random() * state.questions.length)
+            state.randomQuestion = state.questions[randomNumber]
         }
+
     }
 })
 const store = configureStore({

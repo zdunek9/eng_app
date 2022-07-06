@@ -16,7 +16,7 @@ const Login:React.FC = () =>{
         const enteredLogin = inputEmail.current?.value
         const enteredPassword = inputPassword.current?.value
 
-        const URL = ''
+        const URL = ''                                                                      //tutaj
         fetch(URL,{
             method: 'POST',
             body:JSON.stringify({

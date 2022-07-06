@@ -1,11 +1,14 @@
 import { useRef, useState } from "react"
 import { Wrapper } from "./NewAccount.style"
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { counterActions } from "../../../Redux/store";
 
 
 const NewAccount = () =>{
     const [wrongCredentials, setWrongCredentials] = useState<boolean>(false)
     const [problemMessage, setProblemMessage] = useState<String>("")
+    const dispatch = useDispatch();
 
     const inputEmailRef = useRef<HTMLInputElement>(null)
     const inputPasswordRef = useRef<HTMLInputElement>(null)
@@ -22,7 +25,7 @@ const NewAccount = () =>{
             setWrongCredentials(true)
             return
         }
-        const URL = ""
+        const URL = ""                                                                                  //tutaj
         fetch(URL,{
             method: 'POST',
             body:JSON.stringify({
@@ -36,6 +39,7 @@ const NewAccount = () =>{
         }).then(rest =>{{
             if(rest.ok){
                 setProblemMessage("")
+                dispatch(counterActions.login())
             }else{
                 rest.json().then(data=>{
                     console.log(data);

@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const Wrapper = styled.div`
   position: absolute;
-  right: 10vw;
+  right: 5vw;
   top: 70vh;
   width: 300px;
   padding: 20px;
@@ -12,6 +12,7 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: rgba(189, 165, 192, 0.3);
   p{
     margin:20px;
     font-size: 2rem;

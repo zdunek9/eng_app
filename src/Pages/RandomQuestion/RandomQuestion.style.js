@@ -7,11 +7,15 @@ export const Wrapper = styled.div`
 `;
 export const MainWrapper = styled.div`
   max-width: 90vw;
-  padding: 40px;
+  padding: 50px 80px;
   position: absolute;
-  top:60%;
-  left:50%;
-  transform: translate(-50%, -50%) ;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   h1 {
     font-size: 3rem;
     text-align: center;
@@ -21,12 +25,23 @@ export const MainWrapper = styled.div`
     font-style: italic;
     font-weight: 400;
   }
-  span {
-    display: block;
-    text-align: center;
+  .rollingItem {
+    display: inline-block;
     font-size: 4rem;
-    margin: 80px;
+    padding: 10px;
+    margin: 30px;
+    cursor: pointer;
   }
-  div {
+  .rollingItem:hover {
+    animation: spin 1s ease;
+  }
+
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
   }
 `;
