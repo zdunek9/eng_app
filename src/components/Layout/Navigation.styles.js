@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const Wrapper = styled.div`
   height: 80px;
   width: 100%;
+  margin: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -14,31 +15,31 @@ export const Wrapper = styled.div`
     margin: 0;
     font-size: 2.5rem;
   }
-`;
-
-export const TabLogg = styled.button`
+  a{
+    margin: 0;
   padding: 20px;
-  border: none;
-  height: 100%;
-  background-color: unset;
   font-size: 1.5rem;
   cursor: pointer;
   position: relative;
   opacity: 0.6;
+  }
 
-  &::before {
+  a::before {
     content: "";
     left: 0;
     bottom: -7px;
     position: absolute;
     width: 100%;
-
     border-bottom: 3px solid rgb(77, 77, 77);
     display: none;
   }
-  &:hover::before {
+  a:hover::before {
     display: block;
     opacity: 1;
+  }
+  .activeClass{
+    opacity: 1;
+    font-weight: 600;
   }
 `;
 

@@ -116,8 +116,7 @@ export const BlurWrapper = styled.div`
   position: absolute;
   top: 0;
   left: 0;
-  background-color: rgba(246, 244, 244, 0.8);
-  backdrop-filter: blur(2px);
+  background-color: rgb(246, 244, 244);
   z-index: 1;
   width: 100vw;
   height: 100vh;

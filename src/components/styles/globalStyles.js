@@ -26,5 +26,15 @@ export const GlobalStyle = createGlobalStyle`
     
     a,button{
         font-family: 'Montserrat', sans-serif;
+        text-decoration: none;
+        background-color: unset;
     }
+    a:link {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
 `;

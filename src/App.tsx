@@ -10,19 +10,19 @@ import { useSelector } from "react-redux";
 import { RootState } from "./Redux/store"
 
 function App() {
-  const isLogedIn = useSelector((state: RootState) => state.counter.randomQuestion)
+  const isLogedIn = useSelector((state: RootState) => state.counter.isLogged)
+  
   return (
       <>
       <Layout>
         <GlobalStyle />
           <Routes>
               <Route path='/login' element={<SignUpModal />} />
-              <Route path='welcome' element={<HomePageNotAuth />} />
-              {isLogedIn && <Route path='home' element={<HomePageAuth />} />}
-              {isLogedIn && <Route path='home/random' element={<RandomQuestion />} />}
-            {isLogedIn && <Route path='home/favorites' element={<FavoritesPage />} />}
-            {isLogedIn&&<Route path='*' element={<HomePageNotAuth />} />}
-            {!isLogedIn&&<Route path='*' element={<HomePageAuth />} />}
+              <Route path='/' element={<HomePageNotAuth />} />
+              {isLogedIn && <Route path='/home' element={<HomePageAuth />} />}
+              {isLogedIn && <Route path='/home/random' element={<RandomQuestion />} />}
+            {isLogedIn && <Route path='/home/favorites' element={<FavoritesPage />} />}
+            <Route path='*' element={isLogedIn?<HomePageAuth />:<HomePageNotAuth />} />
         </Routes>
   </Layout>
 </>

@@ -36,18 +36,19 @@ const NewAccount = () =>{
             headers:{
                 'Content-Type': 'application/json'
             }
-        }).then(rest =>{{
+        }).then(rest =>{
             if(rest.ok){
                 setProblemMessage("")
-                dispatch(counterActions.login())
+                return rest.json()
             }else{
-                rest.json().then(data=>{
-                    console.log(data);
+                return rest.json().then(data=>{
                     setProblemMessage(data.error.message)
                 })
             }
-        }})  
-        navigate("/home");
+        }).then(data=>{
+            dispatch(counterActions.login(data.idToken))
+            navigate("/home");
+        })
     }
     return(
         <Wrapper>

@@ -7,7 +7,7 @@ import { useDispatch } from 'react-redux'
 import { counterActions } from '../../Redux/store'
 
 
-const URL = ''                                                                                              //tutaj
+const URL = ''                                                                                             //tutaj
 const HomePageAuth = () =>{
     const dispatch = useDispatch()
 
@@ -27,7 +27,7 @@ const HomePageAuth = () =>{
           dispatch(counterActions.rollRandomQuestion())
         }
         fetchData()
-    },[])
+    },[dispatch])
     return(
         <Wrapper>
             <WelcomeScreen>

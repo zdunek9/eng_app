@@ -26,15 +26,20 @@ export const MainWrapper = styled.div`
     font-style: italic;
     font-weight: 400;
   }
-  .rollingItem {
-    display: inline-block;
+  span {
     font-size: 4rem;
-    padding: 10px;
+    display: inline-block;
     margin: 30px;
     cursor: pointer;
   }
-  .rollingItem:hover {
+  span > *{
+    padding: 0 30px;
+  }
+  .rollingItem {
     animation: spin 1s ease;
+  }
+  .active{
+    color: green;
   }
 
   @keyframes spin {

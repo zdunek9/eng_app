@@ -10,13 +10,14 @@ const Login:React.FC = () =>{
     const [wrongCredentials, setWrongCredentials] = useState<boolean>(false)
     const dispatch = useDispatch();
     let navigate = useNavigate();
+    let token;
 
     const loginHandler = (event:React.FormEvent) =>{
         event.preventDefault()
         const enteredLogin = inputEmail.current?.value
         const enteredPassword = inputPassword.current?.value
 
-        const URL = ''                                                                      //tutaj
+        const URL = ''                                                                     //tutaj
         fetch(URL,{
             method: 'POST',
             body:JSON.stringify({
@@ -26,20 +27,21 @@ const Login:React.FC = () =>{
             }),
             headers:{
                 'Content-Type': 'application/json'
-            }
-        }).then(rest =>{{
+            },
+        }).then(rest =>{
             if(rest.ok){
-                console.log("object");
                 setWrongCredentials(false)
-                dispatch(counterActions.login())
                 navigate(`/home`);
+                return rest.json()
             }else{
-                rest.json().then(data=>{
+                return rest.json().then(data=>{
                     console.log(data);
                     setWrongCredentials(true)
                 })
             }
-        }})    
+        }).then(data=>{
+            dispatch(counterActions.login(data.idToken))
+        })
     }
     return (
         <Wrapper>
