@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 
 export const Wrapper = styled.div`
   position: absolute;
@@ -12,18 +12,18 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: rgba(189, 165, 192, 0.3);
-  p{
-    margin:20px;
+  background-color: none;
+  p {
+    margin: 20px;
     font-size: 2rem;
   }
 
-  span{
-    margin:20px;
+  span {
+    margin: 20px;
     font-size: 3rem;
     cursor: pointer;
   }
-  span:last-child{
-    color: #0e76a8
-}
-`
+  span:last-child {
+    color: #0e76a8;
+  }
+`;

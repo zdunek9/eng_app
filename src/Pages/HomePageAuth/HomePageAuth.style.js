@@ -3,7 +3,9 @@ import styled from "styled-components";
 export const Wrapper = styled.div`
   height: 90vh;
   position: relative;
-  width: 1800px;
+  /* width: 1800px; */
+  /* width: 100%; */
+  width: 100vw;
 `;
 
 export const WelcomeScreen = styled.div`

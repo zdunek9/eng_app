@@ -25,7 +25,7 @@ const NewAccount = () =>{
             setWrongCredentials(true)
             return
         }
-        const URL = ""                                                                                  //tutaj
+        const URL = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${process.env.REACT_APP_AUTH}`;                                                                                  //tutaj
         fetch(URL,{
             method: 'POST',
             body:JSON.stringify({

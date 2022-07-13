@@ -1,11 +1,16 @@
 import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;1,300&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@500&display=swap');
 
     :root{
         --frames: 62;
+        --background2:#d4e7f7;
+        --thinFont:#A7CDEE;
+        --biggerFont:#74abc9;
+        --titleFontColor:black;
+        --buttonColor:#fdc561;
+        --infoColor: #edb7bd;
+        --greyColor:#78758D;
     }
     html{
         box-sizing: border-box;
@@ -17,16 +22,15 @@ export const GlobalStyle = createGlobalStyle`
         min-height: 100vh;
         margin:0;
         padding:0;
-        background-color: #f3e6e8;
-        background-image: linear-gradient(315deg, #f3e6e8 0%, #d5d0e5 74%);
+        background-color:#fffffF;
         display: flex;
         flex-direction: column;
-        align-items: center;
+        background: rgb(255,255,255);
+background: linear-gradient(180deg, rgba(255,255,255,1) 29%, rgba(167,205,238,0.8071603641456583) 87%);
     }
     
     a,button{
-        font-family: 'Montserrat', sans-serif;
-        text-decoration: none;
+                text-decoration: none;
         background-color: unset;
     }
     a:link {
@@ -35,6 +39,9 @@ export const GlobalStyle = createGlobalStyle`
 
 a:visited {
   text-decoration: none;
+}
+h1,h2,h3{
+  color:var(--titleFontColor)
 }
 
 `;

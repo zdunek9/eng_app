@@ -2,9 +2,11 @@ import styled from "styled-components";
 
 export const Wrapper = styled.div`
   display: flex;
-  width: 1800px;
+  /* width: 1800px; */
   justify-content: center;
   align-items: center;
+background: rgb(255,255,255);
+background: linear-gradient(162deg, rgba(255,255,255,1) 70%, rgba(190,219,245,1) 70%);
   padding: 80px;
   text-align: center;
   img {
@@ -17,12 +19,17 @@ export const Wrapper = styled.div`
     margin: 50px 0;
     font-family: "Inter", sans-serif;
   }
+  h2{
+    margin: 20px 0;
+    color:var(--greyColor);
+    font-weight: 300;
+  }
   span {
     position: relative;
     display: inline-flex;
     width: 300px;
     height: 90px;
-    margin: 0 15px;
+    margin: 40px 15px;
     perspective: 1000px;
   }
   span a {
@@ -41,17 +48,17 @@ export const Wrapper = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 5px solid black;
+    border: 5px solid var(--buttonColor);
     box-sizing: border-box;
     border-radius: 5px;
   }
   span a:before {
     color: #fff;
-    background: #000;
+    background: var(--buttonColor);
     transform: rotateY(0deg) translateZ(45px);
   }
   span a:after {
-    color: #000;
+    color: var(--buttonColor);
     transform: rotateX(90deg) translateZ(45px);
   }
   span a:hover {
@@ -66,7 +73,8 @@ export const WrapperCenter = styled.div`
 
 export const MobileInfo = styled.div`
   width: 100%;
-  background-color:rgb(189, 165, 192);
+  background-color:var(--biggerFont);
+  color:var(--titleFontColor);
   font-size: 2.5rem;
   display: flex;
   justify-content: center;
@@ -80,6 +88,6 @@ export const MobileInfo = styled.div`
   font-weight: 600;
   p{
     padding:0 50px;
-    font-size: 1.7rem;
+    font-size: 1.5rem;
   }
 `;

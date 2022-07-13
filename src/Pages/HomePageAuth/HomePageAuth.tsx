@@ -7,7 +7,7 @@ import { useDispatch } from 'react-redux'
 import { counterActions } from '../../Redux/store'
 
 
-const URL = ''                                                                                             //tutaj
+const URL = `${process.env.REACT_APP_DB}`
 const HomePageAuth = () =>{
     const dispatch = useDispatch()
 

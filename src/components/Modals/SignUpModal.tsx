@@ -22,8 +22,8 @@ const SignUpModal:React.FC = (props) =>{
         <span onClick={backHandler}><AiOutlineClose /></span>
         {!signUpModal && <Login />}
         {signUpModal && <NewAccount />}
-        {!signUpModal && <div className="btn from-left" onClick={signUpToggle}>Can't log in? - Sign up for an account</div>}
-        {signUpModal && <div className="btn from-left" onClick={signUpToggle}>Back to log in!</div>}
+        {!signUpModal && <div className="btn" onClick={signUpToggle}>Can't log in? - Sign up for an account</div>}
+        {signUpModal && <div className="btn" onClick={signUpToggle}>Back to log in!</div>}
 
     </Wrapper>
     </BlurWrapper>

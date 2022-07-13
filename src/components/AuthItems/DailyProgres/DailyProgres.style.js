@@ -11,7 +11,7 @@ export const Wrapper = styled.div`
   border-radius: 20px;
   display: flex;
   flex-direction: column;
-  background-color: rgba(189, 165, 192, 0.3);
+  background-color: none;
   align-items: center;
   font-weight:600;
   p {

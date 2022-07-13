@@ -10,14 +10,13 @@ const Login:React.FC = () =>{
     const [wrongCredentials, setWrongCredentials] = useState<boolean>(false)
     const dispatch = useDispatch();
     let navigate = useNavigate();
-    let token;
 
     const loginHandler = (event:React.FormEvent) =>{
         event.preventDefault()
         const enteredLogin = inputEmail.current?.value
         const enteredPassword = inputPassword.current?.value
 
-        const URL = ''                                                                     //tutaj
+        const URL = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${process.env.REACT_APP_AUTH}`
         fetch(URL,{
             method: 'POST',
             body:JSON.stringify({
