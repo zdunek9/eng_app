@@ -1,0 +1,39 @@
+import { createSlice } from "@reduxjs/toolkit";
+
+interface CounterState {
+  questions: [];
+  favoritesQuestions: [];
+  isLogged: boolean;
+  randomQuestion: any;
+  apiKey: string;
+}
+const initialState: CounterState = {
+  questions: [],
+  favoritesQuestions: [],
+  isLogged: false,
+  randomQuestion: [],
+  apiKey: "",
+};
+const counterSlice = createSlice({
+  name: "counter",
+  initialState,
+  reducers: {
+    login(state, action) {
+      state.isLogged = true;
+      state.apiKey = action.payload;
+    },
+    logout(state) {
+      state.isLogged = false;
+      state.apiKey = "";
+    },
+    updateQuestion(state, action) {
+      state.questions = action.payload;
+    },
+    rollRandomQuestion(state) {
+      const randomNumber = Math.floor(Math.random() * state.questions.length);
+      state.randomQuestion = state.questions[randomNumber];
+    },
+  },
+});
+export const counterActions = counterSlice.actions;
+export default counterSlice.reducer;

@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
-import { counterActions } from "../../../Redux/store";
+import { counterActions } from "../../../Redux/counterSlice";
 import { Wrapper } from "./Login.style";
 import { useNavigate } from "react-router-dom";
 const Login:React.FC = () =>{

@@ -4,7 +4,7 @@ import { WelcomeScreen, Wrapper } from "./HomePageAuth.style"
 import flags from '../../components/styles/Images/flags.png'
 import { useEffect } from "react"
 import { useDispatch } from 'react-redux'
-import { counterActions } from '../../Redux/store'
+import { counterActions } from '../../Redux/counterSlice'
 
 
 const URL = `${process.env.REACT_APP_DB}`
