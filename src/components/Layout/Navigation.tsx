@@ -22,13 +22,15 @@ const Navigation: React.FC = () => {
 
   return (
     <Wrapper>
-      <p>Cool Name</p>
+      <NavLink to="home">
+        <p>Cool Name</p>
+      </NavLink>
       {isLoggedIn && (
         <NavLink
-          to="home/fiszki"
+          to="home/flashcards"
           className={({ isActive }) => (isActive ? activeClass : undefined)}
         >
-          Fiszki
+          Flashcards
         </NavLink>
       )}
       {isLoggedIn && (

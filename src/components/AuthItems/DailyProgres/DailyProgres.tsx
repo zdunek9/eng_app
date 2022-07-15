@@ -28,8 +28,6 @@ const DailyProgres = () => {
     };
     checkDailyGoal();
   }, [progressCounter]);
-
-  console.log(animate);
   const animateTrue = () => {
     return (
       <>

@@ -7,7 +7,7 @@ import DailyProgres from "../../components/AuthItems/DailyProgres/DailyProgres";
 import Hearth from "../../components/styles/Hearth/Hearth";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
-import { progressActions } from "../../Redux/progress";
+import { progressActions } from "../../Redux/progressSlice";
 const RandomQuestion = () => {
   const questionn = useSelector(
     (state: RootState) => state.counter.randomQuestion

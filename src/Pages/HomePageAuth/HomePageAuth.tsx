@@ -8,17 +8,24 @@ import {
   PartingWrapper,
   PartingWrapperSecond,
 } from "./HomePageAuth.style";
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { counterActions } from "../../Redux/counterSlice";
 import { RiNumber1, RiNumber2, RiNumber3 } from "react-icons/ri";
+import Loading from "../../components/Modals/Loading/Loading";
+import { RootState } from "../../Redux/store";
 
 const URL = `${process.env.REACT_APP_DB}`;
 const HomePageAuth = () => {
   const dispatch = useDispatch();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const loadFetch = useSelector(
+    (state: RootState) => state.counter.preventLoading
+  );
 
   useEffect(() => {
     const fetchData = async () => {
+      setIsLoading(true);
       const response = await fetch(URL);
       const responseData = await response.json();
       const itemTab = [];
@@ -31,57 +38,65 @@ const HomePageAuth = () => {
       }
       dispatch(counterActions.updateQuestion(itemTab));
       dispatch(counterActions.rollRandomQuestion());
+      dispatch(counterActions.preventFetch());
+      setIsLoading(false);
     };
-    fetchData();
-  }, [dispatch]);
+    if (loadFetch === false) {
+      fetchData();
+    }
+  }, [dispatch, loadFetch]);
   return (
-    <Wrapper>
-      <WelcomeScreen>
-        <PartingWrapper>
-          <h1>Welcome to myapp1</h1>
-          <h3>
-            Start learning English using my website. Visit
-            <b> Random Question</b> and create your <b>Favirites!</b>
-          </h3>
-        </PartingWrapper>
-        <PartingWrapperSecond>
-          <h3>Complete your daily goal, for better learning.</h3>
-          <h3>
-            <b>Learn how to use</b>
-          </h3>
-          <BoxWrapper>
-            <Box>
-              <RiNumber1 className="number" />
-              <div>
-                <h4>What and Why?</h4>
-                <p>
-                  Answer in your head or discuss with your frends about
-                  questions
-                </p>
-              </div>
-            </Box>
-            <Box>
-              <RiNumber2 className="number" />
-              <div>
-                <h4>Daily Goal</h4>
-                <p>Compleate daily goal for better performance!</p>
-              </div>
-            </Box>
-            <Box>
-              <RiNumber3 className="number" />
-              <div>
-                <h4>Favorites</h4>
-                <p>
-                  Add special question to favorites, and back to them anytime!
-                </p>
-              </div>
-            </Box>
-          </BoxWrapper>
-        </PartingWrapperSecond>
-      </WelcomeScreen>
-      <DailyProgres />
-      <ContactInfo />
-    </Wrapper>
+    <>
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <Wrapper>
+          <WelcomeScreen>
+            <PartingWrapper>
+              <h1>Welcome to myapp</h1>
+              <h3>
+                Start learning English using my website. Visit
+                <b> Random Question</b> and create your <b>Favirites!</b>
+              </h3>
+            </PartingWrapper>
+            <PartingWrapperSecond>
+              <h3>Complete your daily goal, for better learning.</h3>
+              <h3>
+                <b>Learn how to use:</b>
+              </h3>
+              <BoxWrapper>
+                <Box>
+                  <RiNumber1 className="number" />
+                  <div>
+                    <h4>What and Why?</h4>
+                    <p>Answer or discuss with your frends about questions</p>
+                  </div>
+                </Box>
+                <Box>
+                  <RiNumber2 className="number" />
+                  <div>
+                    <h4>Daily Goal</h4>
+                    <p>Compleate daily goal for better performance!</p>
+                  </div>
+                </Box>
+                <Box>
+                  <RiNumber3 className="number" />
+                  <div>
+                    <h4>Favorites</h4>
+                    <p>
+                      Add special question to favorites, and back to them
+                      anytime!
+                    </p>
+                  </div>
+                </Box>
+              </BoxWrapper>
+            </PartingWrapperSecond>
+          </WelcomeScreen>
+          <DailyProgres />
+          <ContactInfo />
+        </Wrapper>
+      )}
+    </>
   );
 };
 export default HomePageAuth;

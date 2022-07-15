@@ -1,8 +1,17 @@
 import styled from "styled-components";
 
+export const BlurWrapper = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  backdrop-filter: blur(3px);
+  z-index: 1;
+  width: 100vw;
+  height: 100vh;
+`;
 export const Wrapper = styled.div`
   position: absolute;
-  padding:20px;
+  padding: 20px;
   top: 50%;
   left: 50%;
   width: 60vw;
@@ -11,7 +20,7 @@ export const Wrapper = styled.div`
   height: 60vh;
   max-height: 1000px;
   min-height: 600px;
-  background-color:#CEE4EF;
+  background-color: #cee4ef;
   transform: translate(-50%, -50%);
   border-radius: 10px;
   display: flex;
@@ -36,8 +45,8 @@ export const Wrapper = styled.div`
   }
   .btn {
     position: absolute;
-    bottom:30px;
-    right:120px;
+    bottom: 30px;
+    right: 120px;
     font-size: 1.2rem;
     padding: 10px 30px;
     color: black;
@@ -45,14 +54,4 @@ export const Wrapper = styled.div`
     cursor: pointer;
     user-select: none;
   }
-`;
-
-export const BlurWrapper = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  background-color: rgb(246, 244, 244);
-  z-index: 1;
-  width: 100vw;
-  height: 100vh;
 `;

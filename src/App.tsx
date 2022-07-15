@@ -5,27 +5,38 @@ import HomePageNotAuth from "./Pages/HomePageNotAuth/HomePageNotAuth";
 import HomePageAuth from "./Pages/HomePageAuth/HomePageAuth";
 import RandomQuestion from "./Pages/RandomQuestion/RandomQuestion";
 import FavoritesPage from "./Pages/Favorites/FavoritesPage";
-import { Route, Routes } from "react-router-dom"
+import { Route, Routes } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { RootState } from "./Redux/store"
+import { RootState } from "./Redux/store";
+import Flashcards from "./Pages/Flashcards/Flashcards";
 
 function App() {
-  const isLogedIn = useSelector((state: RootState) => state.counter.isLogged)
-  
+  const isLogedIn = useSelector((state: RootState) => state.counter.isLogged);
+
   return (
-      <>
+    <>
       <Layout>
         <GlobalStyle />
-          <Routes>
-              <Route path='/login' element={<SignUpModal />} />
-              <Route path='/' element={<HomePageNotAuth />} />
-              {isLogedIn && <Route path='/home' element={<HomePageAuth />} />}
-              {isLogedIn && <Route path='/home/random' element={<RandomQuestion />} />}
-            {isLogedIn && <Route path='/home/favorites' element={<FavoritesPage />} />}
-            <Route path='*' element={isLogedIn?<HomePageAuth />:<HomePageNotAuth />} />
+        <Routes>
+          <Route path="/" element={<HomePageNotAuth />} />
+          <Route path="/login" element={<SignUpModal />} />
+          {isLogedIn && <Route path="/home" element={<HomePageAuth />} />}
+          {isLogedIn && (
+            <Route path="/home/random" element={<RandomQuestion />} />
+          )}
+          {isLogedIn && (
+            <Route path="/home/favorites" element={<FavoritesPage />} />
+          )}
+          {isLogedIn && (
+            <Route path="/home/flashcards" element={<Flashcards />} />
+          )}
+          <Route
+            path="*"
+            element={isLogedIn ? <HomePageAuth /> : <HomePageNotAuth />}
+          />
         </Routes>
-  </Layout>
-</>
+      </Layout>
+    </>
   );
 }
 

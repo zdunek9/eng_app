@@ -6,6 +6,7 @@ interface CounterState {
   isLogged: boolean;
   randomQuestion: any;
   apiKey: string;
+  preventLoading: boolean;
 }
 const initialState: CounterState = {
   questions: [],
@@ -13,6 +14,7 @@ const initialState: CounterState = {
   isLogged: false,
   randomQuestion: [],
   apiKey: "",
+  preventLoading: false,
 };
 const counterSlice = createSlice({
   name: "counter",
@@ -32,6 +34,9 @@ const counterSlice = createSlice({
     rollRandomQuestion(state) {
       const randomNumber = Math.floor(Math.random() * state.questions.length);
       state.randomQuestion = state.questions[randomNumber];
+    },
+    preventFetch(state) {
+      state.preventLoading = true;
     },
   },
 });

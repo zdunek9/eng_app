@@ -11,12 +11,14 @@ export const Wrapper = styled.div`
   box-sizing: border-box;
   border-bottom: 1px solid rgb(179, 179, 179);
 
-
+  a:first-child::before {
+    border-bottom: none;
+  }
   p {
     margin: 0;
     font-size: 2.8rem;
     color: var(--biggerFont);
-    font-family: 'Darker Grotesque', sans-serif;
+    font-family: "Darker Grotesque", sans-serif;
   }
   a {
     margin: 0;
@@ -24,7 +26,7 @@ export const Wrapper = styled.div`
     font-size: 1.6rem;
     cursor: pointer;
     position: relative;
-    font-family: 'Darker Grotesque', sans-serif;
+    font-family: "Darker Grotesque", sans-serif;
     color: var(--thinFont);
   }
 
@@ -58,6 +60,6 @@ export const TabLoggLast = styled.button`
   height: auto;
   opacity: 1;
   font-weight: 600;
-  font-family: 'Darker Grotesque', sans-serif;
+  font-family: "Darker Grotesque", sans-serif;
   color: #a7cdee;
 `;

@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import progressReducer from './progress'
+import progressReducer from './progressSlice'
 import counterReducer from "./counterSlice"
 
 const store = configureStore({

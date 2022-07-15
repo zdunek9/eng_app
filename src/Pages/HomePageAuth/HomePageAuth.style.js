@@ -54,7 +54,7 @@ export const Box = styled.div`
   width: 15vw;
   padding: 20px;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   div {
     border-bottom: none;
     display: flex;
