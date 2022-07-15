@@ -35,7 +35,7 @@ export const MainWrapper = styled.div`
     padding: 0 30px;
   }
   .rollingItem {
-    animation: spin 1s ease;
+    animation: spin 0.7s ease;
   }
   .active {
     color: green;
