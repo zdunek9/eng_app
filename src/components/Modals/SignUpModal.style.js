@@ -10,7 +10,6 @@ export const BlurWrapper = styled.div`
   height: 100vh;
   @media screen and (max-width: 1200px) {
     backdrop-filter: unset;
-    /* display: none; */
   }
 `;
 export const Wrapper = styled.div`
@@ -40,11 +39,12 @@ export const Wrapper = styled.div`
     object-fit: cover;
     object-position:-100px;
   }
-  span {
+  .AiOutlineClose{
+    z-index: 2;
     position: absolute;
     top: 20px;
     right: 20px;
-    font-size: 2rem;
+    font-size: 4rem;
     cursor: pointer;
   }
   .btn {

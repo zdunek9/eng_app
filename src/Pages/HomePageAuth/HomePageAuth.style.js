@@ -5,8 +5,8 @@ export const Wrapper = styled.div`
   padding: 5vw;
   display: flex;
   flex-direction: column;
-  background-color: green;
   height: 100%;
+  margin-top: 8vh;
 
   .number {
     font-size: 7rem;
@@ -55,9 +55,7 @@ export const WelcomeScreen = styled.div`
       padding: 0;
     }
   }
-  @media screen and (max-width: 1000px) {
-    background-color: red;
-  }
+
 `;
 export const BoxWrapper = styled.div`
   display: flex;
@@ -88,9 +86,17 @@ export const Box = styled.div`
   p {
     font-weight: 600;
   }
-  @media screen and (max-width: 1000px) {
+  @media (max-width: 1000px) {
     width: 25vw;
     padding: 10px;
+  }
+  @media (max-width: 600px) {
+    h4{
+      font-size: 0.8rem;
+    }
+    p{
+      font-size: 0.6rem;
+    }
   }
 `;
 export const ProgressWrapper = styled.div`

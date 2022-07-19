@@ -45,4 +45,13 @@ export const Wrapper = styled.div`
   /* position: relative; */
   position: unset;
   }
+  @media (max-width: 600px) {
+    p{
+      font-size: 1rem;
+    }
+    span{
+      font-size: 1.5rem;
+    }
+  }
+
 `;

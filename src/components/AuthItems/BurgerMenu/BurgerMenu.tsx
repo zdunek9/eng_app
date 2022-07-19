@@ -17,6 +17,7 @@ const BurgerMenu: React.FC<{
   };
   return (
     <StyledMenu open={open}>
+      <NavLink to="/home" onClick={()=>setOpen(false)}>Home</NavLink>
       <NavLink to="home/flashcards" onClick={() => setOpen(false)}>
         Flashcards
       </NavLink>

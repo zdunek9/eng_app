@@ -25,7 +25,7 @@ const Navigation: React.FC = () => {
 
   return (
     <>
-      <Wrapper>
+      <Wrapper isLoggedIn={isLoggedIn}>
         <NavLink to="home">
           <p>Cool Name</p>
         </NavLink>

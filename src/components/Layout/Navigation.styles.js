@@ -57,7 +57,7 @@ export const Wrapper = styled.div`
     }
   }
   @media screen and (max-width: 600px) {
-    display: none;
+    display: ${({ isLoggedIn }) => (isLoggedIn ? "none" : "flex")};
   }
 `;
 

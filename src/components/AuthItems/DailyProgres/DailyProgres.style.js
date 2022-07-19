@@ -32,6 +32,9 @@ export const Wrapper = styled.div`
   right:none;
   left: none;
   }
+  @media (max-width: 600px) {
+    font-size: 0.8rem;
+  }
 `;
 export const ContainerProgres = styled.div`
   height: 20px;
