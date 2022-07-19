@@ -47,6 +47,18 @@ export const Wrapper = styled.div`
     opacity: 1;
     font-weight: 600;
   }
+  @media screen and (max-width: 1000px) {
+    padding: 0 10px;
+    p {
+      font-size: 1.6rem;
+    }
+    a {
+      font-size: 1.2rem;
+    }
+  }
+  @media screen and (max-width: 600px) {
+    display: none;
+  }
 `;
 
 export const TabLoggLast = styled.button`
@@ -62,4 +74,11 @@ export const TabLoggLast = styled.button`
   font-weight: 600;
   font-family: "Darker Grotesque", sans-serif;
   color: #a7cdee;
+  @media screen and (max-width: 1000px) {
+    font-size: 1.2rem;
+    padding: 15px;
+  }
+  @media screen and (max-width: 600px) {
+    font-size: 0.8rem;
+  }
 `;

@@ -7,6 +7,7 @@ import {
   BoxWrapper,
   PartingWrapper,
   PartingWrapperSecond,
+  ProgressWrapper
 } from "./HomePageAuth.style";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -92,8 +93,10 @@ const HomePageAuth = () => {
               </BoxWrapper>
             </PartingWrapperSecond>
           </WelcomeScreen>
-          <DailyProgres />
-          <ContactInfo />
+          <ProgressWrapper>
+            <DailyProgres />
+            <ContactInfo />
+          </ProgressWrapper>
         </Wrapper>
       )}
     </>

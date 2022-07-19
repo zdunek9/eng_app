@@ -1,11 +1,10 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-    height: 95%;
-    width: 45%;
-    position: relative;
-    font-size: 15px;
-    border-radius: 10px;
+  height: 95%;
+  width: 45%;
+  position: relative;
+  font-size: 15px;
   h1 {
     margin: 40px 10px 20px 0;
   }
@@ -46,9 +45,25 @@ export const Wrapper = styled.div`
     color: #9ca0ac;
     font-weight: 400;
   }
-  p{
-    color:red;
+  p {
+    color: red;
     font-style: italic;
-    margin-top:0;
+    margin-top: 0;
+  }
+  @media screen and (max-width: 700px) {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    #email {
+      width: 80vw;
+    }
+    #password {
+      width: 80vw;
+    }
+    button {
+      width: 100%;
+
+    }
   }
 `;

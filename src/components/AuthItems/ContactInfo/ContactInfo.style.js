@@ -26,4 +26,23 @@ export const Wrapper = styled.div`
   span:last-child {
     color: #0e76a8;
   }
+  @media(max-width: 1400px) {
+    right: 1vw;
+    width: 200px;
+    top: 60vh;
+    p {
+      font-size: 1.3rem;
+    }
+    span {
+      font-size: 2rem;
+    }
+  }
+  @media(max-width: 1000px) { 
+  right:none;
+  top: none;
+  width: 200px;
+  font-size: 1.3rem;
+  /* position: relative; */
+  position: unset;
+  }
 `;

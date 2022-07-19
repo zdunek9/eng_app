@@ -51,4 +51,20 @@ export const Wrapper = styled.div`
     font-style: italic;
     margin-top: 0;
   }
+  @media screen and (max-width: 700px) {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    #email {
+      width: 80vw;
+    }
+    input {
+      width: 80vw;
+    }
+    button {
+      width: 100%;
+
+    }
+  }
 `;

@@ -8,6 +8,10 @@ export const BlurWrapper = styled.div`
   z-index: 1;
   width: 100vw;
   height: 100vh;
+  @media screen and (max-width: 1200px) {
+    backdrop-filter: unset;
+    /* display: none; */
+  }
 `;
 export const Wrapper = styled.div`
   position: absolute;
@@ -34,7 +38,7 @@ export const Wrapper = styled.div`
     width: 45%;
     border-radius: 10px;
     object-fit: cover;
-    object-position: left;
+    object-position:-100px;
   }
   span {
     position: absolute;
@@ -46,12 +50,43 @@ export const Wrapper = styled.div`
   .btn {
     position: absolute;
     bottom: 30px;
-    right: 120px;
+    right: 3vw;
     font-size: 1.2rem;
     padding: 10px 30px;
     color: black;
-    transition: all 500ms cubic-bezier(0.77, 0, 0.175, 1);
     cursor: pointer;
     user-select: none;
+  }
+  @media screen and (max-width: 1200px) {
+    top: 0;
+    left: 0;
+    width: 100vw;
+    max-width: unset;
+    min-width: unset;
+    height: 100vh;
+    background-color: #cee4ef;
+    transform: unset;
+    border-radius: unset;
+    padding: 0;
+    img {
+      object-fit: cover;
+      object-position: -100px;
+    }
+  }
+  @media screen and (max-width: 700px) {
+    flex-direction: column;
+    img {
+      display: none;
+    }
+    .btn {
+      position: relative;
+      bottom: 30px;
+      right: 3vw;
+      font-size: 1.2rem;
+      padding: 10px 30px;
+      color: black;
+      cursor: pointer;
+      user-select: none;
+    }
   }
 `;

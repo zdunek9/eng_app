@@ -1,14 +1,20 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-  height: 90vh;
   position: relative;
-  width: 100vw;
+  padding: 5vw;
+  display: flex;
+  flex-direction: column;
+  background-color: green;
+  height: 100%;
+
   .number {
     font-size: 7rem;
     padding: 0;
     margin-right: 10px;
     color: #397393;
+  }
+  @media screen and (max-width: 1000px) {
   }
 `;
 export const PartingWrapper = styled.div`
@@ -19,13 +25,9 @@ export const PartingWrapperSecond = styled.div`
   padding-top: 50px;
 `;
 export const WelcomeScreen = styled.div`
-  position: absolute;
+  width: 60vw;
   display: flex;
   flex-direction: column;
-  padding: 50px;
-  top: 10vh;
-  left: 5vw;
-  font-size: 1.7rem;
   font-family: "Inter", sans-serif;
   h1 {
     font-size: 3rem;
@@ -40,6 +42,22 @@ export const WelcomeScreen = styled.div`
   b {
     color: black;
   }
+  @media screen and (max-width: 1200px) {
+    left: 5vw;
+    top: 15vh;
+    padding: 0;
+    h1 {
+      font-size: 2rem;
+    }
+    h3 {
+      font-size: 1rem;
+      margin: 0;
+      padding: 0;
+    }
+  }
+  @media screen and (max-width: 1000px) {
+    background-color: red;
+  }
 `;
 export const BoxWrapper = styled.div`
   display: flex;
@@ -48,6 +66,9 @@ export const BoxWrapper = styled.div`
   font-size: 1rem;
   border-bottom: none !important;
   margin-top: 60px;
+  @media screen and (max-width: 1000px) {
+    width: 90vw;
+  }
 `;
 export const Box = styled.div`
   border: 1px solid var(--greyColor);
@@ -67,4 +88,13 @@ export const Box = styled.div`
   p {
     font-weight: 600;
   }
+  @media screen and (max-width: 1000px) {
+    width: 25vw;
+    padding: 10px;
+  }
 `;
+export const ProgressWrapper = styled.div`
+display: flex;
+justify-content: space-between;
+margin-top: 50px;
+`

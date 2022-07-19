@@ -19,6 +19,19 @@ export const Wrapper = styled.div`
     margin: 10px;
     text-align: center;
   }
+  @media screen and (max-width:1400px) {
+  top:5vh;
+  right:1vw;    
+  font-size: 1rem;
+  width: 200px;
+  }
+  @media screen and (max-width:1000px) {
+    position: unset;
+  top:none;
+  bottom:none;
+  right:none;
+  left: none;
+  }
 `;
 export const ContainerProgres = styled.div`
   height: 20px;
