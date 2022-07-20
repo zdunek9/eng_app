@@ -1,11 +1,11 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
+position: relative;
   display: flex;
-  height: 85vh;
-  justify-content: center;
+  margin-top: 8vh;
+  height: 100%;
   align-items: center;
-  min-height: 600px;
   background: rgb(255, 255, 255);
   background: linear-gradient(
     162deg,
@@ -163,5 +163,8 @@ export const MobileInfo = styled.div`
       padding: 0 10px;
       text-align: center;
     }
+  }
+  @media screen and (max-height: 600px) {
+    display: none;
   }
 `;

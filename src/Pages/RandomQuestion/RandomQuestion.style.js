@@ -1,21 +1,20 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-  height: 90vh;
-  width: 100vw;
   position: relative;
-`;
-export const MainWrapper = styled.div`
-  max-width: 90vw;
-  padding: 50px 80px;
-  position: absolute;
+  padding: 5vw;
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  top: 60%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  height: 100%;
+  margin-top: 8vh;
+`;
+export const MainWrapper = styled.div`
+  padding: 80px 80px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  align-items: center;
   h1 {
     font-size: 3rem;
     text-align: center;
@@ -40,6 +39,10 @@ export const MainWrapper = styled.div`
   .active {
     color: green;
   }
+  .dailyWrapper {
+    position: absolute;
+    bottom: 0;
+  }
 
   @keyframes spin {
     from {
@@ -48,5 +51,21 @@ export const MainWrapper = styled.div`
     to {
       transform: rotate(360deg);
     }
+  }
+
+  @media screen and (max-width: 1400px) {
+    padding-left: 0;
+    width: 50vw;
+    h1 {
+      font-size: 2rem;
+    }
+  }
+  span {
+    font-size: 3rem;
+  }
+  @media screen and (max-width: 600px) {
+    /* margin-top: 10vh; */
+    padding: 50px 50px;
+    width: 70%;
   }
 `;

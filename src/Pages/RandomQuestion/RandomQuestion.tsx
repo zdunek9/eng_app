@@ -48,9 +48,7 @@ const RandomQuestion = () => {
         </span>
         <Hearth />
       </MainWrapper>
-      <div>
-        <DailyProgres />
-      </div>
+      <DailyProgres /> 
     </Wrapper>
   );
 };

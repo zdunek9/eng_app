@@ -59,6 +59,16 @@ export const Wrapper = styled.div`
   @media screen and (max-width: 600px) {
     display: ${({ isLoggedIn }) => (isLoggedIn ? "none" : "flex")};
   }
+  @media(max-width: 1000px) {
+    a::before {
+      bottom: -8px;
+  }
+  }
+  @media(max-width: 800px) {
+    a:hover::before {
+      display: none;
+  }
+  }
 `;
 
 export const TabLoggLast = styled.button`

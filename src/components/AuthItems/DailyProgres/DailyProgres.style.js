@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Wrapper = styled.div`
   position: absolute;
   right: 5vw;
-  top: 15vh;
+  top: 0;
   width: 300px;
   padding: 20px;
   font-size: 1.3rem;
@@ -23,14 +23,14 @@ export const Wrapper = styled.div`
   top:5vh;
   right:1vw;    
   font-size: 1rem;
-  width: 200px;
   }
   @media screen and (max-width:1000px) {
-    position: unset;
-  top:none;
+    position: relative;
+  top:0;
   bottom:none;
   right:none;
   left: none;
+  width: 80%;
   }
   @media (max-width: 600px) {
     font-size: 0.8rem;
