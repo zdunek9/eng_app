@@ -4,7 +4,7 @@ export const BlurWrapper = styled.div`
   position: absolute;
   top: 0;
   left: 0;
-  backdrop-filter: blur(3px);
+  backdrop-filter: blur(10px);
   z-index: 1;
   width: 100vw;
   height: 100vh;
@@ -63,6 +63,7 @@ export const Wrapper = styled.div`
     width: 100vw;
     max-width: unset;
     min-width: unset;
+    max-height: unset;
     height: 100vh;
     background-color: #cee4ef;
     transform: unset;

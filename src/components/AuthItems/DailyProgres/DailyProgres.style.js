@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Wrapper = styled.div`
   position: absolute;
   right: 5vw;
-  top: 0;
+  top: 4vw;
   width: 300px;
   padding: 20px;
   font-size: 1.3rem;
@@ -13,7 +13,6 @@ export const Wrapper = styled.div`
   flex-direction: column;
   background-color: none;
   align-items: center;
-  /* overflow: hidden; */
   font-weight: 600;
   p {
     margin: 10px;

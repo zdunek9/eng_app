@@ -1,20 +1,20 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
+  height: calc(100vh - 81px);
   position: relative;
   padding: 5vw;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  height: 100%;
-  margin-top: 8vh;
-
   .number {
     font-size: 7rem;
     padding: 0;
     margin-right: 10px;
     color: #397393;
   }
-  @media screen and (max-width: 1000px) {
+  @media (max-width: 600px) {
+    padding-top: 10vw;
   }
 `;
 export const PartingWrapper = styled.div`
@@ -43,9 +43,6 @@ export const WelcomeScreen = styled.div`
     color: black;
   }
   @media screen and (max-width: 1200px) {
-    left: 5vw;
-    top: 15vh;
-    padding: 0;
     h1 {
       font-size: 2rem;
     }
@@ -55,7 +52,6 @@ export const WelcomeScreen = styled.div`
       padding: 0;
     }
   }
-
 `;
 export const BoxWrapper = styled.div`
   display: flex;
@@ -91,16 +87,16 @@ export const Box = styled.div`
     padding: 10px;
   }
   @media (max-width: 600px) {
-    h4{
+    h4 {
       font-size: 0.8rem;
     }
-    p{
+    p {
       font-size: 0.6rem;
     }
   }
 `;
 export const ProgressWrapper = styled.div`
-display: flex;
-justify-content: space-between;
-margin-top: 50px;
-`
+  display: flex;
+  justify-content: space-between;
+  margin-top: 50px;
+`;

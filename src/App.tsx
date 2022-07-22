@@ -14,7 +14,6 @@ function App() {
   const isLogedIn = useSelector((state: RootState) => state.counter.isLogged);
 
   return (
-    <>
       <Layout>
         <GlobalStyle />
         <Routes>
@@ -36,7 +35,6 @@ function App() {
           />
         </Routes>
       </Layout>
-    </>
   );
 }
 

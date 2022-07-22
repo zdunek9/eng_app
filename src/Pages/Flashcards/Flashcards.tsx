@@ -1,4 +1,5 @@
+import { Wrapper } from "./Flashcards.style";
 const Flashcards = () => {
-  return <>Work in progress...</>;
+  return <Wrapper>Work in progress...</Wrapper>;
 };
 export default Flashcards;

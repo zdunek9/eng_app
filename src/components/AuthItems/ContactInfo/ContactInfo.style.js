@@ -28,7 +28,6 @@ export const Wrapper = styled.div`
   }
   @media(max-width: 1400px) {
     right: 1vw;
-    width: 200px;
     top: 60vh;
     p {
       font-size: 1.3rem;
@@ -42,7 +41,6 @@ export const Wrapper = styled.div`
   top: none;
   width: 200px;
   font-size: 1.3rem;
-  /* position: relative; */
   position: unset;
   }
   @media (max-width: 600px) {

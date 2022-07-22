@@ -1,19 +1,21 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
+  height: calc(100vh - 81px);
   position: relative;
   padding: 5vw;
+  box-sizing: border-box;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  height: 100%;
-  margin-top: 8vh;
+  justify-content: center;
+  flex-wrap:wrap;
 `;
 export const MainWrapper = styled.div`
-  padding: 80px 80px;
+  padding: 120px 80px;
   display: flex;
   flex-direction: column;
   position: relative;
+  width: 100%;
   align-items: center;
   h1 {
     font-size: 3rem;
@@ -67,5 +69,9 @@ export const MainWrapper = styled.div`
     /* margin-top: 10vh; */
     padding: 50px 50px;
     width: 70%;
+    span {
+    font-size: 3rem;
+    margin:30px 0;
+  }
   }
 `;

@@ -11,11 +11,8 @@ export const GlobalStyle = createGlobalStyle`
         --buttonColor:#fdc561;
         --infoColor: #edb7bd;
         --greyColor:#78758D;
-    }
-    html{
-        box-sizing: border-box;
-    }
 
+    }
     body{
         font-family: 'Montserrat', sans-serif;
         width: 100%;
@@ -23,10 +20,9 @@ export const GlobalStyle = createGlobalStyle`
         margin:0;
         padding:0;
         background-color:#fffffF;
-        display: flex;
-        flex-direction: column;
         background: rgb(255,255,255);
 background: linear-gradient(180deg, rgba(255,255,255,1) 29%, rgba(167,205,238,0.8071603641456583) 87%);
+box-sizing: border-box;
     }
     
     a,button{
