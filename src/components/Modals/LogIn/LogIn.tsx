@@ -27,16 +27,15 @@ const Login:React.FC = () =>{
             headers:{
                 'Content-Type': 'application/json'
             },
-        }).then(rest =>{
+        }).then(async rest =>{
             if(rest.ok){
                 setWrongCredentials(false)
                 navigate(`/home`);
                 return rest.json()
             }else{
-                return rest.json().then(data=>{
-                    console.log(data);
-                    setWrongCredentials(true)
-                })
+                const data = await rest.json();
+                console.log(data);
+                setWrongCredentials(true);
             }
         }).then(data=>{
             dispatch(counterActions.login(data.idToken))

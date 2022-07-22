@@ -4,19 +4,23 @@ export const Wrapper = styled.div`
   height: calc(100vh - 81px);
   position: relative;
   padding: 5vw;
-  box-sizing: border-box;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-wrap:wrap;
+  flex-wrap: wrap;
+  @media (max-width: 1400px) {
+    padding: 1vw;
+  }
 `;
 export const MainWrapper = styled.div`
-  padding: 120px 80px;
-  display: flex;
-  flex-direction: column;
-  position: relative;
+  padding: 50px;
   width: 100%;
+  margin-right: 20vw;
+  display: flex;
+  position: relative;
+  flex-direction: column;
   align-items: center;
+
   h1 {
     font-size: 3rem;
     text-align: center;
@@ -27,19 +31,22 @@ export const MainWrapper = styled.div`
     font-weight: 400;
   }
   span {
-    font-size: 4rem;
-    display: inline-block;
+    font-size: 4.5rem !important;
     margin: 30px;
-    cursor: pointer;
+    display: flex;
+    justify-content: space-around;
+    width: 30vw;
+    text-align: center;
   }
   span > * {
-    padding: 0 30px;
+    cursor: pointer;
   }
+
   .rollingItem {
     animation: spin 0.7s ease;
   }
   .active {
-    color: green;
+    color: var(--greenColor);
   }
   .dailyWrapper {
     position: absolute;
@@ -55,9 +62,10 @@ export const MainWrapper = styled.div`
     }
   }
 
-  @media screen and (max-width: 1400px) {
-    padding-left: 0;
-    width: 50vw;
+  @media (max-width: 1400px) {
+    width: 100vw;
+    margin-right: 0;
+
     h1 {
       font-size: 2rem;
     }
@@ -65,13 +73,12 @@ export const MainWrapper = styled.div`
   span {
     font-size: 3rem;
   }
-  @media screen and (max-width: 600px) {
-    /* margin-top: 10vh; */
+  @media (max-width: 600px) {
     padding: 50px 50px;
     width: 70%;
     span {
-    font-size: 3rem;
-    margin:30px 0;
-  }
+      font-size: 3rem;
+      margin: 30px 0;
+    }
   }
 `;

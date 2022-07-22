@@ -1,15 +1,20 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
   height: 80px;
   width: 100%;
   margin: 0;
   display: flex;
+  background-color: #e6f1fa;
   justify-content: space-between;
   align-items: center;
   padding: 0 20px;
   box-sizing: border-box;
   border-bottom: 1px solid rgb(179, 179, 179);
+  z-index: 1;
 
   a:first-child::before {
     border-bottom: none;
@@ -59,15 +64,15 @@ export const Wrapper = styled.div`
   @media screen and (max-width: 600px) {
     display: ${({ isLoggedIn }) => (isLoggedIn ? "none" : "flex")};
   }
-  @media(max-width: 1000px) {
+  @media (max-width: 1000px) {
     a::before {
       bottom: -8px;
+    }
   }
-  }
-  @media(max-width: 800px) {
+  @media (max-width: 800px) {
     a:hover::before {
       display: none;
-  }
+    }
   }
 `;
 

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 export const Wrapper = styled.div`
-  height: 90vh;
+  height: 100vh;
   width: 100vw;
   z-index: 2;
   position: absolute;

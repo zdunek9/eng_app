@@ -28,6 +28,7 @@ export const Wrapper = styled.div`
   }
   @media(max-width: 1400px) {
     right: 1vw;
+    width: 200px;
     top: 60vh;
     p {
       font-size: 1.3rem;

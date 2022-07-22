@@ -19,17 +19,14 @@ export const Wrapper = styled.div`
     text-align: center;
   }
   @media screen and (max-width:1400px) {
-  top:5vh;
+  top:5vw;
   right:1vw;    
   font-size: 1rem;
   }
   @media screen and (max-width:1000px) {
-    position: relative;
+  position:relative;
+  padding: 10px;
   top:0;
-  bottom:none;
-  right:none;
-  left: none;
-  width: 80%;
   }
   @media (max-width: 600px) {
     font-size: 0.8rem;

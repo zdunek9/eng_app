@@ -6,7 +6,6 @@ export const Wrapper = styled.div`
   height: calc(100vh - 81px);
   justify-content: center;
   padding: 0 20px;
-  box-sizing: border-box;
   background: rgb(255, 255, 255);
   background: linear-gradient(
     162deg,
@@ -17,7 +16,6 @@ export const Wrapper = styled.div`
     border-radius: 20px;
     width: 40%;
     min-width: 500px;
-    /* height: 400px; */
     object-fit: contain;
   }
   h1 {
@@ -71,6 +69,7 @@ export const MobileButton = styled.div`
   border-radius: 20px;
   color: white;
   font-size: 1.5rem;
+  cursor: pointer;
   background-color: var(--buttonColor);
 `;
 

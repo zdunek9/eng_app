@@ -1,7 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
-
     :root{
         --frames: 62;
         --background2:#d4e7f7;
@@ -11,33 +10,27 @@ export const GlobalStyle = createGlobalStyle`
         --buttonColor:#fdc561;
         --infoColor: #edb7bd;
         --greyColor:#78758D;
-
+        --greenColor:#00e673;
+    }
+    *{
+      box-sizing: border-box;
+      max-width: 100%;
     }
     body{
         font-family: 'Montserrat', sans-serif;
-        width: 100%;
         min-height: 100vh;
+        /* height: 100%; */
         margin:0;
         padding:0;
-        background-color:#fffffF;
-        background: rgb(255,255,255);
-background: linear-gradient(180deg, rgba(255,255,255,1) 29%, rgba(167,205,238,0.8071603641456583) 87%);
-box-sizing: border-box;
+        background: rgb(230,241,250);
+background: linear-gradient(180deg, rgba(230,241,250,1) 0%, rgba(116,171,201,1) 61%, rgba(230,241,250,1) 100%);
     }
     
-    a,button{
-                text-decoration: none;
+    a,a:link,a:visited,button{
+        text-decoration: none;
         background-color: unset;
     }
-    a:link {
-  text-decoration: none;
-}
-
-a:visited {
-  text-decoration: none;
-}
-h1,h2,h3{
-  color:var(--titleFontColor)
-}
-
+    h1,h2,h3{
+      color:var(--titleFontColor)
+    }
 `;
