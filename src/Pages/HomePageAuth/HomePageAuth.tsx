@@ -17,27 +17,35 @@ import Loading from "../../components/Modals/Loading/Loading";
 import { RootState } from "../../Redux/store";
 import { motion } from "framer-motion";
 import Errorr from "../../components/Modals/Error/Error";
+import { flashcardActions } from "../../Redux/flashcardsSlice";
+import { authActions } from "../../Redux/authSlice";
 
-const URL = `${process.env.REACT_APP_DB_TAB}`;
+const URL_TAB = `${process.env.REACT_APP_DB_TAB}`;
+const URL_FLASHCARD = `${process.env.REACT_APP_DB_FLASHCARDS}`;
 const HomePageAuth = () => {
   const dispatch = useDispatch();
+  const token = useSelector((state: RootState) => state.auth.apiKey);
+
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<any>(null);
   const loadFetch = useSelector(
-    (state: RootState) => state.counter.preventLoading
+    (state: RootState) => state.auth.preventLoading
   );
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(URL);
-        if (!response.ok) {
-          throw new error(
-            `This is an HTTP error: The status is ${response.status}`
-          );
+        const response = await Promise.all([
+          fetch(`${URL_TAB}?auth=${token}`),
+          fetch(`${URL_FLASHCARD}?auth=${token}`),
+        ]);
+        if (!response[0].ok || !response[1].ok) {
+          throw new error(`There was a connection problem. Try later`);
         }
-        const responseData = await response.json();
-        const itemTab = [];
+        const responseData = await response[0].json();
+        const responseDataFlashcard = await response[1].json();
+        const itemTab = []; // mozna te tablice wywalic z use memo
+        const itemTabFlashcards = []; // mozna te tablice wywalic z use memo
         for (const item in responseData) {
           itemTab.push({
             id: item,
@@ -45,9 +53,20 @@ const HomePageAuth = () => {
             questionPol: responseData[item].Pol,
           });
         }
+        for (const item in responseDataFlashcard) {
+          itemTabFlashcards.push({
+            id: item,
+            flashcardPol: responseDataFlashcard[item].p1,
+            flashcardAng: responseDataFlashcard[item].a1,
+            flashcardTipPol: responseDataFlashcard[item].p2,
+            flashcardTipAng: responseDataFlashcard[item].a2,
+          });
+        }
         dispatch(counterActions.updateQuestion(itemTab));
+        dispatch(flashcardActions.updateFlashcard(itemTabFlashcards));
         dispatch(counterActions.rollRandomQuestion());
-        dispatch(counterActions.preventFetch());
+        dispatch(flashcardActions.rollRandomFlashcard());
+        dispatch(authActions.preventFetch());
       } catch (err) {
         setError(err);
       } finally {

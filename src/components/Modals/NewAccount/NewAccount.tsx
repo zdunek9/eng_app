@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import { Wrapper } from "./NewAccount.style";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { counterActions } from "../../../Redux/counterSlice";
+import { authActions } from "../../../Redux/authSlice";
 
 const NewAccount = () => {
   const [wrongCredentials, setWrongCredentials] = useState<boolean>(false);
@@ -28,7 +28,7 @@ const NewAccount = () => {
       setWrongCredentials(true);
       return;
     }
-    const URL = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${process.env.REACT_APP_AUTH}`; //tutaj
+    const URL = `${process.env.REACT_APP_SIGN_IN}`; //tutaj
     fetch(URL, {
       method: "POST",
       body: JSON.stringify({
@@ -51,7 +51,7 @@ const NewAccount = () => {
         }
       })
       .then((data) => {
-        dispatch(counterActions.login(data.idToken));
+        dispatch(authActions.login(data.idToken));
         navigate("/home");
       });
   };

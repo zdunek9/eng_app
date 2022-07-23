@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Wrapper, TabLoggLast } from "./Navigation.styles";
 import { RootState } from "../../Redux/store";
-import { counterActions } from "../../Redux/counterSlice";
+import { authActions } from "../../Redux/authSlice";
 import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import BurgerMenu from "../AuthItems/BurgerMenu/BurgerMenu";
@@ -10,7 +10,7 @@ import Burger from "../AuthItems/BurgerMenu/Burger";
 
 const Navigation: React.FC = () => {
   const dispatch = useDispatch();
-  const isLoggedIn = useSelector((state: RootState) => state.counter.isLogged);
+  const isLoggedIn = useSelector((state: RootState) => state.auth.isLogged);
   const [openBurgerMenu, setOpenBurgerMenu] = useState<boolean>(false);
 
   let navigate = useNavigate();
@@ -19,7 +19,7 @@ const Navigation: React.FC = () => {
     navigate(`/login`);
   };
   const onLogOutHandler = () => {
-    dispatch(counterActions.logout());
+    dispatch(authActions.logout());
     navigate("/");
   };
   let activeClass = "activeClass";

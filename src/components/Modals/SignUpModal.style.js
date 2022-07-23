@@ -20,7 +20,7 @@ export const Wrapper = styled.div`
   width: 60vw;
   max-width: 1000px;
   min-width: 600px;
-  height: 60vh;
+  height: 75vh;
   max-height: 1000px;
   min-height: 600px;
   background-color: #cee4ef;
@@ -37,9 +37,9 @@ export const Wrapper = styled.div`
     width: 45%;
     border-radius: 10px;
     object-fit: cover;
-    object-position:-100px;
+    object-position: -100px;
   }
-  .AiOutlineClose{
+  .AiOutlineClose {
     z-index: 2;
     position: absolute;
     top: 20px;

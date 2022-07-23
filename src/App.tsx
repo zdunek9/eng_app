@@ -13,7 +13,7 @@ import Navigation from "./components/Layout/Navigation";
 import { MainWrapper } from "./App.styles";
 
 function App() {
-  const isLogedIn = useSelector((state: RootState) => state.counter.isLogged);
+  const isLogedIn = useSelector((state: RootState) => state.auth.isLogged);
   const location = useLocation();
   return (
     <MainWrapper>

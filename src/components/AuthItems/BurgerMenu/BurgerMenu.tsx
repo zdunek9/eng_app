@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { StyledMenu } from "./BurgerMenu.style";
-import { counterActions } from "../../../Redux/counterSlice";
+import { authActions } from "../../../Redux/authSlice";
 import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
@@ -11,13 +11,15 @@ const BurgerMenu: React.FC<{
   const dispatch = useDispatch();
   let navigate = useNavigate();
   const onLogOutHandler = () => {
-    dispatch(counterActions.logout());
+    dispatch(authActions.logout());
     setOpen(false);
     navigate("/");
   };
   return (
     <StyledMenu open={open}>
-      <NavLink to="/home" onClick={()=>setOpen(false)}>Home</NavLink>
+      <NavLink to="/home" onClick={() => setOpen(false)}>
+        Home
+      </NavLink>
       <NavLink to="home/flashcards" onClick={() => setOpen(false)}>
         Flashcards
       </NavLink>
