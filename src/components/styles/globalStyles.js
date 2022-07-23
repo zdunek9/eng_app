@@ -19,13 +19,11 @@ export const GlobalStyle = createGlobalStyle`
     body{
         font-family: 'Montserrat', sans-serif;
         min-height: 100vh;
-        /* height: 100%; */
         margin:0;
         padding:0;
-        background: rgb(230,241,250);
-background: linear-gradient(180deg, rgba(230,241,250,1) 0%, rgba(116,171,201,1) 61%, rgba(230,241,250,1) 100%);
+        background-color: #e6f1fa;
+        overflow: hidden;
     }
-    
     a,a:link,a:visited,button{
         text-decoration: none;
         background-color: unset;

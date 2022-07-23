@@ -7,7 +7,7 @@ import {
   BoxWrapper,
   PartingWrapper,
   PartingWrapperSecond,
-  ProgressWrapper
+  ProgressWrapper,
 } from "./HomePageAuth.style";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -15,90 +15,105 @@ import { counterActions } from "../../Redux/counterSlice";
 import { RiNumber1, RiNumber2, RiNumber3 } from "react-icons/ri";
 import Loading from "../../components/Modals/Loading/Loading";
 import { RootState } from "../../Redux/store";
+import { motion } from "framer-motion";
+import Errorr from "../../components/Modals/Error/Error";
 
-const URL = `${process.env.REACT_APP_DB}`;
+const URL = `${process.env.REACT_APP_DB_TAB}`;
 const HomePageAuth = () => {
   const dispatch = useDispatch();
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [error, setError] = useState<any>(null);
   const loadFetch = useSelector(
     (state: RootState) => state.counter.preventLoading
   );
 
   useEffect(() => {
     const fetchData = async () => {
-      setIsLoading(true);
-      const response = await fetch(URL);
-      const responseData = await response.json();
-      const itemTab = [];
-      for (const item in responseData) {
-        itemTab.push({
-          id: item,
-          question: responseData[item].Ang,
-          questionPol: responseData[item].Pol,
-        });
+      try {
+        const response = await fetch(URL);
+        if (!response.ok) {
+          throw new error(
+            `This is an HTTP error: The status is ${response.status}`
+          );
+        }
+        const responseData = await response.json();
+        const itemTab = [];
+        for (const item in responseData) {
+          itemTab.push({
+            id: item,
+            question: responseData[item].Ang,
+            questionPol: responseData[item].Pol,
+          });
+        }
+        dispatch(counterActions.updateQuestion(itemTab));
+        dispatch(counterActions.rollRandomQuestion());
+        dispatch(counterActions.preventFetch());
+      } catch (err) {
+        setError(err);
+      } finally {
+        setIsLoading(false);
       }
-      dispatch(counterActions.updateQuestion(itemTab));
-      dispatch(counterActions.rollRandomQuestion());
-      dispatch(counterActions.preventFetch());
-      setIsLoading(false);
     };
     if (loadFetch === false) {
       fetchData();
     }
-  }, [dispatch, loadFetch]);
+  }, []);
+
   return (
     <>
-      {isLoading ? (
-        <Loading />
-      ) : (
-        <Wrapper>
-          <WelcomeScreen>
-            <PartingWrapper>
-              <h1>Welcome to myapp</h1>
-              <h3>
-                Start learning English using my website. Visit
-                <b> Random Question</b> and create your <b>Favirites!</b>
-              </h3>
-            </PartingWrapper>
-            <PartingWrapperSecond>
-              <h3>Complete your daily goal, for better learning.</h3>
-              <h3>
-                <b>Learn how to use:</b>
-              </h3>
-              <BoxWrapper>
-                <Box>
-                  <RiNumber1 className="number" />
-                  <div>
-                    <h4>What and Why?</h4>
-                    <p>Answer or discuss with your frends about questions</p>
-                  </div>
-                </Box>
-                <Box>
-                  <RiNumber2 className="number" />
-                  <div>
-                    <h4>Daily Goal</h4>
-                    <p>Compleate daily goal for better performance!</p>
-                  </div>
-                </Box>
-                <Box>
-                  <RiNumber3 className="number" />
-                  <div>
-                    <h4>Favorites</h4>
-                    <p>
-                      Add special question to favorites, and back to them
-                      anytime!
-                    </p>
-                  </div>
-                </Box>
-              </BoxWrapper>
-            </PartingWrapperSecond>
-          </WelcomeScreen>
-          <ProgressWrapper>
-            <DailyProgres />
-            <ContactInfo />
-          </ProgressWrapper>
-        </Wrapper>
-      )}
+      {isLoading && !loadFetch && <Loading />}
+      {error && <Errorr />}
+      <Wrapper
+        as={motion.div}
+        initial={{ width: 0 }}
+        animate={{ width: "100%" }}
+        exit={{ x: window.innerWidth, transition: { duration: 0.2 } }}
+      >
+        <WelcomeScreen>
+          <PartingWrapper>
+            <h1>Welcome to myapp</h1>
+            <h3>
+              Start learning English using my website. Visit
+              <b> Random Question</b> and create your <b>Favirites!</b>
+            </h3>
+          </PartingWrapper>
+          <PartingWrapperSecond>
+            <h3>Complete your daily goal, for better learning.</h3>
+            <h3>
+              <b>Learn how to use:</b>
+            </h3>
+            <BoxWrapper>
+              <Box>
+                <RiNumber1 className="number" />
+                <div>
+                  <h4>What and Why?</h4>
+                  <p>Answer or discuss with your frends about questions</p>
+                </div>
+              </Box>
+              <Box>
+                <RiNumber2 className="number" />
+                <div>
+                  <h4>Daily Goal</h4>
+                  <p>Compleate daily goal for better performance!</p>
+                </div>
+              </Box>
+              <Box>
+                <RiNumber3 className="number" />
+                <div>
+                  <h4>Favorites</h4>
+                  <p>
+                    Add special question to favorites, and back to them anytime!
+                  </p>
+                </div>
+              </Box>
+            </BoxWrapper>
+          </PartingWrapperSecond>
+        </WelcomeScreen>
+        <ProgressWrapper>
+          <DailyProgres />
+          <ContactInfo />
+        </ProgressWrapper>
+      </Wrapper>
     </>
   );
 };

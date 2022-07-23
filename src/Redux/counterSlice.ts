@@ -27,6 +27,8 @@ const counterSlice = createSlice({
     logout(state) {
       state.isLogged = false;
       state.apiKey = "";
+      state.preventLoading = false;
+
     },
     updateQuestion(state, action) {
       state.questions = action.payload;

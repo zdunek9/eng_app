@@ -1,12 +1,7 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
   height: 80px;
-  width: 100%;
-  margin: 0;
   display: flex;
   background-color: #e6f1fa;
   justify-content: space-between;

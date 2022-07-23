@@ -13,15 +13,13 @@ const HomePageNotAuth: React.FC = (props) => {
 
   return (
     <Wrapper>
-        <img src={image_eng} alt="eng_img" />
-        <WrapperCenter>
-          <h1>Learn English by answering a random question.</h1>
-          <h2>Randomly generated questions.</h2>
-          <h2>Create your favorites and keep coming back to them!</h2>
-          <MobileButton onClick={() => navigate(`/login`)}>
-            Signup!
-          </MobileButton>
-        </WrapperCenter>
+      <img src={image_eng} alt="eng_img" />
+      <WrapperCenter>
+        <h1>Learn English by answering a random question.</h1>
+        <h2>Randomly generated questions.</h2>
+        <h2>Create your favorites and keep coming back to them!</h2>
+        <MobileButton onClick={() => navigate(`/login`)}>Signup!</MobileButton>
+      </WrapperCenter>
       <MobileInfo>
         <AiOutlineMobile />
         <p>

@@ -1,11 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
-import progressReducer from './progressSlice'
-import counterReducer from "./counterSlice"
+import progressReducer from "./progressSlice";
+import counterReducer from "./counterSlice";
+import flashcardsReducer from "./flashcardsSlice";
 
 const store = configureStore({
   reducer: {
     counter: counterReducer,
-    progress: progressReducer
+    progress: progressReducer,
+    flashcards: flashcardsReducer,
   },
 });
 

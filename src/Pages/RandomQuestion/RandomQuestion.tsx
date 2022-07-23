@@ -8,6 +8,7 @@ import Hearth from "../../components/styles/Hearth/Hearth";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { progressActions } from "../../Redux/progressSlice";
+import { motion } from "framer-motion";
 const RandomQuestion = () => {
   const questionn = useSelector(
     (state: RootState) => state.counter.randomQuestion
@@ -21,16 +22,21 @@ const RandomQuestion = () => {
   const rollQuestion = (event: any) => {
     event.currentTarget.classList.add("rollingItem");
     dispatch(counterActions.rollRandomQuestion());
-    if (doneItem && progressCounter<5) {
+    if (doneItem && progressCounter < 5) {
       dispatch(progressActions.add());
     }
-    setDoneItem(false)
+    setDoneItem(false);
   };
   const confirmQuestion = () => {
     setDoneItem((current) => !current);
   };
   return (
-    <Wrapper>
+    <Wrapper
+      as={motion.div}
+      initial={{ width: 0 }}
+      animate={{ width: "100%" }}
+      exit={{ x: window.innerWidth, transition: { duration: 0.2 } }}
+    >
       <MainWrapper>
         <h1>{questionn.question}</h1>
         <h2>{questionn.questionPol}</h2>
@@ -48,7 +54,7 @@ const RandomQuestion = () => {
         </span>
         <Hearth />
       </MainWrapper>
-      <DailyProgres /> 
+      <DailyProgres />
     </Wrapper>
   );
 };

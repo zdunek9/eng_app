@@ -12,6 +12,7 @@ const Navigation: React.FC = () => {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector((state: RootState) => state.counter.isLogged);
   const [openBurgerMenu, setOpenBurgerMenu] = useState<boolean>(false);
+
   let navigate = useNavigate();
 
   const onchangeLogModalHandler = () => {
