@@ -11,12 +11,12 @@ const Flashcards = () => {
   const newFlashcard = useSelector(
     (state: RootState) => state.flashcards.randomFlashcard
   );
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const answerFunction = (answer: string) => {
     setShowAnswer(true);
   };
   const nextQuestion = () => {
-    dispatch(flashcardActions.rollRandomFlashcard())
+    dispatch(flashcardActions.rollRandomFlashcard());
     setShowAnswer(false);
   };
   return (
@@ -38,11 +38,11 @@ const Flashcards = () => {
       )}
       {!showAnswer && (
         <Buttons>
-          <span>
-            <TiTimes onClick={answerFunction.bind(this, "no")} />
+          <span onClick={answerFunction.bind(this, "no")}>
+            <TiTimes />
           </span>
-          <span>
-            <TiTick onClick={answerFunction.bind(this, "yes")} />
+          <span onClick={answerFunction.bind(this, "yes")}>
+            <TiTick />
           </span>
         </Buttons>
       )}

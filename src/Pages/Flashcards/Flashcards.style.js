@@ -37,6 +37,7 @@ export const Buttons = styled.button`
   span {
     color: var(--greenColor);
     cursor: pointer;
+    height: 64px;
   }
   span:first-child {
     color: red;

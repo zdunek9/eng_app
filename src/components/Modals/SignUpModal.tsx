@@ -19,7 +19,7 @@ const SignUpModal: React.FC = (props) => {
     <BlurWrapper>
       <Wrapper>
         <img src={bonjoue} alt="balony" />
-          <AiOutlineClose onClick={backHandler} className="AiOutlineClose"/>
+        <AiOutlineClose onClick={backHandler} className="AiOutlineClose" />
         {!signUpModal && <Login />}
         {signUpModal && <NewAccount />}
         {!signUpModal && (

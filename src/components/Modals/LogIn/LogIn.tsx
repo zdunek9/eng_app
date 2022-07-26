@@ -1,86 +1,82 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { authActions } from "../../../Redux/authSlice";
 import { Wrapper } from "./Login.style";
 import { useNavigate } from "react-router-dom";
-const Login: React.FC = () => {
-  const inputEmail = useRef<HTMLInputElement>(null);
-  const inputPassword = useRef<HTMLInputElement>(null);
-  const [wrongCredentials, setWrongCredentials] = useState<boolean>(false);
+import axios from "axios";
+const LoginTest: React.FC = () => {
+  const userRef: any = useRef();
+  const [user, setUser] = useState<string>("");
+  const [pwd, setPwd] = useState<string>("");
+  const [errMsg, setErrMsg] = useState<string>("");
+
   const dispatch = useDispatch();
   let navigate = useNavigate();
 
-  const loginHandler = (event: React.FormEvent) => {
-    event.preventDefault();
-    const enteredLogin = inputEmail.current?.value;
-    const enteredPassword = inputPassword.current?.value;
+  useEffect(() => {
+    userRef.current.focus();
+  }, []);
 
-    const URL = `${process.env.REACT_APP_AUTH}`;
-    fetch(URL, {
-      method: "POST",
-      body: JSON.stringify({
-        email: enteredLogin,
-        password: enteredPassword,
+  useEffect(() => {
+    setErrMsg("");
+  }, [user, pwd]);
+
+  const URL = `${process.env.REACT_APP_AUTH}`;
+  const loginHandler = async (event: React.FormEvent) => {
+    event.preventDefault();
+
+    try {
+      const response = await axios.post(URL, {
+        email: user,
+        password: pwd,
         returnSecureToken: true,
-      }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then(async (rest) => {
-        if (rest.ok) {
-          setWrongCredentials(false);
-          navigate(`/home`);
-          return rest.json();
-        } else {
-          const data = await rest.json();
-          console.log(data);
-          setWrongCredentials(true);
-        }
-      })
-      .then((data) => {
-        dispatch(authActions.login(data.idToken));
       });
+      setUser("");
+      setPwd("");
+      navigate(`/home`);
+      dispatch(authActions.login(response.data.idToken));
+    } catch (err: any) {
+      if (!err?.response) {
+        setErrMsg("No Server Response");
+      } else if (err.response?.status === 400) {
+        setErrMsg("Wrong Username or Password");
+      } else if (err.response?.status === 401) {
+        setErrMsg("Unauthorized");
+      } else {
+        setErrMsg("Login Failed");
+      }
+    }
   };
   return (
     <Wrapper>
+      <p className={errMsg ? "errmsg" : "offscreen"}>{errMsg}</p>
+      <h1>Log in</h1>
       <form onSubmit={loginHandler}>
-        <h1>Log in</h1>
-        <label>
+        <label htmlFor="email">
           <b>Email</b>
         </label>
-        <br />
         <input
           type="text"
           id="email"
-          name="email"
-          placeholder="Enter your email address"
-          ref={inputEmail}
+          ref={userRef}
+          autoComplete="off"
+          onChange={(e) => setUser(e.target.value)}
+          value={user}
+          required
         />
-        <br />
-        <p></p>
-        <label>
+        <label htmlFor="password">
           <b>Password</b>
         </label>
-        <br />
         <input
           type="password"
           id="password"
-          minLength={6}
-          name="password"
-          placeholder="Enter your password"
-          ref={inputPassword}
+          onChange={(e) => setPwd(e.target.value)}
+          value={pwd}
+          required
         />
-        <br />
-        {wrongCredentials && <p>Wrong Credentials</p>}
-        <button type="submit" value="Log In">
-          Log In
-        </button>
-        <h3>or</h3>
-        <button>Continue with LinkedIn</button>
-        <br />
+        <button>Log In</button>
       </form>
     </Wrapper>
   );
 };
-export default Login;
+export default LoginTest;

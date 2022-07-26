@@ -6,6 +6,12 @@ export const Wrapper = styled.div`
   position: relative;
   font-size: 15px;
   border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  form{
+    display: flex;
+    flex-direction: column;
+  }
   h1 {
     margin: 40px 10px 20px 0;
   }
@@ -38,6 +44,13 @@ export const Wrapper = styled.div`
     font-size: 16px;
     cursor: pointer;
   }
+  button:disabled{
+    background-color: grey;
+    cursor: auto
+  }
+  button:disabled:hover{
+    background-color: grey;
+  }
   button:hover {
     background-color: rgb(92, 72, 61);
   }
@@ -50,6 +63,37 @@ export const Wrapper = styled.div`
     color: red;
     font-style: italic;
     margin-top: 0;
+  }
+  .offscreen {
+    position: absolute;
+    left: -9999px;
+  }
+
+  .hide {
+    display: none;
+  }
+
+  .valid {
+    color: limegreen;
+    margin-left: 0.25rem;
+  }
+
+  .invalid {
+    color: red;
+    margin-left: 0.25rem;
+  }
+
+  .errmsg {
+    background-color: lightpink;
+    color: firebrick;
+    font-weight: bold;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+    width: 70%;
+  }
+
+  .line {
+    display: inline-block;
   }
   @media screen and (max-width: 700px) {
     width: 100%;
@@ -64,7 +108,6 @@ export const Wrapper = styled.div`
     }
     button {
       width: 100%;
-
     }
   }
 `;
