@@ -28,7 +28,7 @@ export const Wrapper = styled.div`
     font-weight: 300;
   }
 
-  @media(max-width: 900px) {
+  @media (max-width: 900px) {
     flex-direction: column;
     padding: 10px;
     img {
@@ -71,6 +71,9 @@ export const MobileButton = styled.div`
   font-size: 1.5rem;
   cursor: pointer;
   background-color: var(--buttonColor);
+  &:hover {
+    background-color: #fcca6f;
+  }
 `;
 
 export const MobileInfo = styled.div`

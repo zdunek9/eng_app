@@ -6,7 +6,7 @@ import { counterActions } from "../../Redux/counterSlice";
 import DailyProgres from "../../components/AuthItems/DailyProgres/DailyProgres";
 import Hearth from "../../components/styles/Hearth/Hearth";
 import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { progressActions } from "../../Redux/progressSlice";
 import { motion } from "framer-motion";
 const RandomQuestion = () => {
@@ -16,8 +16,8 @@ const RandomQuestion = () => {
   const progressCounter = useSelector(
     (state: RootState) => state.progress.totalProgress
   );
-  const [doneItem, setDoneItem] = useState<boolean>(false);
   const dispatch = useDispatch();
+  const [doneItem, setDoneItem] = useState<boolean>(false);
 
   const rollQuestion = (event: any) => {
     event.currentTarget.classList.add("rollingItem");
@@ -27,6 +27,15 @@ const RandomQuestion = () => {
     }
     setDoneItem(false);
   };
+
+  const favoritesHandler = () => {
+    dispatch(counterActions.favoritesHandler(questionn.id));
+
+  };
+  useEffect(() => {
+    dispatch(counterActions.rollRandomQuestion());
+  }, [dispatch]);
+
   const confirmQuestion = () => {
     setDoneItem((current) => !current);
   };
@@ -39,7 +48,7 @@ const RandomQuestion = () => {
     >
       <MainWrapper>
         <h1>{questionn.question}</h1>
-        <h2>{questionn.questionPol}</h2>
+        <h3>{questionn.questionPol}</h3>
         <span>
           <MdAutorenew
             onClick={rollQuestion}
@@ -49,10 +58,10 @@ const RandomQuestion = () => {
           />
           <GiConfirmed
             onClick={confirmQuestion}
-            style={{ color: doneItem ? "green" : "black" }}
+            style={{ color: doneItem ? "green" : "grey" }}
           />
         </span>
-        <Hearth />
+        <Hearth favoritesHandler={favoritesHandler} isChecked={questionn.isFavorites} />
       </MainWrapper>
       <DailyProgres />
     </Wrapper>

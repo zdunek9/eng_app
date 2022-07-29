@@ -1,21 +1,24 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { QuestionModel } from "../models/question";
 
 interface CounterState {
-  questions: [];
-  favoritesQuestions: [];
-  randomQuestion: {
-    id: string;
-    question: string;
-    questionPol: string;
-  };
+  questions: [QuestionModel];
+  randomQuestion: QuestionModel;
 }
 const initialState: CounterState = {
-  questions: [],
-  favoritesQuestions: [],
+  questions: [
+    {
+      id: null,
+      question: null,
+      questionPol: null,
+      isFavorites: false,
+    },
+  ],
   randomQuestion: {
-    id: "",
-    question: "",
-    questionPol: "",
+    id: null,
+    question: null,
+    questionPol: null,
+    isFavorites: false,
   },
 };
 const counterSlice = createSlice({
@@ -26,8 +29,25 @@ const counterSlice = createSlice({
       state.questions = action.payload;
     },
     rollRandomQuestion(state) {
-      const randomNumber = Math.floor(Math.random() * state.questions.length);
-      state.randomQuestion = state.questions[randomNumber];
+      const index = state.questions.findIndex((element) => {
+        if (element.id === state.randomQuestion.id) {
+          return true;
+        }
+      });
+      const roll: any = (max: number) => {
+        let num = Math.floor(Math.random() * max);
+        return num === index ? roll(max) : num;
+      };
+      const number = roll(state.questions.length);
+      state.randomQuestion = state.questions[number];
+    },
+    favoritesHandler(state, action) {
+      state.questions.find((item) =>
+        item.id === action.payload
+          ? (item.isFavorites = !item.isFavorites)
+          : null
+      );
+      state.randomQuestion.isFavorites = !state.randomQuestion.isFavorites;
     },
   },
 });

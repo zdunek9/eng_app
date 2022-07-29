@@ -12,7 +12,7 @@ import {
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { counterActions } from "../../Redux/counterSlice";
-import { RiNumber1, RiNumber2, RiNumber3 } from "react-icons/ri";
+import { RiNumber1, RiNumber2, RiNumber3, RiNumber4 } from "react-icons/ri";
 import Loading from "../../components/Modals/Loading/Loading";
 import { RootState } from "../../Redux/store";
 import { motion } from "framer-motion";
@@ -51,8 +51,10 @@ const HomePageAuth = () => {
             id: item,
             question: responseData[item].Ang,
             questionPol: responseData[item].Pol,
+            isFavorites:false,
           });
         }
+        console.log(itemTab);
         for (const item in responseDataFlashcard) {
           itemTabFlashcards.push({
             id: item,
@@ -64,8 +66,6 @@ const HomePageAuth = () => {
         }
         dispatch(counterActions.updateQuestion(itemTab));
         dispatch(flashcardActions.updateFlashcard(itemTabFlashcards));
-        dispatch(counterActions.rollRandomQuestion());
-        dispatch(flashcardActions.rollRandomFlashcard());
         dispatch(authActions.preventFetch());
       } catch (err) {
         setError(err);
@@ -123,6 +123,13 @@ const HomePageAuth = () => {
                   <p>
                     Add special question to favorites, and back to them anytime!
                   </p>
+                </div>
+              </Box>
+              <Box>
+                <RiNumber4 className="number" />
+                <div>
+                  <h4>Flashcards</h4>
+                  <p>Check out the flashcards and learn new vocabulary words</p>
                 </div>
               </Box>
             </BoxWrapper>

@@ -1,6 +1,6 @@
 import { Wrapper, Buttons, NextBtn } from "./Flashcards.style";
 import { TiTick, TiTimes } from "react-icons/ti";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../Redux/store";
@@ -12,6 +12,9 @@ const Flashcards = () => {
     (state: RootState) => state.flashcards.randomFlashcard
   );
   const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(flashcardActions.rollRandomFlashcard());
+  }, []);
   const answerFunction = (answer: string) => {
     setShowAnswer(true);
   };

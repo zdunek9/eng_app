@@ -1,13 +1,21 @@
-import { HearthIcon } from "./Hearth.style"
-
-const Hearth = () =>{
-    return(
-        <HearthIcon>
-        <label className="like">
-          <input type="checkbox"/>
-          <div className="hearth" />
-        </label>
-        </HearthIcon>
-    )
+import { HearthIcon } from "./Hearth.style";
+interface Props {
+  favoritesHandler: () => void;
+  isChecked: boolean;
 }
-export default Hearth
+const Hearth: React.FC<Props> = ({ favoritesHandler, isChecked }) => {
+
+  return (
+    <HearthIcon>
+      <label className="like">
+        <input
+          type="checkbox"
+          checked={isChecked}
+          onChange={favoritesHandler}
+        />
+        <div className="hearth" />
+      </label>
+    </HearthIcon>
+  );
+};
+export default Hearth;

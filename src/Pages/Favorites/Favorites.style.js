@@ -6,6 +6,10 @@ export const Wrapper = styled.div`
   padding: 5vw;
   display: flex;
   flex-direction: column;
+  p {
+    text-align: center;
+    font-size: 2rem;
+  }
 `;
 export const ItemWrapper = styled.div`
   display: flex;
@@ -19,9 +23,9 @@ export const ItemWrapper = styled.div`
     margin: 40px;
     font-size: 1.8rem;
   }
-  @media(max-width:1000px){
+  @media (max-width: 1000px) {
     margin-top: 10vh;
-    p{
+    p {
       font-size: 1.5rem;
     }
   }

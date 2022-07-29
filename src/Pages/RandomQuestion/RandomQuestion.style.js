@@ -15,31 +15,31 @@ export const Wrapper = styled.div`
 export const MainWrapper = styled.div`
   padding: 50px;
   width: 100%;
-  margin-right: 20vw;
+  margin-right: 15vw;
   display: flex;
   position: relative;
   flex-direction: column;
   align-items: center;
 
   h1 {
-    font-size: 3rem;
+    font-size: 2.3rem;
     text-align: center;
   }
-  h2 {
+  h3 {
     text-align: center;
-    font-style: italic;
     font-weight: 400;
   }
   span {
-    font-size: 4.5rem !important;
-    margin: 30px;
+    font-size: 4rem !important;
+    margin: 40px;
     display: flex;
     justify-content: space-around;
-    width: 30vw;
+    width: 15vw;
     text-align: center;
   }
   span > * {
     cursor: pointer;
+    color:var(--biggerFont)
   }
 
   .rollingItem {
@@ -64,7 +64,7 @@ export const MainWrapper = styled.div`
 
   @media (max-width: 1400px) {
     width: 100vw;
-    margin-right: 0;
+    margin-right: 25vw;
 
     h1 {
       font-size: 2rem;
@@ -72,6 +72,10 @@ export const MainWrapper = styled.div`
   }
   span {
     font-size: 3rem;
+  }
+  @media(max-width:1000px){
+    margin-right: 0;
+
   }
   @media (max-width: 600px) {
     padding: 50px 50px;

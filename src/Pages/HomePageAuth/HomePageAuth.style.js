@@ -12,12 +12,16 @@ export const Wrapper = styled.div`
     padding: 0;
     margin-right: 10px;
     color: #397393;
+    min-width: 40px;
   }
   @media (max-width: 1200px) {
     padding-top: 10vw;
   }
   @media (max-width: 600px) {
     padding-top: 15vw;
+    .number{
+      min-width: 10px;
+    }
   }
 `;
 export const PartingWrapper = styled.div`
@@ -78,7 +82,9 @@ export const BoxWrapper = styled.div`
 export const Box = styled.div`
   border: 1px solid var(--greyColor);
   width: 15vw;
+  min-width: 180px;
   padding: 20px;
+  margin:0 10px;
   display: flex;
   align-items: flex-start;
   div {
@@ -96,6 +102,10 @@ export const Box = styled.div`
   @media (max-width: 1000px) {
     width: 25vw;
     padding: 10px;
+    min-width: unset;
+    margin:0px;
+
+
   }
   @media (max-width: 600px) {
     h4 {
