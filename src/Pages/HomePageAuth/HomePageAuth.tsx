@@ -54,7 +54,6 @@ const HomePageAuth = () => {
             isFavorites:false,
           });
         }
-        console.log(itemTab);
         for (const item in responseDataFlashcard) {
           itemTabFlashcards.push({
             id: item,

@@ -1,17 +1,20 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { FlashcardModel } from "../models/flashcard";
 
 interface flashcardState {
-  flashcards: [];
-  randomFlashcard: {
-    id: string;
-    flashcardPol: string;
-    flashcardAng: string;
-    flashcardTipPol: string;
-    flashcardTipAng: string;
-  };
+  flashcards: [FlashcardModel];
+  randomFlashcard: FlashcardModel;
 }
 const initialState: flashcardState = {
-  flashcards: [],
+  flashcards: [
+    {
+      id: "",
+      flashcardPol: "",
+      flashcardAng: "",
+      flashcardTipPol: "",
+      flashcardTipAng: "",
+    },
+  ],
   randomFlashcard: {
     id: "",
     flashcardPol: "",
@@ -28,8 +31,21 @@ const flashcardSlice = createSlice({
       state.flashcards = action.payload;
     },
     rollRandomFlashcard(state) {
-      const randomNumber = Math.floor(Math.random() * state.flashcards.length);
-      state.randomFlashcard = state.flashcards[randomNumber];
+      const index = state.flashcards.findIndex((element) => {
+        if (element.id === state.randomFlashcard.id) {
+          return true;
+        }
+      });
+      const roll: any = (max: number) => {
+        let num = Math.floor(Math.random() * max);
+        return num === index ? roll(max) : num;
+      };
+      if (state.flashcards.length > 1) {
+        const number = roll(state.flashcards.length);
+        state.randomFlashcard = state.flashcards[number];
+      } else {
+        return;
+      }
     },
   },
 });

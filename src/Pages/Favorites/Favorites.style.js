@@ -6,6 +6,7 @@ export const Wrapper = styled.div`
   padding: 5vw;
   display: flex;
   flex-direction: column;
+  overflow-y: auto;
   p {
     text-align: center;
     font-size: 2rem;

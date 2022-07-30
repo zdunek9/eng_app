@@ -1,6 +1,6 @@
 export interface QuestionModel {
-  id: string | null;
-  question: string | null;
-  questionPol: string | null;
+  id: string;
+  question: string;
+  questionPol: string;
   isFavorites: boolean;
 }

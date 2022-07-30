@@ -14,7 +14,7 @@ const Flashcards = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(flashcardActions.rollRandomFlashcard());
-  }, []);
+  }, [dispatch]);
   const answerFunction = (answer: string) => {
     setShowAnswer(true);
   };

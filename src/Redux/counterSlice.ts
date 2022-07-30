@@ -8,16 +8,16 @@ interface CounterState {
 const initialState: CounterState = {
   questions: [
     {
-      id: null,
-      question: null,
-      questionPol: null,
+      id: "",
+      question: "",
+      questionPol: "",
       isFavorites: false,
     },
   ],
   randomQuestion: {
-    id: null,
-    question: null,
-    questionPol: null,
+    id: "",
+    question: "",
+    questionPol: "",
     isFavorites: false,
   },
 };
@@ -38,8 +38,12 @@ const counterSlice = createSlice({
         let num = Math.floor(Math.random() * max);
         return num === index ? roll(max) : num;
       };
-      const number = roll(state.questions.length);
-      state.randomQuestion = state.questions[number];
+      if (state.questions.length > 1) {
+        const number = roll(state.questions.length);
+        state.randomQuestion = state.questions[number];
+      } else {
+        return;
+      }
     },
     favoritesHandler(state, action) {
       state.questions.find((item) =>
