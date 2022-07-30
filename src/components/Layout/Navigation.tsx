@@ -32,7 +32,7 @@ const Navigation: React.FC = () => {
         </NavLink>
         {isLoggedIn && (
           <NavLink
-            to="home/flashcards"
+            to="flashcards"
             className={({ isActive }) => (isActive ? activeClass : undefined)}
           >
             Flashcards
@@ -40,7 +40,7 @@ const Navigation: React.FC = () => {
         )}
         {isLoggedIn && (
           <NavLink
-            to="/home/random"
+            to="random"
             className={({ isActive }) => (isActive ? activeClass : undefined)}
           >
             Random Questinon
@@ -48,7 +48,7 @@ const Navigation: React.FC = () => {
         )}
         {isLoggedIn && (
           <NavLink
-            to="/home/favorites"
+            to="favorites"
             className={({ isActive }) => (isActive ? activeClass : undefined)}
           >
             Favorite Question

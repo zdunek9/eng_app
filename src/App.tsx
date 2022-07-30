@@ -22,16 +22,16 @@ function App() {
       <AnimatePresence>
         <Routes location={location} key={location.pathname}>
           <Route path="/" element={<HomePageNotAuth />} />
-          <Route path="/login" element={<SignUpModal />} />
-          {isLogedIn && <Route path="/home" element={<HomePageAuth />} />}
+          <Route path="login" element={<SignUpModal />} />
+          {isLogedIn && <Route path="home" element={<HomePageAuth />} />}
           {isLogedIn && (
-            <Route path="/home/random" element={<RandomQuestion />} />
+            <Route path="random" element={<RandomQuestion />} />
           )}
           {isLogedIn && (
-            <Route path="/home/favorites" element={<FavoritesPage />} />
+            <Route path="favorites" element={<FavoritesPage />} />
           )}
           {isLogedIn && (
-            <Route path="/home/flashcards" element={<Flashcards />} />
+            <Route path="flashcards" element={<Flashcards />} />
           )}
           <Route
             path="*"

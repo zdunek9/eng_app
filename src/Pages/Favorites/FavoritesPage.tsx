@@ -13,7 +13,6 @@ const FavoritesPage = () => {
   const newFavoritesArray = favoritesArray.filter(
     (item) => item.isFavorites === true
   );
-  console.log(newFavoritesArray);
   const favoritesHandler = (id: string) => {
     dispatch(counterActions.favoritesHandler(id));
   };
