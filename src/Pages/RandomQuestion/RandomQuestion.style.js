@@ -39,7 +39,7 @@ export const MainWrapper = styled.div`
   }
   span > * {
     cursor: pointer;
-    color:var(--biggerFont)
+    color: var(--biggerFont);
   }
 
   .rollingItem {
@@ -73,16 +73,20 @@ export const MainWrapper = styled.div`
   span {
     font-size: 3rem;
   }
-  @media(max-width:1000px){
+  @media (max-width: 1000px) {
     margin-right: 0;
-
+    span {
+      width: 30vw;
+    }
   }
   @media (max-width: 600px) {
     padding: 50px 50px;
+    margin-top: 15vw;
     width: 70%;
     span {
       font-size: 3rem;
       margin: 30px 0;
+      width: 50vw;
     }
   }
 `;

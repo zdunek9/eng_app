@@ -26,6 +26,11 @@ export const Wrapper = styled.div`
   span:last-child {
     color: #0e76a8;
   }
+  div{
+    display: flex;
+    justify-content: space-around;
+
+  }
   @media(max-width: 1400px) {
     right: 1vw;
     width: 200px;
@@ -43,13 +48,13 @@ export const Wrapper = styled.div`
   width: 200px;
   font-size: 1.3rem;
   position: unset;
+    span{
+      margin:5px;
+    }
   }
   @media (max-width: 600px) {
     p{
       font-size: 1rem;
-    }
-    span{
-      font-size: 1.5rem;
     }
   }
 

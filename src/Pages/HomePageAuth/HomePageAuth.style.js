@@ -18,7 +18,7 @@ export const Wrapper = styled.div`
     padding-top: 10vw;
   }
   @media (max-width: 600px) {
-    padding-top: 15vw;
+    padding-top: 25vw;
     .number{
       min-width: 10px;
     }

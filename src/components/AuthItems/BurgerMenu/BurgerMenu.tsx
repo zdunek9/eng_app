@@ -17,18 +17,18 @@ const BurgerMenu: React.FC<{
   };
   return (
     <StyledMenu open={open}>
-      <NavLink to="/home" onClick={() => setOpen(false)}>
+      <NavLink to="home" onClick={() => setOpen(false)}>
         Home
       </NavLink>
-      <NavLink to="home/flashcards" onClick={() => setOpen(false)}>
+      <NavLink to="flashcards" onClick={() => setOpen(false)}>
         Flashcards
       </NavLink>
 
-      <NavLink to="/home/random" onClick={() => setOpen(false)}>
+      <NavLink to="random" onClick={() => setOpen(false)}>
         Random Questinon
       </NavLink>
 
-      <NavLink to="/home/favorites" onClick={() => setOpen(false)}>
+      <NavLink to="favorites" onClick={() => setOpen(false)}>
         Favorite Question
       </NavLink>
       <a onClick={onLogOutHandler}>Logout</a>

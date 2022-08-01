@@ -8,10 +8,7 @@ import { counterActions } from "../../Redux/counterSlice";
 const FavoritesPage = () => {
   const dispatch = useDispatch();
   const favoritesArray = useSelector(
-    (state: RootState) => state.counter.questions
-  );
-  const newFavoritesArray = favoritesArray.filter(
-    (item) => item.isFavorites === true
+    (state: RootState) => state.counter.favoritesArray
   );
   const favoritesHandler = (id: string) => {
     dispatch(counterActions.favoritesHandler(id));
@@ -23,11 +20,15 @@ const FavoritesPage = () => {
       animate={{ width: "100%" }}
       exit={{ x: window.innerWidth, transition: { duration: 0.2 } }}
     >
-      {newFavoritesArray.length === 0 ? (
-        <p>It looks like you don't have any favorite questions.<br />Add new!</p>
+      {favoritesArray.length === 0 ? (
+        <p>
+          It looks like you don't have any favorite questions.
+          <br />
+          Add new!
+        </p>
       ) : (
         <ItemWrapper>
-          {newFavoritesArray.map((item: any) => (
+          {favoritesArray.map((item: any) => (
             <div key={item.id}>
               <Hearth
                 favoritesHandler={favoritesHandler.bind(this, item.id)}

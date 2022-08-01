@@ -2,24 +2,19 @@ import { createSlice } from "@reduxjs/toolkit";
 import { QuestionModel } from "../models/question";
 
 interface CounterState {
-  questions: [QuestionModel];
+  questions: QuestionModel[];
   randomQuestion: QuestionModel;
+  favoritesArray: QuestionModel[];
 }
 const initialState: CounterState = {
-  questions: [
-    {
-      id: "",
-      question: "",
-      questionPol: "",
-      isFavorites: false,
-    },
-  ],
+  questions: [],
   randomQuestion: {
     id: "",
     question: "",
     questionPol: "",
     isFavorites: false,
   },
+  favoritesArray: [],
 };
 const counterSlice = createSlice({
   name: "counter",
@@ -29,11 +24,9 @@ const counterSlice = createSlice({
       state.questions = action.payload;
     },
     rollRandomQuestion(state) {
-      const index = state.questions.findIndex((element) => {
-        if (element.id === state.randomQuestion.id) {
-          return true;
-        }
-      });
+      const index = state.questions.findIndex(
+        (element) => element.id === state.randomQuestion.id
+      );
       const roll: any = (max: number) => {
         let num = Math.floor(Math.random() * max);
         return num === index ? roll(max) : num;
@@ -46,11 +39,19 @@ const counterSlice = createSlice({
       }
     },
     favoritesHandler(state, action) {
-      state.questions.find((item) =>
-        item.id === action.payload
-          ? (item.isFavorites = !item.isFavorites)
-          : null
-      );
+      state.questions.find((item) => {
+        if (item.id === action.payload) {
+          item.isFavorites = !item.isFavorites;
+          if (item.isFavorites) {
+            state.favoritesArray.unshift(item);
+          } else {
+            const filtredArray = state.favoritesArray.filter(
+              (item) => item.id !== action.payload
+            );
+            state.favoritesArray = filtredArray;
+          }
+        }
+      });
       state.randomQuestion.isFavorites = !state.randomQuestion.isFavorites;
     },
   },
