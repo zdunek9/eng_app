@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Wrapper, TabLoggLast } from "./Navigation.styles";
-import { RootState } from "../../Redux/store";
-import { authActions } from "../../Redux/authSlice";
+import { RootState } from "../../Store/store";
+import { authActions } from "../../Store/authSlice";
 import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import BurgerMenu from "../AuthItems/BurgerMenu/BurgerMenu";

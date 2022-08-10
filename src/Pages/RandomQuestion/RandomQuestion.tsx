@@ -1,13 +1,13 @@
 import { MainWrapper, Wrapper } from "./RandomQuestion.style";
 import { MdAutorenew } from "react-icons/md";
 import { GiConfirmed } from "react-icons/gi";
-import { RootState } from "../../Redux/store";
-import { counterActions } from "../../Redux/counterSlice";
+import { RootState } from "../../Store/store";
+import { counterActions } from "../../Store/counterSlice";
 import DailyProgres from "../../components/AuthItems/DailyProgres/DailyProgres";
 import Hearth from "../../components/styles/Hearth/Hearth";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { progressActions } from "../../Redux/progressSlice";
+import { progressActions } from "../../Store/progressSlice";
 import { motion } from "framer-motion";
 const RandomQuestion = () => {
   const questionn = useSelector(

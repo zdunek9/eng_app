@@ -2,8 +2,8 @@ import Hearth from "../../components/styles/Hearth/Hearth";
 import { ItemWrapper, Wrapper } from "./Favorites.style";
 import { motion } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../Redux/store";
-import { counterActions } from "../../Redux/counterSlice";
+import { RootState } from "../../Store/store";
+import { counterActions } from "../../Store/counterSlice";
 
 const FavoritesPage = () => {
   const dispatch = useDispatch();

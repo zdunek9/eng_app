@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { AiOutlineMobile } from "react-icons/ai";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { authActions } from "../../Redux/authSlice";
+import { authActions } from "../../Store/authSlice";
 
 const HomePageNotAuth: React.FC = (props) => {
   let navigate = useNavigate();

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
-import { authActions } from "../../../Redux/authSlice";
+import { authActions } from "../../../Store/authSlice";
 import { Wrapper } from "./Login.style";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";

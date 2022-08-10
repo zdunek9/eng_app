@@ -45,6 +45,7 @@ const counterSlice = createSlice({
           if (item.isFavorites) {
             state.favoritesArray.unshift(item);
           } else {
+            state.favoritesArray.splice(state.favoritesArray.indexOf(action.payload, 1))
             const filtredArray = state.favoritesArray.filter(
               (item) => item.id !== action.payload
             );

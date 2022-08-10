@@ -6,7 +6,7 @@ import RandomQuestion from "./Pages/RandomQuestion/RandomQuestion";
 import FavoritesPage from "./Pages/Favorites/FavoritesPage";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { RootState } from "./Redux/store";
+import { RootState } from "./Store/store";
 import Flashcards from "./Pages/Flashcards/Flashcards";
 import { AnimatePresence } from "framer-motion";
 import Navigation from "./components/Layout/Navigation";

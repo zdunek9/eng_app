@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { StyledMenu } from "./BurgerMenu.style";
-import { authActions } from "../../../Redux/authSlice";
+import { authActions } from "../../../Store/authSlice";
 import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 

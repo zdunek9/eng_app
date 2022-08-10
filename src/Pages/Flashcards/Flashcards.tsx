@@ -3,8 +3,8 @@ import { TiTick, TiTimes } from "react-icons/ti";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../Redux/store";
-import { flashcardActions } from "../../Redux/flashcardsSlice";
+import { RootState } from "../../Store/store";
+import { flashcardActions } from "../../Store/flashcardsSlice";
 
 const Flashcards = () => {
   const [showAnswer, setShowAnswer] = useState<boolean>(false);

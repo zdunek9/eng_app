@@ -11,14 +11,14 @@ import {
 } from "./HomePageAuth.style";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { counterActions } from "../../Redux/counterSlice";
+import { counterActions } from "../../Store/counterSlice";
 import { RiNumber1, RiNumber2, RiNumber3, RiNumber4 } from "react-icons/ri";
 import Loading from "../../components/Modals/Loading/Loading";
-import { RootState } from "../../Redux/store";
+import { RootState } from "../../Store/store";
 import { motion } from "framer-motion";
 import Errorr from "../../components/Modals/Error/Error";
-import { flashcardActions } from "../../Redux/flashcardsSlice";
-import { authActions } from "../../Redux/authSlice";
+import { flashcardActions } from "../../Store/flashcardsSlice";
+import { authActions } from "../../Store/authSlice";
 
 const URL_TAB = `${process.env.REACT_APP_DB_TAB}`;
 const URL_FLASHCARD = `${process.env.REACT_APP_DB_FLASHCARDS}`;

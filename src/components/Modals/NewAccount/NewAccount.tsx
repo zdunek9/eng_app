@@ -9,7 +9,7 @@ import { Wrapper } from "./NewAccount.style";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import { authActions } from "../../../Redux/authSlice";
+import { authActions } from "../../../Store/authSlice";
 const MAIL_REGEX = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
 const PASSWORD_REGEX =
   /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
