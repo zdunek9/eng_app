@@ -44,8 +44,8 @@ const HomePageAuth = () => {
         }
         const responseData = await response[0].json();
         const responseDataFlashcard = await response[1].json();
-        const itemTab = []; // mozna te tablice wywalic z use memo
-        const itemTabFlashcards = []; // mozna te tablice wywalic z use memo
+        const itemTab = []; 
+        const itemTabFlashcards = []; 
         for (const item in responseData) {
           itemTab.push({
             id: item,
