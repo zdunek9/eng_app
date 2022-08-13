@@ -30,7 +30,6 @@ const RandomQuestion = () => {
 
   const favoritesHandler = () => {
     dispatch(counterActions.favoritesHandler(questionn.id));
-
   };
   useEffect(() => {
     dispatch(counterActions.rollRandomQuestion());
@@ -61,7 +60,10 @@ const RandomQuestion = () => {
             style={{ color: doneItem ? "green" : "grey" }}
           />
         </span>
-        <Hearth favoritesHandler={favoritesHandler} isChecked={questionn.isFavorites} />
+        <Hearth
+          favoritesHandler={favoritesHandler}
+          isChecked={questionn.isFavorites}
+        />
       </MainWrapper>
       <DailyProgres />
     </Wrapper>

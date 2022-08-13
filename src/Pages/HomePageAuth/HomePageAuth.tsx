@@ -40,18 +40,18 @@ const HomePageAuth = () => {
           fetch(`${URL_FLASHCARD}?auth=${token}`),
         ]);
         if (!response[0].ok || !response[1].ok) {
-          throw new error(`There was a connection problem. Try later`);
+          throw new Error(`There was a connection problem. Try later`);
         }
         const responseData = await response[0].json();
         const responseDataFlashcard = await response[1].json();
-        const itemTab = []; 
-        const itemTabFlashcards = []; 
+        const itemTab = [];
+        const itemTabFlashcards = [];
         for (const item in responseData) {
           itemTab.push({
             id: item,
             question: responseData[item].Ang,
             questionPol: responseData[item].Pol,
-            isFavorites:false,
+            isFavorites: false,
           });
         }
         for (const item in responseDataFlashcard) {
@@ -75,7 +75,7 @@ const HomePageAuth = () => {
     if (loadFetch === false) {
       fetchData();
     }
-  }, []);
+  }, [dispatch, loadFetch, token]);
 
   return (
     <>

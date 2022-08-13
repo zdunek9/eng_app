@@ -20,7 +20,7 @@ const HomePageNotAuth: React.FC = (props) => {
       dispatch(authActions.checkForToken(intitialToken));
       navigate(`/home`);
     }
-  }, []);
+  }, [dispatch]);
   return (
     <Wrapper>
       <img src={image_eng} alt="eng_img" />
