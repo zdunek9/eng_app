@@ -1,6 +1,6 @@
 import Hearth from "../../components/styles/Hearth/Hearth";
-import { ItemWrapper, Wrapper } from "./Favorites.style";
-import { motion } from "framer-motion";
+import { ItemWrapper, NoItemsInformation, Wrapper } from "./Favorites.style";
+import { motion, AnimatePresence } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../Store/store";
 import { counterActions } from "../../Store/counterSlice";
@@ -14,31 +14,42 @@ const FavoritesPage = () => {
     dispatch(counterActions.favoritesHandler(id));
   };
   return (
-    <Wrapper
-      as={motion.div}
-      initial={{ width: 0 }}
-      animate={{ width: "100%" }}
-      exit={{ x: window.innerWidth, transition: { duration: 0.2 } }}
-    >
-      {favoritesArray.length === 0 ? (
-        <p>
+    <Wrapper>
+      {favoritesArray.length === 0 && (
+        <NoItemsInformation
+          as={motion.p}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.3, duration: 0.3 }}
+        >
           It looks like you don't have any favorite questions.
           <br />
           Add new!
-        </p>
-      ) : (
-        <ItemWrapper>
-          {favoritesArray.map((item: any) => (
-            <div key={item.id}>
-              <Hearth
-                favoritesHandler={favoritesHandler.bind(this, item.id)}
-                isChecked={item.isFavorites}
-              />
-              <p>{item.question}</p>
-            </div>
-          ))}
-        </ItemWrapper>
+        </NoItemsInformation>
       )}
+      <AnimatePresence>
+        {favoritesArray.length > 0 && (
+          <ItemWrapper
+            as={motion.div}
+            exit={{ x: -1000, transition: { duration: 0.4 } }}
+          >
+            <AnimatePresence>
+              {favoritesArray.map((item: any) => (
+                <motion.div
+                  exit={{ x: -1000, transition: { duration: 0.4 } }}
+                  key={item.id}
+                >
+                  <Hearth
+                    favoritesHandler={favoritesHandler.bind(this, item.id)}
+                    isChecked={item.isFavorites}
+                  />
+                  <p>{item.question}</p>
+                </motion.div>
+              ))}
+            </AnimatePresence>
+          </ItemWrapper>
+        )}
+      </AnimatePresence>
     </Wrapper>
   );
 };

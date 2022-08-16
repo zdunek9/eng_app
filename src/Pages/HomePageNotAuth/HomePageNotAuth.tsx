@@ -10,6 +10,7 @@ import { AiOutlineMobile } from "react-icons/ai";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { authActions } from "../../Store/authSlice";
+import { motion } from "framer-motion";
 
 const HomePageNotAuth: React.FC = (props) => {
   let navigate = useNavigate();
@@ -22,7 +23,12 @@ const HomePageNotAuth: React.FC = (props) => {
     }
   }, [dispatch]);
   return (
-    <Wrapper>
+    <Wrapper
+      as={motion.div}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.2 }}
+    >
       <img src={image_eng} alt="eng_img" />
       <WrapperCenter>
         <h1>Learn English by answering a random question.</h1>

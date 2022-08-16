@@ -23,15 +23,16 @@ import { authActions } from "../../Store/authSlice";
 const URL_TAB = `${process.env.REACT_APP_DB_TAB}`;
 const URL_FLASHCARD = `${process.env.REACT_APP_DB_FLASHCARDS}`;
 const HomePageAuth = () => {
-  const dispatch = useDispatch();
-  const token = useSelector((state: RootState) => state.auth.apiKey);
-
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<any>(null);
+  // const isLogedIn = useSelector((state: RootState) => state.auth.isLogged);
+
+  const dispatch = useDispatch();
+
+  const token = useSelector((state: RootState) => state.auth.apiKey);
   const loadFetch = useSelector(
     (state: RootState) => state.auth.preventLoading
   );
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -75,7 +76,7 @@ const HomePageAuth = () => {
     if (loadFetch === false) {
       fetchData();
     }
-  }, [dispatch, loadFetch, token]);
+  }, []);
 
   return (
     <>
@@ -85,6 +86,7 @@ const HomePageAuth = () => {
         as={motion.div}
         initial={{ width: 0 }}
         animate={{ width: "100%" }}
+        transition={{ type: "tween" }}
         exit={{ x: window.innerWidth, transition: { duration: 0.2 } }}
       >
         <WelcomeScreen>

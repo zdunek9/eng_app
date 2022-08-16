@@ -3,6 +3,8 @@ import { useDispatch } from "react-redux";
 import { authActions } from "../../../Store/authSlice";
 import { Wrapper } from "./Login.style";
 import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
+
 import axios from "axios";
 const LoginTest: React.FC = () => {
   const userRef: any = useRef();
@@ -48,7 +50,12 @@ const LoginTest: React.FC = () => {
     }
   };
   return (
-    <Wrapper>
+    <Wrapper
+      as={motion.div}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.2 }}
+    >
       <p className={errMsg ? "errmsg" : "offscreen"}>{errMsg}</p>
       <h1>Log in</h1>
       <form onSubmit={loginHandler}>

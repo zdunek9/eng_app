@@ -1,15 +1,14 @@
 import { useEffect, useRef, useState } from "react";
-import {
-  faCheck,
-  faTimes,
-  faInfoCircle,
-} from "@fortawesome/free-solid-svg-icons";
+import { faCheck, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { ImWarning } from "react-icons/im";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Wrapper } from "./NewAccount.style";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { authActions } from "../../../Store/authSlice";
+import { motion } from "framer-motion";
+
 const MAIL_REGEX = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
 const PASSWORD_REGEX =
   /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
@@ -72,7 +71,12 @@ const NewAccountTest = () => {
   };
 
   return (
-    <Wrapper>
+    <Wrapper
+      as={motion.div}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.2 }}
+    >
       <p className={errMsg ? "errmsg" : "offscreen"}>{errMsg}</p>
       <h1>Register</h1>
       <form onSubmit={handleSubmit}>
@@ -100,7 +104,6 @@ const NewAccountTest = () => {
             userFocus && user && !validName ? "instructions" : "offscreen"
           }
         >
-          <FontAwesomeIcon icon={faInfoCircle} />
           Enter a valid email address
         </p>
         <label htmlFor="password">
@@ -123,10 +126,7 @@ const NewAccountTest = () => {
           onFocus={() => setPwdFocus(true)}
           onBlur={() => setPwdFocus(false)}
         />
-        <p
-          className={pwdFocus && !validPwd ? "instructions" : "offscreen"}
-        >
-          <FontAwesomeIcon icon={faInfoCircle} />
+        <p className={pwdFocus && !validPwd ? "instructions" : "offscreen"}>
           8 to 24 characters.
           <br />
           Must include uppercase and lowercase letters, a number and a special
@@ -164,7 +164,6 @@ const NewAccountTest = () => {
           id="confirmnote"
           className={matchFocus && !validMatch ? "instructions" : "offscreen"}
         >
-          <FontAwesomeIcon icon={faInfoCircle} />
           Must match the first password input field.
         </p>
 

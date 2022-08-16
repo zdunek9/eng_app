@@ -5,6 +5,7 @@ import Login from "./LogIn/LogIn";
 import NewAccount from "./NewAccount/NewAccount";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const SignUpModal: React.FC = (props) => {
   const [signUpModal, setSignUpModal] = useState<boolean>(false);
@@ -16,7 +17,12 @@ const SignUpModal: React.FC = (props) => {
     navigate(-1);
   };
   return (
-    <BlurWrapper>
+    <BlurWrapper
+      as={motion.div}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.2 }}
+    >
       <Wrapper>
         <img src={bonjoue} alt="balony" />
         <AiOutlineClose onClick={backHandler} className="AiOutlineClose" />

@@ -44,7 +44,7 @@ export const Wrapper = styled.div`
     position: absolute;
     top: 20px;
     right: 20px;
-    font-size: 4rem;
+    font-size: 3rem;
     cursor: pointer;
   }
   .btn {

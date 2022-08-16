@@ -27,7 +27,7 @@ export const Dot = styled.div`
     width: 7px;
     height: 7px;
     border-radius: 50%;
-    background: white;
+    background: #267ac0;
     margin: -4px 0 0 -4px;
   }
   &:nth-child(1) {

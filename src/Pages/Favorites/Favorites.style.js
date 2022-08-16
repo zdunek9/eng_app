@@ -7,12 +7,15 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   overflow-y: auto;
-  p {
-    margin-top: 10vh;
-    text-align: center;
-    font-size: 2rem;
-  }
 `;
+export const NoItemsInformation = styled.p`
+    position: absolute;
+    top:40%;
+    left:50%;
+    text-align: center;
+    transform: translate(-50%, -50%);
+    font-size: 2rem;
+`
 export const ItemWrapper = styled.div`
   display: flex;
   flex-direction: column;

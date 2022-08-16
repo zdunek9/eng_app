@@ -43,6 +43,7 @@ const RandomQuestion = () => {
       as={motion.div}
       initial={{ width: 0 }}
       animate={{ width: "100%" }}
+      transition={{ type: "tween" }}
       exit={{ x: window.innerWidth, transition: { duration: 0.2 } }}
     >
       <MainWrapper>

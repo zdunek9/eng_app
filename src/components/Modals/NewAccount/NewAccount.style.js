@@ -8,7 +8,7 @@ export const Wrapper = styled.div`
   border-radius: 10px;
   display: flex;
   flex-direction: column;
-  form{
+  form {
     display: flex;
     flex-direction: column;
   }
@@ -44,11 +44,11 @@ export const Wrapper = styled.div`
     font-size: 16px;
     cursor: pointer;
   }
-  button:disabled{
+  button:disabled {
     background-color: grey;
-    cursor: auto
+    cursor: auto;
   }
-  button:disabled:hover{
+  button:disabled:hover {
     background-color: grey;
   }
   button:hover {
@@ -60,9 +60,13 @@ export const Wrapper = styled.div`
     font-weight: 400;
   }
   p {
+  }
+  .instructions {
     color: red;
     font-style: italic;
     margin-top: 0;
+    font-size: 0.8rem;
+    font-weight: 600;
   }
   .offscreen {
     position: absolute;
