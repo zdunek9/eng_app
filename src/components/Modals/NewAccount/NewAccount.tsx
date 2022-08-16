@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 import { faCheck, faTimes } from "@fortawesome/free-solid-svg-icons";
-import { ImWarning } from "react-icons/im";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Wrapper } from "./NewAccount.style";
 import { useNavigate } from "react-router-dom";
@@ -129,8 +128,8 @@ const NewAccountTest = () => {
         <p className={pwdFocus && !validPwd ? "instructions" : "offscreen"}>
           8 to 24 characters.
           <br />
-          Must include uppercase and lowercase letters, a number and a special
-          character.
+          Must include uppercase and lowercase letters,
+          <br /> a number and a special character.
           <br />
           Allowed special characters:
           <span>!</span>

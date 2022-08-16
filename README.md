@@ -1,3 +1,7 @@
-The application allows for a specific course of learning English. 
+The application allows for a specific course of learning English.
 After logging in, random questions can be generated.
-Application allows you to create your favorite questions. The project is still being developed
+Added feature to learn vocabulary
+Application allows you to create your favorite questions.
+
+Used in project:
+React, typescript, firebase, redux, styled-components and framer-motion for animations

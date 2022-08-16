@@ -56,9 +56,6 @@ export const Wrapper = styled.div`
       font-size: 1.2rem;
     }
   }
-  @media screen and (max-width: 600px) {
-    display: ${({ isLoggedIn }) => (isLoggedIn ? "none" : "flex")};
-  }
   @media (max-width: 1000px) {
     a::before {
       bottom: -8px;
@@ -68,6 +65,9 @@ export const Wrapper = styled.div`
     a:hover::before {
       display: none;
     }
+  }
+  @media screen and (max-width: 600px) {
+    display: ${({ isLoggedIn }) => (isLoggedIn ? "none" : "flex")};
   }
 `;
 

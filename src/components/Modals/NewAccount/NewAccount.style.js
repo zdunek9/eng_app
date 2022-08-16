@@ -59,8 +59,7 @@ export const Wrapper = styled.div`
     color: #9ca0ac;
     font-weight: 400;
   }
-  p {
-  }
+
   .instructions {
     color: red;
     font-style: italic;
