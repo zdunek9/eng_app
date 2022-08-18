@@ -20,8 +20,8 @@ export const Wrapper = styled.div`
   width: 60vw;
   max-width: 1000px;
   min-width: 600px;
-  height: 75vh;
-  max-height: 1000px;
+  height: 90vh;
+  max-height: 1100px;
   min-height: 600px;
   background-color: #cee4ef;
   transform: translate(-50%, -50%);
