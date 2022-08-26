@@ -55,14 +55,17 @@ export const Wrapper = styled.div`
     position: absolute;
     left: -9999px;
   }
+
   .errmsg {
-    background-color: lightpink;
     color: firebrick;
     font-weight: bold;
     padding: 0.5rem;
+    font-size: 1.2rem;
     margin-bottom: 0.5rem;
-    width: 70%;
+    width: 50%;
+    cursor: pointer;
   }
+
 
   @media screen and (max-width: 700px) {
     width: 100%;

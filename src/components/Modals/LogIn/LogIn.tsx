@@ -11,6 +11,7 @@ const LoginTest: React.FC = () => {
   const [user, setUser] = useState<string>("");
   const [pwd, setPwd] = useState<string>("");
   const [errMsg, setErrMsg] = useState<string>("");
+  const [showResetPwd, setShowResetPwd] = useState<boolean>(false);
 
   const dispatch = useDispatch();
   let navigate = useNavigate();
@@ -35,8 +36,8 @@ const LoginTest: React.FC = () => {
       });
       setUser("");
       setPwd("");
-      navigate(`/home`);
       dispatch(authActions.login(response.data.idToken));
+      navigate(`/home`);
     } catch (err: any) {
       if (!err?.response) {
         setErrMsg("No Server Response");
@@ -49,6 +50,7 @@ const LoginTest: React.FC = () => {
       }
     }
   };
+  const resetPassword = () => {};
   return (
     <Wrapper
       as={motion.div}
@@ -82,7 +84,25 @@ const LoginTest: React.FC = () => {
           required
         />
         <button>Log In</button>
+        <p className="errmsg" onClick={()=>setShowResetPwd(true)}>
+          Forget password?
+        </p>
       </form>
+      <div className={showResetPwd ? "" : "offscreen"}>
+        <form onSubmit={resetPassword}>
+          <h3>Your email address:</h3>
+          <input
+            type="text"
+            id="email"
+            ref={userRef}
+            autoComplete="off"
+            onChange={(e) => setUser(e.target.value)}
+            value={user}
+            required
+          />
+          <button>Send me new password!</button>
+        </form>
+      </div>
     </Wrapper>
   );
 };
