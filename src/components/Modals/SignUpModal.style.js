@@ -17,12 +17,12 @@ export const Wrapper = styled.div`
   padding: 20px;
   top: 50%;
   left: 50%;
-  width: 60vw;
+  width: 65vw;
   max-width: 1000px;
   min-width: 600px;
   height: 90vh;
   max-height: 1100px;
-  min-height: 600px;
+  min-height: 850px;
   background-color: #cee4ef;
   transform: translate(-50%, -50%);
   border-radius: 10px;
@@ -51,7 +51,7 @@ export const Wrapper = styled.div`
     position: absolute;
     bottom: 30px;
     right: 3vw;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     padding: 10px 30px;
     color: black;
     cursor: pointer;

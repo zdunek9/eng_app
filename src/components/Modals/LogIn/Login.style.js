@@ -14,7 +14,24 @@ export const Wrapper = styled.div`
   h1 {
     margin: 40px 10px 20px 0;
   }
+  h3 {
+  }
+  .sendStatus{
+    font-size: 1.3rem;
+    margin-top: 30px;
+    font-style: italic;
+
+  }
   #email {
+    width: 80%;
+    padding: 15px 25px;
+    margin: 10px 0px 20px 0;
+    border-radius: 5px;
+    border: 1px solid #9ca0ac;
+    background-color: #f6f4f4;
+    font-size: 16px;
+  }
+  #emailReset {
     width: 80%;
     padding: 15px 25px;
     margin: 10px 0px 20px 0;
@@ -33,7 +50,7 @@ export const Wrapper = styled.div`
     font-size: 16px;
   }
   button {
-    width: 90%;
+    width: 80%;
     padding: 15px 25px;
     margin: 10px 0px 20px 0;
     background-color: rgb(61, 48, 41);
@@ -60,12 +77,10 @@ export const Wrapper = styled.div`
     color: firebrick;
     font-weight: bold;
     padding: 0.5rem;
-    font-size: 1.2rem;
     margin-bottom: 0.5rem;
     width: 50%;
     cursor: pointer;
   }
-
 
   @media screen and (max-width: 700px) {
     width: 100%;
@@ -76,6 +91,12 @@ export const Wrapper = styled.div`
       width: 80vw;
     }
     #password {
+      width: 80vw;
+    }
+    #emailReset {
+      width: 80vw;
+    }
+    .sendPassword{
       width: 80vw;
     }
     button {

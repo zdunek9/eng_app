@@ -17,7 +17,7 @@ export const GlobalStyle = createGlobalStyle`
       max-width: 100%;
     }
     body{
-        font-family: 'Montserrat', sans-serif;
+      font-family: "Inter", sans-serif,'Montserrat', sans-serif;;
         min-height: 100vh;
         margin:0;
         padding:0;
@@ -29,6 +29,9 @@ export const GlobalStyle = createGlobalStyle`
         background-color: unset;
     }
     h1,h2,h3{
-      color:var(--titleFontColor)
+      color:var(--titleFontColor);
+    }
+    button,input{
+        font-family: "Inter", sans-serif,'Montserrat', sans-serif;;
     }
 `;

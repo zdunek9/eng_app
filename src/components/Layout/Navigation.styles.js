@@ -85,10 +85,6 @@ export const TabLoggLast = styled.button`
   font-family: "Darker Grotesque", sans-serif;
   color: #a7cdee;
   @media screen and (max-width: 1000px) {
-    font-size: 1.2rem;
     padding: 15px;
-  }
-  @media screen and (max-width: 600px) {
-    font-size: 0.8rem;
   }
 `;
