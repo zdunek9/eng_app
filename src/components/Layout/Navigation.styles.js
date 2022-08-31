@@ -8,7 +8,7 @@ export const Wrapper = styled.div`
   align-items: center;
   padding: 0 20px;
   box-sizing: border-box;
-  border-bottom: 1px solid rgb(179, 179, 179);
+  border-bottom: 1px solid var(--lines);
   z-index: 1;
 
   a:first-child::before {

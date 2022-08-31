@@ -20,6 +20,7 @@ const LoginTest: React.FC = () => {
   const dispatch = useDispatch();
   let navigate = useNavigate();
 
+  const MAIL_REGEX = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
   const URL_LOGIN = `${process.env.REACT_APP_AUTH}`;
   const URL_RESET = `${process.env.REACT_APP_RESET_PWD}`;
 
@@ -60,7 +61,7 @@ const LoginTest: React.FC = () => {
     event.preventDefault();
     setSendStatus("");
     setLoadingState(true);
-    if (resetEmail.trim() === "") {
+    if (resetEmail.trim() === "" || !MAIL_REGEX.test(resetEmail)) {
       setSendStatus("Incorrect email");
       setLoadingState(false)
       return;

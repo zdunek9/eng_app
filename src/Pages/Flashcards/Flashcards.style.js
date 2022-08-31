@@ -40,7 +40,7 @@ export const Buttons = styled.button`
     height: 64px;
   }
   span:first-child {
-    color: red;
+    color: var(--redColor);
   }
   span:hover {
     animation: bounce 1s;

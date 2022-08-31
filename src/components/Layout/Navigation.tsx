@@ -54,6 +54,14 @@ const Navigation: React.FC = () => {
             Favorite Question
           </NavLink>
         )}
+        {isLoggedIn && (
+          <NavLink
+            to="Account"
+            className={({ isActive }) => (isActive ? activeClass : undefined)}
+          >
+            Account
+          </NavLink>
+        )}
         {!isLoggedIn && (
           <TabLoggLast onClick={onchangeLogModalHandler}>Login</TabLoggLast>
         )}

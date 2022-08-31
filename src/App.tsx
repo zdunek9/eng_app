@@ -11,6 +11,7 @@ import Flashcards from "./Pages/Flashcards/Flashcards";
 import { AnimatePresence } from "framer-motion";
 import Navigation from "./components/Layout/Navigation";
 import { MainWrapper } from "./App.styles";
+import Account from "./Pages/Account/Account";
 
 function App() {
   const isLogedIn = useSelector((state: RootState) => state.auth.isLogged);
@@ -24,15 +25,10 @@ function App() {
           <Route path="/" element={<HomePageNotAuth />} />
           <Route path="login" element={<SignUpModal />} />
           {isLogedIn && <Route path="home" element={<HomePageAuth />} />}
-          {isLogedIn && (
-            <Route path="random" element={<RandomQuestion />} />
-          )}
-          {isLogedIn && (
-            <Route path="favorites" element={<FavoritesPage />} />
-          )}
-          {isLogedIn && (
-            <Route path="flashcards" element={<Flashcards />} />
-          )}
+          {isLogedIn && <Route path="random" element={<RandomQuestion />} />}
+          {isLogedIn && <Route path="favorites" element={<FavoritesPage />} />}
+          {isLogedIn && <Route path="flashcards" element={<Flashcards />} />}
+          {isLogedIn && <Route path="account" element={<Account />} />}
           <Route
             path="*"
             element={isLogedIn ? <HomePageAuth /> : <HomePageNotAuth />}

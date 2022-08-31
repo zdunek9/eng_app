@@ -11,6 +11,8 @@ export const GlobalStyle = createGlobalStyle`
         --infoColor: #edb7bd;
         --greyColor:#78758D;
         --greenColor:#00e673;
+        --redColor:	#ff0000;
+        --lines:rgb(179, 179, 179)
     }
     *{
       box-sizing: border-box;
