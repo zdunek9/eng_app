@@ -1,95 +1,157 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import { useEffect, useReducer } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../Store/store";
 import { SectionRow, SendBtn, Verified, Wrapper } from "./Email.style";
 import { TiTick, TiTimes } from "react-icons/ti";
+import { authActions } from "../../../Store/authSlice";
+import LoadingSmall from "../../../components/Modals/LoadingSmall/LoadingSmall";
+import ConfirmModal from "../../../components/Modals/ConfirmModal/ConfirmModal";
+import { reducer } from "./EmailReducer";
 
 const URL_VERIFY = `${process.env.REACT_APP_VERIFY_USER}`;
 const URL_GET_DATA = `${process.env.REACT_APP_GET_USER_DATA}`;
+const URL_CHANGE_EMAIL = `${process.env.REACT_APP_CHANGE_EMAIL}`;
+
 function Email() {
-  const [userData, setUserData] = useState<{
-    email: string;
-    emailVerified: boolean;
-  }>({ email: "", emailVerified: false });
-  const [newEmail, setNewEmail] = useState<string>("");
-  const [sendEmail, setSendEmail] = useState<boolean>(false);
-  const [sendSuccess, setSendSuccess] = useState<boolean>(false);
-  const [loading, setLoading] = useState<boolean>(false);
-  const dispatch = useDispatch();
+  const [state, dispatchReducer] = useReducer(reducer, {
+    userData: {
+      email: "",
+      emailVerified: false,
+    },
+    newEmail: "",
+    sendEmail: false,
+    sendSuccess: false,
+    loading: false,
+    saveFormLoading: true,
+    saveSuccess: true,
+    openConfirmModal: false,
+    errorData: "",
+  });
+
   const idToken = useSelector((state: RootState) => state.auth.apiKey);
+  const dispatch = useDispatch();
+
   useEffect(() => {
     const getUserData = async () => {
-      try {
-        const response = await axios.post(URL_GET_DATA, {
-          idToken,
-        });
-        setUserData(response.data.users[0]);
-      } catch (err) {
-        console.log(err);
-      }
+      const response = await axios.post(URL_GET_DATA, {
+        idToken,
+      });
+      dispatchReducer({ type: "setUserData", payload: response.data.users[0] });
+      dispatchReducer({ type: "setFormSaveLoading", payload: false });
     };
     getUserData();
   }, []);
 
   useEffect(() => {
-    setNewEmail(userData.email);
-  }, [userData]);
+    dispatchReducer({ type: "setNewEmail", payload: state.userData.email });
+  }, [state.userData]);
 
   const sendVerifyMail = async () => {
-    setLoading(true);
-    setSendSuccess(false);
+    dispatchReducer({ type: "setLoading", payload: true });
+    dispatchReducer({ type: "setSendSuccess", payload: true });
     try {
       await axios.post(URL_VERIFY, {
         requestType: "VERIFY_EMAIL",
         idToken,
       });
-      setSendEmail(true);
-      setSendSuccess(true);
-    } catch (err) {
-      console.log(err);
-      setSendSuccess(false);
-      setSendEmail(true);
+      dispatchReducer({ type: "setSendEmail", payload: true });
+      dispatchReducer({ type: "setSendSuccess", payload: true });
+    } catch (err: any) {
+      if (err?.response.data.error.message === "TOO_MANY_ATTEMPTS_TRY_LATER") {
+        dispatchReducer({
+          type: "setErrorData",
+          payload: "Too many attempts. Try later",
+        });
+      } else if (err?.response.data.error.message === "EMAIL_NOT_FOUND") {
+        dispatchReducer({ type: "setErrorData", payload: "User not found" });
+      } else {
+        dispatchReducer({
+          type: "setErrorData",
+          payload: "Something goes wrong, try later",
+        });
+      }
+      dispatchReducer({ type: "setSendSuccess", payload: false });
+      dispatchReducer({ type: "setSendEmail", payload: true });
     }
-    setLoading(false);
+    dispatchReducer({ type: "setLoading", payload: false });
+  };
+
+  const changeEmailHandler = async () => {
+    dispatchReducer({ type: "setFormSaveLoading", payload: true });
+    dispatchReducer({ type: "setOpenConfirmModal", payload: false });
+    try {
+      await axios.post(URL_CHANGE_EMAIL, {
+        idToken,
+        email: state.newEmail,
+        returnSecureToken: true,
+      });
+      dispatch(authActions.logout());
+      dispatchReducer({ type: "setSaveSuccess", payload: true });
+    } catch (err) {
+      dispatchReducer({ type: "setSaveSuccess", payload: false });
+    }
   };
   return (
     <Wrapper>
-      <SectionRow>
-        <p>Email:</p>
-        <input
-          type="text"
-          autoComplete="off"
-          value={newEmail}
-          onChange={(e) => setNewEmail(e.target.value)}
+      {state.openConfirmModal && (
+        <ConfirmModal
+          confirmHandler={() => changeEmailHandler()}
+          cancelHandler={() =>
+            dispatchReducer({ type: "setOpenConfirmModal", payload: false })
+          }
         />
-      </SectionRow>
-      <SectionRow>
-        <p>Verified:</p>
-        <Verified emailVerified={userData.emailVerified}>
-          {userData.emailVerified ? <TiTick /> : <TiTimes />}
-        </Verified>
-        {loading ? (
-          <p>Sending....</p>
-        ) : userData.emailVerified ? (
-          ""
-        ) : sendEmail ? (
-          sendSuccess ? (
-            <SendBtn success={true}>
-              Verification link sent successfully.
-            </SendBtn>
-          ) : (
-            <SendBtn success={false}>
-              Something went wrong, try again later.
-            </SendBtn>
-          )
-        ) : (
-          <SendBtn onClick={sendVerifyMail}>
-            The email is not verified. Verify it now
-          </SendBtn>
-        )}
-      </SectionRow>
-      <button>Change</button>
+      )}
+      {state.saveFormLoading && <LoadingSmall />}
+      {!state.saveFormLoading && (
+        <>
+          <SectionRow>
+            <p>Email:</p>
+            <input
+              type="text"
+              autoComplete="off"
+              value={state.newEmail}
+              onChange={(e) =>
+                dispatchReducer({
+                  type: "setNewEmail",
+                  payload: e.target.value,
+                })
+              }
+            />
+            {state.saveSuccess ? "" : <p>Something goes wrong, try later</p>}
+          </SectionRow>
+          <SectionRow>
+            <p>Verified:</p>
+            <Verified emailVerified={state.userData.emailVerified}>
+              {state.userData.emailVerified ? <TiTick /> : <TiTimes />}
+            </Verified>
+            {state.loading ? (
+              <p>Sending....</p>
+            ) : state.userData.emailVerified ? (
+              ""
+            ) : state.sendEmail ? (
+              state.sendSuccess ? (
+                <SendBtn success={true}>
+                  Verification link sent successfully.
+                </SendBtn>
+              ) : (
+                <SendBtn success={false}>{state.errorData} </SendBtn>
+              )
+            ) : (
+              <SendBtn onClick={sendVerifyMail}>
+                The email is not verified. Verify it now
+              </SendBtn>
+            )}
+          </SectionRow>
+          <button
+            onClick={() =>
+              dispatchReducer({ type: "setOpenConfirmModal", payload: true })
+            }
+          >
+            Change
+          </button>
+        </>
+      )}
     </Wrapper>
   );
 }

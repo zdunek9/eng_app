@@ -17,7 +17,7 @@ flex-direction: column;
   border-right: 1px solid var(--lines);
   font-size: 1.5rem;
   div{
-    margin-bottom: 5vh;
+    padding: 30px 0;
     transition: 0.3s;
     cursor: pointer;
   }

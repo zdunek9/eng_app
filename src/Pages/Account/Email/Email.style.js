@@ -2,6 +2,7 @@ import styled from "styled-components";
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
+  height: 100%;
   p {
     margin: 0;
     margin-right: 5vw;
@@ -47,5 +48,10 @@ export const SendBtn = styled.span`
 export const SectionRow = styled.div`
   display: flex;
   align-items: center;
-  margin-bottom: 50px;
+  padding: 30px;
+  border-radius: 20px;
+
+  &:hover {
+    background-color: #bedbf3;
+  }
 `;

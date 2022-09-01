@@ -4,6 +4,7 @@ export const GlobalStyle = createGlobalStyle`
     :root{
         --frames: 62;
         --background2:#d4e7f7;
+        --background3:#bedbf3;
         --thinFont:#A7CDEE;
         --biggerFont:#74abc9;
         --titleFontColor:black;
