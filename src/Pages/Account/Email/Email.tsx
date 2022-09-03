@@ -100,11 +100,14 @@ function Email() {
           cancelHandler={() =>
             dispatchReducer({ type: "setOpenConfirmModal", payload: false })
           }
+          text={`Are you sure you want to change your email address. <br />
+          You will be logged out`}
         />
       )}
       {state.saveFormLoading && <LoadingSmall />}
       {!state.saveFormLoading && (
         <>
+          <h1>Change email</h1>
           <SectionRow>
             <p>Email:</p>
             <input

@@ -3,6 +3,10 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
+
+  h1 {
+    margin: 30px 40px 50px 30px;
+  }
   p {
     margin: 0;
     margin-right: 5vw;
@@ -50,7 +54,6 @@ export const SectionRow = styled.div`
   align-items: center;
   padding: 30px;
   border-radius: 20px;
-
   &:hover {
     background-color: #bedbf3;
   }
