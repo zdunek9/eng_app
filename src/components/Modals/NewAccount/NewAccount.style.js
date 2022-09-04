@@ -99,6 +99,7 @@ export const Wrapper = styled.div`
     display: inline-block;
   }
   @media screen and (max-width: 700px) {
+    margin-top: 100px;
     width: 100%;
     display: flex;
     flex-direction: column;

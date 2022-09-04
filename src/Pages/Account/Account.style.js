@@ -27,9 +27,7 @@ export const Category = styled.div`
     transition: 0.3s;
     cursor: pointer;
   }
-  @media (max-width: 1500px) {
-    font-size: 1.1rem;
-  }
+
   @media(max-width:600px){
     padding:100px 10px;
     font-size: 1.3rem;

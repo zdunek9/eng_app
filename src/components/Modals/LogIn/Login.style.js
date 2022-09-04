@@ -87,6 +87,8 @@ export const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 120px;
+
     #email {
       width: 80vw;
     }

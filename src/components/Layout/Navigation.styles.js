@@ -47,7 +47,7 @@ export const Wrapper = styled.div`
     opacity: 1;
     font-weight: 600;
   }
-  @media screen and (max-width: 1000px) {
+  @media screen and (max-width: 1100px) {
     padding: 0 10px;
     p {
       font-size: 1.6rem;

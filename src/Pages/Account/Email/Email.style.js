@@ -41,6 +41,11 @@ export const Wrapper = styled.div`
     color: white;
     cursor: pointer;
   }
+  @media screen and (max-width: 1200px) {
+    input{
+      width: 40vw;
+    }
+  }
   @media screen and (max-width: 700px) {
     text-align: center;
     width: 100%;
