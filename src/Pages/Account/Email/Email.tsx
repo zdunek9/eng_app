@@ -89,6 +89,7 @@ function Email() {
       dispatch(authActions.logout());
       dispatchReducer({ type: "setSaveSuccess", payload: true });
     } catch (err) {
+      dispatchReducer({ type: "setFormSaveLoading", payload: false });
       dispatchReducer({ type: "setSaveSuccess", payload: false });
     }
   };
@@ -100,13 +101,15 @@ function Email() {
           cancelHandler={() =>
             dispatchReducer({ type: "setOpenConfirmModal", payload: false })
           }
-          text={`Are you sure you want to change your email address. <br />
-          You will be logged out`}
-        />
-      )}
+          text={
+            "Are you sure you want to change your email address. You will be logged out"
+          }
+          />
+          )}
       {state.saveFormLoading && <LoadingSmall />}
       {!state.saveFormLoading && (
         <>
+        {state.saveSuccess ? "" : <p className="errMsg">Something goes wrong, try later</p>}
           <h1>Change email</h1>
           <SectionRow>
             <p>Email:</p>
@@ -121,7 +124,6 @@ function Email() {
                 })
               }
             />
-            {state.saveSuccess ? "" : <p>Something goes wrong, try later</p>}
           </SectionRow>
           <SectionRow>
             <p>Verified:</p>

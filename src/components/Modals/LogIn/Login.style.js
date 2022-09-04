@@ -12,13 +12,13 @@ export const Wrapper = styled.div`
     flex-direction: column;
   }
   h1 {
-    margin: 40px 10px 20px 0;
+    margin: 10px 10px 20px 0;
   }
   h3 {
   }
   .sendStatus{
     font-size: 1.3rem;
-    margin-top: 30px;
+    margin-top: 15px;
     font-style: italic;
 
   }
@@ -102,5 +102,41 @@ export const Wrapper = styled.div`
     button {
       width: 100%;
     }
+  }
+  @media(max-height:900px){
+    h1 {
+    margin: 10px 0
+  }
+  h3 {
+  }
+  .sendStatus{
+    font-size: 1rem;
+    margin-top: 10px;
+
+  }
+  #email {
+    width: 80%;
+    padding: 10px 25px;
+    margin: 10px 0;
+  }
+  #emailReset {
+    padding: 10px 25px;
+    margin: 10px 0;
+  }
+  #password {
+    padding: 10px 25px;
+    margin: 10px 0;
+  }
+  button {
+    padding: 10px 25px;
+    margin: 10px 0;
+
+  }
+
+  .errmsg {
+    padding: 5px;
+    margin-bottom: 0.1rem;
+
+  }
   }
 `;

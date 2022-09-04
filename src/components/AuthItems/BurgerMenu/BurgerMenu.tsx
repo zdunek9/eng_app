@@ -31,6 +31,9 @@ const BurgerMenu: React.FC<{
       <NavLink to="favorites" onClick={() => setOpen(false)}>
         Favorite Question
       </NavLink>
+      <NavLink to="account" onClick={() => setOpen(false)}>
+        Account
+      </NavLink>
       <a onClick={onLogOutHandler}>Logout</a>
     </StyledMenu>
   );

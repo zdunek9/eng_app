@@ -90,13 +90,18 @@ export const Wrapper = styled.div`
   .line {
     display: inline-block;
   }
-  @media screen and (max-width: 700px) {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  @media screen and (max-width: 1000px) {
+
     input {
-      width: 80vw;
+      width: 80%;
+    }
+    button {
+      width: 80%;
+    }
+  }
+  @media screen and (max-width: 700px) {
+    input {
+      width: 100%;
     }
     button {
       width: 100%;

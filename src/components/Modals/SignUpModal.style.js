@@ -22,7 +22,7 @@ export const Wrapper = styled.div`
   min-width: 600px;
   height: 90vh;
   max-height: 1100px;
-  min-height: 850px;
+  min-height: 650px;
   background-color: #cee4ef;
   transform: translate(-50%, -50%);
   border-radius: 10px;
