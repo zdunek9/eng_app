@@ -38,7 +38,7 @@ function Password() {
   }, [state.pwd, state.matchPwd]);
 
   useEffect(() => {
-    dispatchReducer({ type: "errMsg", payload: "" });
+    dispatchReducer({ type: "setErrMsg", payload: "" });
   }, [state.pwd, state.matchPwd]);
 
   const handleSubmit = async () => {
@@ -53,15 +53,18 @@ function Password() {
       dispatch(authActions.logout());
     } catch (err: any) {
       if (!err?.response) {
-        dispatchReducer({ type: "errMsg", payload: "No Server Response" });
+        dispatchReducer({ type: "setErrMsg", payload: "No Server Response" });
       } else if (err.response?.data.error.message === "INVALID_ID_TOKEN") {
         dispatchReducer({
-          type: "errMsg",
+          type: "setErrMsg",
           payload:
             "Your credentials are not longer valid. You need to sing in again.",
         });
       } else {
-        dispatchReducer({ type: "errMsg", payload: "Password change failed" });
+        dispatchReducer({
+          type: "setErrMsg",
+          payload: "Password change failed",
+        });
       }
     }
     dispatchReducer({ type: "saveFormLoading", payload: false });
