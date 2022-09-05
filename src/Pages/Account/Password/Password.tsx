@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useReducer } from "react";
 import { faCheck, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
@@ -8,102 +8,118 @@ import { RootState } from "../../../Store/store";
 import LoadingSmall from "../../../components/Modals/LoadingSmall/LoadingSmall";
 import ConfirmModal from "../../../components/Modals/ConfirmModal/ConfirmModal";
 import { authActions } from "../../../Store/authSlice";
+import { reducer } from "./PasswordReducer";
 
 const PASSWORD_REGEX =
   /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 const URL_PWD_CHANGE = `${process.env.REACT_APP_CHANGE_PWD}`;
 
 function Password() {
-  const [pwd, setPwd] = useState<string>("");
-  const [validPwd, setValidPwd] = useState<boolean>(false);
-  const [pwdFocus, setPwdFocus] = useState<boolean>(false);
-
-  const [matchPwd, setMatchPwd] = useState<string>("");
-  const [validMatch, setValidMatch] = useState<boolean>(false);
-  const [matchFocus, setMatchFocus] = useState<boolean>(false);
-
-  const [errMsg, setErrMsg] = useState<string>("");
-  const [saveFormLoading, setSaveFormLoading] = useState<boolean>(false);
-  const [openConfirmModal, setOpenConfirmModal] = useState<boolean>(false);
+  const [state, dispatchReducer] = useReducer(reducer, {
+    pwd: "",
+    validPwd: false,
+    pwdFocus: false,
+    matchPwd: "",
+    validMatch: false,
+    matchFocus: false,
+    errMsg: "",
+    saveFormLoading: false,
+    openConfirmModal: false,
+  });
 
   const idToken = useSelector((state: RootState) => state.auth.apiKey);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const result = PASSWORD_REGEX.test(pwd);
-    setValidPwd(result);
-    const match = pwd === matchPwd;
-    setValidMatch(match);
-  }, [pwd, matchPwd]);
+    const result = PASSWORD_REGEX.test(state.pwd);
+    dispatchReducer({ type: "setValidPwd", payload: result });
+    const match = state.pwd === state.matchPwd;
+    dispatchReducer({ type: "setValidMatch", payload: match });
+  }, [state.pwd, state.matchPwd]);
 
   useEffect(() => {
-    setErrMsg("");
-  }, [pwd, matchPwd]);
+    dispatchReducer({ type: "errMsg", payload: "" });
+  }, [state.pwd, state.matchPwd]);
 
   const handleSubmit = async () => {
-    setSaveFormLoading(true);
-    setOpenConfirmModal(false);
+    dispatchReducer({ type: "saveFormLoading", payload: true });
+    dispatchReducer({ type: "setOpenConfirmModal", payload: false });
     try {
       await axios.post(URL_PWD_CHANGE, {
         idToken,
-        password: pwd,
+        password: state.pwd,
         returnSecureToken: true,
       });
       dispatch(authActions.logout());
     } catch (err: any) {
       if (!err?.response) {
-        setErrMsg("No Server Response");
+        dispatchReducer({ type: "errMsg", payload: "No Server Response" });
       } else if (err.response?.data.error.message === "INVALID_ID_TOKEN") {
-        setErrMsg(
-          "Your credentials are not longer valid. You need to sing in again."
-        );
+        dispatchReducer({
+          type: "errMsg",
+          payload:
+            "Your credentials are not longer valid. You need to sing in again.",
+        });
       } else {
-        setErrMsg("Password change failed");
+        dispatchReducer({ type: "errMsg", payload: "Password change failed" });
       }
     }
-    setSaveFormLoading(false);
-
+    dispatchReducer({ type: "saveFormLoading", payload: false });
   };
   const openConfirmModalHandler = (event: React.FormEvent) => {
     event.preventDefault();
-    setOpenConfirmModal(true);
+    dispatchReducer({ type: "setOpenConfirmModal", payload: true });
   };
   return (
     <Wrapper>
-      {openConfirmModal && (
+      {state.openConfirmModal && (
         <ConfirmModal
           confirmHandler={() => handleSubmit()}
-          cancelHandler={() => setOpenConfirmModal(false)}
+          cancelHandler={() =>
+            dispatchReducer({ type: "setOpenConfirmModal", payload: false })
+          }
           text={`Are you sure you want to change your password. You will be logged out`}
         />
       )}
-      {saveFormLoading && <LoadingSmall />}
-      {!saveFormLoading && (
+      {state.saveFormLoading && <LoadingSmall />}
+      {!state.saveFormLoading && (
         <>
-          <p className={errMsg ? "errmsg" : "offscreen"}>{errMsg}</p>
+          <p className={state.errMsg ? "errmsg" : "offscreen"}>
+            {state.errMsg}
+          </p>
           <h1>Change password</h1>
           <form onSubmit={openConfirmModalHandler}>
             <label htmlFor="password">
               Password:
               <FontAwesomeIcon
                 icon={faCheck}
-                className={validPwd ? "valid" : "hide"}
+                className={state.validPwd ? "valid" : "hide"}
               />
               <FontAwesomeIcon
                 icon={faTimes}
-                className={validPwd || !pwd ? "hide" : "invalid"}
+                className={state.validPwd || !state.pwd ? "hide" : "invalid"}
               />
             </label>
             <input
               type="password"
               id="password"
-              onChange={(e) => setPwd(e.target.value)}
-              value={pwd}
+              onChange={(e) =>
+                dispatchReducer({ type: "setPwd", payload: e.target.value })
+              }
+              value={state.pwd}
               required
-              onFocus={() => setPwdFocus(true)}
-              onBlur={() => setPwdFocus(false)}
+              onFocus={() =>
+                dispatchReducer({ type: "setPwdFocus", payload: true })
+              }
+              onBlur={() =>
+                dispatchReducer({ type: "setPwdFocus", payload: false })
+              }
             />
-            <p className={pwdFocus && !validPwd ? "instructions" : "offscreen"}>
+            <p
+              className={
+                state.pwdFocus && !state.validPwd ? "instructions" : "offscreen"
+              }
+            >
               8 to 24 characters.
               <br />
               Must include uppercase and lowercase letters,
@@ -120,31 +136,48 @@ function Password() {
               Confirm Password:
               <FontAwesomeIcon
                 icon={faCheck}
-                className={validMatch && matchPwd ? "valid" : "hide"}
+                className={
+                  state.validMatch && state.matchPwd ? "valid" : "hide"
+                }
               />
               <FontAwesomeIcon
                 icon={faTimes}
-                className={validMatch || !matchPwd ? "hide" : "invalid"}
+                className={
+                  state.validMatch || !state.matchPwd ? "hide" : "invalid"
+                }
               />
             </label>
             <input
               type="password"
               id="confirm_pwd"
-              onChange={(e) => setMatchPwd(e.target.value)}
-              value={matchPwd}
+              onChange={(e) =>
+                dispatchReducer({
+                  type: "setMatchPwd",
+                  payload: e.target.value,
+                })
+              }
+              value={state.matchPwd}
               required
-              onFocus={() => setMatchFocus(true)}
-              onBlur={() => setMatchFocus(false)}
+              onFocus={() =>
+                dispatchReducer({ type: "setMatchFocus", payload: true })
+              }
+              onBlur={() =>
+                dispatchReducer({ type: "setMatchFocus", payload: false })
+              }
             />
             <p
               id="confirmnote"
               className={
-                matchFocus && !validMatch ? "instructions" : "offscreen"
+                state.matchFocus && !state.validMatch
+                  ? "instructions"
+                  : "offscreen"
               }
             >
               Must match the first password input field.
             </p>
-            <button disabled={!validPwd || !validMatch ? true : false}>
+            <button
+              disabled={!state.validPwd || !state.validMatch ? true : false}
+            >
               Change
             </button>
           </form>

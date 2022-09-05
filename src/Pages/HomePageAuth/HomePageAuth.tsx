@@ -25,7 +25,6 @@ const URL_FLASHCARD = `${process.env.REACT_APP_DB_FLASHCARDS}`;
 const HomePageAuth = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<any>(null);
-  // const isLogedIn = useSelector((state: RootState) => state.auth.isLogged);
 
   const dispatch = useDispatch();
 

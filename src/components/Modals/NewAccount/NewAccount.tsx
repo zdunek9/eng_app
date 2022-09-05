@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useReducer, useRef } from "react";
 import { faCheck, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Wrapper } from "./NewAccount.style";
@@ -7,6 +7,7 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { authActions } from "../../../Store/authSlice";
 import { motion } from "framer-motion";
+import { reducer } from "./NewAccountReducer";
 
 const MAIL_REGEX = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
 const PASSWORD_REGEX =
@@ -17,54 +18,53 @@ const NewAccountTest = () => {
   let navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const [user, setUser] = useState<string>("");
-  const [validName, setValidName] = useState<boolean>(false);
-  const [userFocus, setUserFocus] = useState<boolean>(false);
-
-  const [pwd, setPwd] = useState<string>("");
-  const [validPwd, setValidPwd] = useState<boolean>(false);
-  const [pwdFocus, setPwdFocus] = useState<boolean>(false);
-
-  const [matchPwd, setMatchPwd] = useState<string>("");
-  const [validMatch, setValidMatch] = useState<boolean>(false);
-  const [matchFocus, setMatchFocus] = useState<boolean>(false);
-
-  const [errMsg, setErrMsg] = useState<string>("");
+  const [state, dispatchReducer] = useReducer(reducer, {
+    user: "",
+    validName: false,
+    userFocus: false,
+    pwd: "",
+    validPwd: false,
+    pwdFocus: false,
+    matchPwd: "",
+    validMatch: false,
+    matchFocus: false,
+    errMsg: false,
+  });
 
   useEffect(() => {
     userRef.current.focus();
   }, []);
   useEffect(() => {
-    const result = MAIL_REGEX.test(user);
-    setValidName(result);
-  }, [user]);
+    const result = MAIL_REGEX.test(state.user);
+    dispatchReducer({ type: "setValidName", payload: result });
+  }, [state.user]);
   useEffect(() => {
-    const result = PASSWORD_REGEX.test(pwd);
-    setValidPwd(result);
-    const match = pwd === matchPwd;
-    setValidMatch(match);
-  }, [pwd, matchPwd]);
+    const result = PASSWORD_REGEX.test(state.pwd);
+    dispatchReducer({ type: "setValidPwd", payload: result });
+    const match = state.pwd === state.matchPwd;
+    dispatchReducer({ type: "setValidMatch", payload: match });
+  }, [state.pwd, state.matchPwd]);
   useEffect(() => {
-    setErrMsg("");
-  }, [user, pwd, matchPwd]);
+    dispatchReducer({ type: "setErrMsg", payload: "" });
+  }, [state.user, state.pwd, state.matchPwd]);
   const URL = `${process.env.REACT_APP_SIGN_IN}`;
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
       const response = await axios.post(URL, {
-        email: user,
-        password: pwd,
+        email: state.user,
+        password: state.pwd,
         returnSecureToken: true,
       });
       dispatch(authActions.login(response.data.idToken));
       navigate("/home");
     } catch (err: any) {
       if (!err?.response) {
-        setErrMsg("No Server Response");
+        dispatchReducer({ type: "setErrMsg", payload: "No Server Response" });
       } else if (err.response?.data.error.message === "EMAIL_EXISTS") {
-        setErrMsg("Mail Taken");
+        dispatchReducer({ type: "setErrMsg", payload: "Mail Taken" });
       } else {
-        setErrMsg("Registration Failed");
+        dispatchReducer({ type: "setErrMsg", payload: "Registration Failed" });
       }
     }
   };
@@ -76,15 +76,15 @@ const NewAccountTest = () => {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.2 }}
     >
-      <p className={errMsg ? "errmsg" : "offscreen"}>{errMsg}</p>
+      <p className={state.errMsg ? "errmsg" : "offscreen"}>{state.errMsg}</p>
       <h1>Register</h1>
       <form onSubmit={handleSubmit}>
         <label htmlFor="email">
           Email:
-          <span className={validName ? "valid" : "hide"}>
+          <span className={state.validName ? "valid" : "hide"}>
             <FontAwesomeIcon icon={faCheck} />
           </span>
-          <span className={validName || !user ? "hide" : "invalid"}>
+          <span className={state.validName || !state.user ? "hide" : "invalid"}>
             <FontAwesomeIcon icon={faTimes} />
           </span>
         </label>
@@ -94,13 +94,21 @@ const NewAccountTest = () => {
           ref={userRef}
           autoComplete="off"
           required
-          onChange={(e) => setUser(e.target.value)}
-          onFocus={() => setUserFocus(true)}
-          onBlur={() => setUserFocus(false)}
+          onChange={(e) =>
+            dispatchReducer({ type: "setUser", payload: e.target.value })
+          }
+          onFocus={() =>
+            dispatchReducer({ type: "setUserFocus", payload: true })
+          }
+          onBlur={() =>
+            dispatchReducer({ type: "setUserFocus", payload: false })
+          }
         />
         <p
           className={
-            userFocus && user && !validName ? "instructions" : "offscreen"
+            state.userFocus && state.user && !state.validName
+              ? "instructions"
+              : "offscreen"
           }
         >
           Enter a valid email address
@@ -109,23 +117,33 @@ const NewAccountTest = () => {
           Password:
           <FontAwesomeIcon
             icon={faCheck}
-            className={validPwd ? "valid" : "hide"}
+            className={state.validPwd ? "valid" : "hide"}
           />
           <FontAwesomeIcon
             icon={faTimes}
-            className={validPwd || !pwd ? "hide" : "invalid"}
+            className={state.validPwd || !state.pwd ? "hide" : "invalid"}
           />
         </label>
         <input
           type="password"
           id="password"
-          onChange={(e) => setPwd(e.target.value)}
-          value={pwd}
+          onChange={(e) =>
+            dispatchReducer({ type: "setPwd", payload: e.target.value })
+          }
+          value={state.pwd}
           required
-          onFocus={() => setPwdFocus(true)}
-          onBlur={() => setPwdFocus(false)}
+          onFocus={() =>
+            dispatchReducer({ type: "setPwdFocus", payload: true })
+          }
+          onBlur={() =>
+            dispatchReducer({ type: "setPwdFocus", payload: false })
+          }
         />
-        <p className={pwdFocus && !validPwd ? "instructions" : "offscreen"}>
+        <p
+          className={
+            state.pwdFocus && !state.validPwd ? "instructions" : "offscreen"
+          }
+        >
           8 to 24 characters.
           <br />
           Must include uppercase and lowercase letters,
@@ -143,31 +161,43 @@ const NewAccountTest = () => {
           Confirm Password:
           <FontAwesomeIcon
             icon={faCheck}
-            className={validMatch && matchPwd ? "valid" : "hide"}
+            className={state.validMatch && state.matchPwd ? "valid" : "hide"}
           />
           <FontAwesomeIcon
             icon={faTimes}
-            className={validMatch || !matchPwd ? "hide" : "invalid"}
+            className={state.validMatch || !state.matchPwd ? "hide" : "invalid"}
           />
         </label>
         <input
           type="password"
           id="confirm_pwd"
-          onChange={(e) => setMatchPwd(e.target.value)}
-          value={matchPwd}
+          onChange={(e) =>
+            dispatchReducer({ type: "setMatchPwd", payload: e.target.value })
+          }
+          value={state.matchPwd}
           required
-          onFocus={() => setMatchFocus(true)}
-          onBlur={() => setMatchFocus(false)}
+          onFocus={() =>
+            dispatchReducer({ type: "setMatchFocus", payload: true })
+          }
+          onBlur={() =>
+            dispatchReducer({ type: "setMatchFocus", payload: false })
+          }
         />
         <p
           id="confirmnote"
-          className={matchFocus && !validMatch ? "instructions" : "offscreen"}
+          className={
+            state.matchFocus && !state.validMatch ? "instructions" : "offscreen"
+          }
         >
           Must match the first password input field.
         </p>
 
         <button
-          disabled={!validName || !validPwd || !validMatch ? true : false}
+          disabled={
+            !state.validName || !state.validPwd || !state.validMatch
+              ? true
+              : false
+          }
         >
           Sign Up
         </button>

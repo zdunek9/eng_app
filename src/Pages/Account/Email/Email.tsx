@@ -104,12 +104,16 @@ function Email() {
           text={
             "Are you sure you want to change your email address. You will be logged out"
           }
-          />
-          )}
+        />
+      )}
       {state.saveFormLoading && <LoadingSmall />}
       {!state.saveFormLoading && (
         <>
-        {state.saveSuccess ? "" : <p className="errMsg">Something goes wrong, try later</p>}
+          {state.saveSuccess ? (
+            ""
+          ) : (
+            <p className="errMsg">Something goes wrong, try later</p>
+          )}
           <h1>Change email</h1>
           <SectionRow>
             <p>Email:</p>

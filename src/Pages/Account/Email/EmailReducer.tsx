@@ -20,3 +20,4 @@ export const reducer = (state: any, action: { type: any; payload: any }) => {
       return { ...state, errorData: action.payload };
   }
 };
+ 
