@@ -1,6 +1,6 @@
 # engApp
 The application allows for a specific course of learning English.
-To checkout app you need to register. All data fetched from my simple read-only backend firebase. Firebase authentication also included
+To checkout app you need to register. All data fetched from my simple read-only backend firebase. Firebase authentication also included with auto logout after token expiration time. 
 ## Features:
   - Flashcards: allow to learn new vocabulary, choose whether you know the word or not. (More or less 20 words in the database are available).
   - Random Question: allow to generate random question, you can mark it as done, and roll new to complete daily challenge. (More or less 20 words in the database are        available)

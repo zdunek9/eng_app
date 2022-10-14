@@ -12,7 +12,7 @@ import { useEffect } from "react";
 import { authActions } from "../../Store/authSlice";
 import { motion } from "framer-motion";
 
-const HomePageNotAuth: React.FC = (props) => {
+const HomePageNotAuth: React.FC = () => {
   let navigate = useNavigate();
   const dispatch = useDispatch();
   useEffect(() => {

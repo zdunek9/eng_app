@@ -4,10 +4,14 @@ import { authActions } from "../../../Store/authSlice";
 import { Wrapper } from "./Login.style";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-
 import axios from "axios";
 import LoadingSmall from "../LoadingSmall/LoadingSmall";
 import { reducer } from "./LoginReducer";
+
+const MAIL_REGEX = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
+const URL_LOGIN = `${process.env.REACT_APP_AUTH}`;
+const URL_RESET = `${process.env.REACT_APP_RESET_PWD}`;
+
 const LoginTest: React.FC = () => {
   const [state, dispatchReducer] = useReducer(reducer, {
     user: "",
@@ -22,10 +26,6 @@ const LoginTest: React.FC = () => {
   const userRef: any = useRef();
   const dispatch = useDispatch();
   let navigate = useNavigate();
-
-  const MAIL_REGEX = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
-  const URL_LOGIN = `${process.env.REACT_APP_AUTH}`;
-  const URL_RESET = `${process.env.REACT_APP_RESET_PWD}`;
 
   useEffect(() => {
     userRef.current.focus();
@@ -46,7 +46,10 @@ const LoginTest: React.FC = () => {
       });
       dispatchReducer({ type: "setUser", payload: "" });
       dispatchReducer({ type: "setPwd", payload: "" });
-      dispatch(authActions.login(response.data.idToken));
+      const expTime = new Date(
+        new Date().getTime() + +response.data.expiresIn * 1000
+      ).toISOString();
+      dispatch(authActions.login([response.data.idToken, expTime]));
       navigate(`/home`);
     } catch (err: any) {
       if (!err?.response) {

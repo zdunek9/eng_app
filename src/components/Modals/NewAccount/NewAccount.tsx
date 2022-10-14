@@ -56,7 +56,11 @@ const NewAccountTest = () => {
         password: state.pwd,
         returnSecureToken: true,
       });
-      dispatch(authActions.login(response.data.idToken));
+      const expTime = new Date(
+        new Date().getTime() + +response.data.expiresIn * 1000
+      ).toISOString();
+
+      dispatch(authActions.login([response.data.idToken, expTime]));
       navigate("/home");
     } catch (err: any) {
       if (!err?.response) {

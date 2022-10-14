@@ -31,7 +31,6 @@ function Email() {
 
   const idToken = useSelector((state: RootState) => state.auth.apiKey);
   const dispatch = useDispatch();
-
   useEffect(() => {
     const getUserData = async () => {
       const response = await axios.post(URL_GET_DATA, {

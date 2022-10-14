@@ -16,14 +16,16 @@ const authSlice = createSlice({
   reducers: {
     login(state, action) {
       state.isLogged = true;
-      state.apiKey = action.payload;
-      localStorage.setItem("token", state.apiKey);
+      state.apiKey = action.payload[0];
+      localStorage.setItem("token", action.payload[0]);
+      localStorage.setItem("expirationTime", action.payload[1]);
     },
     logout(state) {
       state.isLogged = false;
       state.apiKey = "";
       state.preventLoading = false;
       localStorage.removeItem("token");
+      localStorage.removeItem("expirationTime");
     },
     checkForToken(state, action) {
       state.apiKey = action.payload;
@@ -31,6 +33,9 @@ const authSlice = createSlice({
     },
     preventFetch(state) {
       state.preventLoading = true;
+    },
+    setToken(state, action) {
+      state.apiKey = action.payload;
     },
   },
 });
