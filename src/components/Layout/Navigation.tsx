@@ -20,7 +20,7 @@ const Navigation: React.FC = () => {
   };
   const onLogOutHandler = () => {
     dispatch(authActions.logout());
-    navigate("/");
+    navigate("/index");
   };
   let activeClass = "activeClass";
 

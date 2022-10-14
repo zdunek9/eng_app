@@ -13,7 +13,7 @@ const BurgerMenu: React.FC<{
   const onLogOutHandler = () => {
     dispatch(authActions.logout());
     setOpen(false);
-    navigate("/");
+    navigate("/index");
   };
   return (
     <StyledMenu open={open}>

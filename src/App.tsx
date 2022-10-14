@@ -71,7 +71,7 @@ function App() {
       <Navigation />
       <AnimatePresence>
         <Routes location={location} key={location.pathname}>
-          <Route path="/" element={<HomePageNotAuth />} />
+          <Route path="/index" element={<HomePageNotAuth />} />
           <Route path="/login" element={<SignUpModal />} />
           {isLogedIn && <Route path="/home" element={<HomePageAuth />} />}
           {isLogedIn && <Route path="/random" element={<RandomQuestion />} />}
