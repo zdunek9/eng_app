@@ -92,6 +92,8 @@ function Email() {
       dispatchReducer({ type: "setSaveSuccess", payload: false });
     }
   };
+
+  console.log("render");
   return (
     <Wrapper>
       {state.openConfirmModal && (

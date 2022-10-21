@@ -7,10 +7,18 @@ import { motion } from "framer-motion";
 import axios from "axios";
 import LoadingSmall from "../LoadingSmall/LoadingSmall";
 import { reducer } from "./LoginReducer";
+import Turnstile from "react-turnstile";
 
 const MAIL_REGEX = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
 const URL_LOGIN = `${process.env.REACT_APP_AUTH}`;
 const URL_RESET = `${process.env.REACT_APP_RESET_PWD}`;
+const TURNSTILE_TOKEN = `${process.env.REACT_APP_TURNSTILE_TOKEN}`;
+
+function TurnstilewWidget() {
+  return (
+    <Turnstile sitekey={TURNSTILE_TOKEN} onVerify={(token) => alert(token)} />
+  );
+}
 
 const LoginTest: React.FC = () => {
   const [state, dispatchReducer] = useReducer(reducer, {
@@ -22,6 +30,11 @@ const LoginTest: React.FC = () => {
     sendStatus: "",
     loadingState: false,
   });
+  <script
+    src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+    async
+    defer
+  ></script>;
 
   const userRef: any = useRef();
   const dispatch = useDispatch();
@@ -29,6 +42,10 @@ const LoginTest: React.FC = () => {
 
   useEffect(() => {
     userRef.current.focus();
+    const script = document.createElement("script");
+    script.src = "https://challenges.cloudflare.com/turnstile/v0/api.js";
+    script.async = true;
+    script.defer = true;
   }, []);
 
   useEffect(() => {
@@ -112,7 +129,7 @@ const LoginTest: React.FC = () => {
     >
       <p className={state.errMsg ? "errmsg" : "offscreen"}>{state.errMsg}</p>
       <h1>Log in</h1>
-      <form onSubmit={loginHandler}>
+      <form onSubmit={loginHandler} className="cf-turnstile">
         <label htmlFor="email">
           <b>Email</b>
         </label>
@@ -148,6 +165,14 @@ const LoginTest: React.FC = () => {
         >
           Forgot password?
         </p>
+        <div>
+          {TurnstilewWidget()}
+          </div>
+        {/* <div
+          className="cf-turnstile"
+          data-sitekey={TURNSTILE_TOKEN}
+          data-callback="javascriptCallback"
+        ></div> */}
       </form>
       {state.loadingState && <LoadingSmall />}
       {!state.loadingState && (
