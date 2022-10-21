@@ -1,4 +1,4 @@
-import { useEffect, useReducer, useRef } from "react";
+import { useEffect, useReducer, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { authActions } from "../../../Store/authSlice";
 import { Wrapper } from "./Login.style";
@@ -14,12 +14,6 @@ const URL_LOGIN = `${process.env.REACT_APP_AUTH}`;
 const URL_RESET = `${process.env.REACT_APP_RESET_PWD}`;
 const TURNSTILE_TOKEN = `${process.env.REACT_APP_TURNSTILE_TOKEN}`;
 
-function TurnstilewWidget() {
-  return (
-    <Turnstile sitekey={TURNSTILE_TOKEN} onVerify={(token) => alert(token)} />
-  );
-}
-
 const LoginTest: React.FC = () => {
   const [state, dispatchReducer] = useReducer(reducer, {
     user: "",
@@ -30,11 +24,7 @@ const LoginTest: React.FC = () => {
     sendStatus: "",
     loadingState: false,
   });
-  <script
-    src="https://challenges.cloudflare.com/turnstile/v0/api.js"
-    async
-    defer
-  ></script>;
+  const [turnstile, setTurnstile] = useState<boolean>(false);
 
   const userRef: any = useRef();
   const dispatch = useDispatch();
@@ -42,10 +32,10 @@ const LoginTest: React.FC = () => {
 
   useEffect(() => {
     userRef.current.focus();
-    const script = document.createElement("script");
-    script.src = "https://challenges.cloudflare.com/turnstile/v0/api.js";
-    script.async = true;
-    script.defer = true;
+    // const script = document.createElement("script");
+    // script.src = "https://challenges.cloudflare.com/turnstile/v0/api.js";
+    // script.async = true;
+    // script.defer = true;
   }, []);
 
   useEffect(() => {
@@ -55,6 +45,9 @@ const LoginTest: React.FC = () => {
   const loginHandler = async (event: React.FormEvent) => {
     event.preventDefault();
 
+    if (!turnstile) {
+      return;
+    }
     try {
       const response = await axios.post(URL_LOGIN, {
         email: state.user,
@@ -85,6 +78,9 @@ const LoginTest: React.FC = () => {
   };
   const resetPassword = async (event: React.FormEvent) => {
     event.preventDefault();
+    if (!turnstile) {
+      return;
+    }
     dispatchReducer({ type: "setSendStatus", payload: "" });
     dispatchReducer({ type: "setLoadingState", payload: true });
     if (state.resetEmail.trim() === "" || !MAIL_REGEX.test(state.resetEmail)) {
@@ -120,6 +116,14 @@ const LoginTest: React.FC = () => {
     }
     dispatchReducer({ type: "setLoadingState", payload: false });
   };
+  function TurnstilewWidget() {
+    return (
+      <Turnstile
+        sitekey={TURNSTILE_TOKEN}
+        onVerify={() => setTurnstile(true)}
+      />
+    );
+  }
   return (
     <Wrapper
       as={motion.div}
@@ -165,9 +169,7 @@ const LoginTest: React.FC = () => {
         >
           Forgot password?
         </p>
-        <div>
-          {TurnstilewWidget()}
-          </div>
+        <div>{TurnstilewWidget()}</div>
         {/* <div
           className="cf-turnstile"
           data-sitekey={TURNSTILE_TOKEN}
