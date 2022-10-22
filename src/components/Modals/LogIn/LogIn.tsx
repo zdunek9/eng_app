@@ -32,10 +32,6 @@ const LoginTest: React.FC = () => {
 
   useEffect(() => {
     userRef.current.focus();
-    // const script = document.createElement("script");
-    // script.src = "https://challenges.cloudflare.com/turnstile/v0/api.js";
-    // script.async = true;
-    // script.defer = true;
   }, []);
 
   useEffect(() => {
@@ -170,11 +166,6 @@ const LoginTest: React.FC = () => {
           Forgot password?
         </p>
         <div>{TurnstilewWidget()}</div>
-        {/* <div
-          className="cf-turnstile"
-          data-sitekey={TURNSTILE_TOKEN}
-          data-callback="javascriptCallback"
-        ></div> */}
       </form>
       {state.loadingState && <LoadingSmall />}
       {!state.loadingState && (

@@ -33,11 +33,10 @@ export const Wrapper = styled.div`
   box-shadow: -1px 8px 19px -1px rgb(86, 105, 126);
   z-index: 1;
   img {
-    height: 95%;
+    height: 85%;
     width: 45%;
     border-radius: 10px;
-    object-fit: cover;
-    object-position: -100px;
+    object-fit:cover;
   }
   .AiOutlineClose {
     z-index: 2;
@@ -69,10 +68,7 @@ export const Wrapper = styled.div`
     transform: unset;
     border-radius: unset;
     padding: 0;
-    img {
-      object-fit: cover;
-      object-position: -100px;
-    }
+
   }
   @media screen and (max-width: 700px) {
     flex-direction: column;

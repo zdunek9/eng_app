@@ -1,4 +1,4 @@
-import { useEffect, useReducer, useRef } from "react";
+import { useEffect, useReducer, useRef, useState } from "react";
 import { faCheck, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Wrapper } from "./NewAccount.style";
@@ -8,16 +8,17 @@ import { useDispatch } from "react-redux";
 import { authActions } from "../../../Store/authSlice";
 import { motion } from "framer-motion";
 import { reducer } from "./NewAccountReducer";
+import Turnstile from "react-turnstile";
 
 const MAIL_REGEX = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
 const PASSWORD_REGEX =
   /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
+const TURNSTILE_TOKEN = `${process.env.REACT_APP_TURNSTILE_TOKEN}`;
 
 const NewAccountTest = () => {
   const userRef: any = useRef();
   let navigate = useNavigate();
   const dispatch = useDispatch();
-
   const [state, dispatchReducer] = useReducer(reducer, {
     user: "",
     validName: false,
@@ -30,6 +31,7 @@ const NewAccountTest = () => {
     matchFocus: false,
     errMsg: false,
   });
+  const [turnstile, setTurnstile] = useState<boolean>(false);
 
   useEffect(() => {
     userRef.current.focus();
@@ -50,6 +52,9 @@ const NewAccountTest = () => {
   const URL = `${process.env.REACT_APP_SIGN_IN}`;
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (turnstile) {
+      return;
+    }
     try {
       const response = await axios.post(URL, {
         email: state.user,
@@ -72,7 +77,14 @@ const NewAccountTest = () => {
       }
     }
   };
-
+  function TurnstilewWidget() {
+    return (
+      <Turnstile
+        sitekey={TURNSTILE_TOKEN}
+        onVerify={() => setTurnstile(true)}
+      />
+    );
+  }
   return (
     <Wrapper
       as={motion.div}
@@ -205,6 +217,7 @@ const NewAccountTest = () => {
         >
           Sign Up
         </button>
+        <div>{TurnstilewWidget()}</div>
       </form>
     </Wrapper>
   );
