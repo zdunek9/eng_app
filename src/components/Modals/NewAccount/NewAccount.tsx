@@ -8,12 +8,11 @@ import { useDispatch } from "react-redux";
 import { authActions } from "../../../Store/authSlice";
 import { motion } from "framer-motion";
 import { reducer } from "./NewAccountReducer";
-import Turnstile from "react-turnstile";
+import TurnstileModal from "../Turnstile/TurnstileModal";
 
 const MAIL_REGEX = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
 const PASSWORD_REGEX =
   /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
-const TURNSTILE_TOKEN = `${process.env.REACT_APP_TURNSTILE_TOKEN}`;
 
 const NewAccountTest = () => {
   const userRef: any = useRef();
@@ -31,7 +30,7 @@ const NewAccountTest = () => {
     matchFocus: false,
     errMsg: false,
   });
-  const [turnstile, setTurnstile] = useState<boolean>(false);
+  const [openTurnstileModal, setOpenTurnstileModal] = useState<boolean>(false);
 
   useEffect(() => {
     userRef.current.focus();
@@ -50,41 +49,42 @@ const NewAccountTest = () => {
     dispatchReducer({ type: "setErrMsg", payload: "" });
   }, [state.user, state.pwd, state.matchPwd]);
   const URL = `${process.env.REACT_APP_SIGN_IN}`;
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (turnstile) {
-      return;
-    }
-    try {
-      const response = await axios.post(URL, {
-        email: state.user,
-        password: state.pwd,
-        returnSecureToken: true,
-      });
-      const expTime = new Date(
-        new Date().getTime() + +response.data.expiresIn * 1000
-      ).toISOString();
 
-      dispatch(authActions.login([response.data.idToken, expTime]));
-      navigate("/home");
-    } catch (err: any) {
-      if (!err?.response) {
-        dispatchReducer({ type: "setErrMsg", payload: "No Server Response" });
-      } else if (err.response?.data.error.message === "EMAIL_EXISTS") {
-        dispatchReducer({ type: "setErrMsg", payload: "Mail Taken" });
-      } else {
-        dispatchReducer({ type: "setErrMsg", payload: "Registration Failed" });
+  async function setConfirmAccess(accessGranted: boolean) {
+    if (accessGranted) {
+      try {
+        const response = await axios.post(URL, {
+          email: state.user,
+          password: state.pwd,
+          returnSecureToken: true,
+        });
+        const expTime = new Date(
+          new Date().getTime() + +response.data.expiresIn * 1000
+        ).toISOString();
+
+        dispatch(authActions.login([response.data.idToken, expTime]));
+        navigate("/home");
+      } catch (err: any) {
+        if (!err?.response) {
+          dispatchReducer({ type: "setErrMsg", payload: "No Server Response" });
+        } else if (err.response?.data.error.message === "EMAIL_EXISTS") {
+          dispatchReducer({ type: "setErrMsg", payload: "Mail Taken" });
+        } else {
+          dispatchReducer({
+            type: "setErrMsg",
+            payload: "Registration Failed",
+          });
+        }
       }
+    } else {
+      dispatchReducer({ type: "setErrMsg", payload: "Try again" });
     }
-  };
-  function TurnstilewWidget() {
-    return (
-      <Turnstile
-        sitekey={TURNSTILE_TOKEN}
-        onVerify={() => setTurnstile(true)}
-      />
-    );
   }
+
+  const turnstile2Handler = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setOpenTurnstileModal(true);
+  };
   return (
     <Wrapper
       as={motion.div}
@@ -92,9 +92,15 @@ const NewAccountTest = () => {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.2 }}
     >
+      {openTurnstileModal && (
+        <TurnstileModal
+          confirmTurnstile={setConfirmAccess}
+          closeModal={setOpenTurnstileModal}
+        />
+      )}
       <p className={state.errMsg ? "errmsg" : "offscreen"}>{state.errMsg}</p>
       <h1>Register</h1>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={(e) => turnstile2Handler(e)}>
         <label htmlFor="email">
           Email:
           <span className={state.validName ? "valid" : "hide"}>
@@ -217,7 +223,6 @@ const NewAccountTest = () => {
         >
           Sign Up
         </button>
-        <div>{TurnstilewWidget()}</div>
       </form>
     </Wrapper>
   );

@@ -7,12 +7,11 @@ import { motion } from "framer-motion";
 import axios from "axios";
 import LoadingSmall from "../LoadingSmall/LoadingSmall";
 import { reducer } from "./LoginReducer";
-import Turnstile from "react-turnstile";
+import TurnstileModal from "../Turnstile/TurnstileModal";
 
 const MAIL_REGEX = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
 const URL_LOGIN = `${process.env.REACT_APP_AUTH}`;
 const URL_RESET = `${process.env.REACT_APP_RESET_PWD}`;
-const TURNSTILE_TOKEN = `${process.env.REACT_APP_TURNSTILE_TOKEN}`;
 
 const LoginTest: React.FC = () => {
   const [state, dispatchReducer] = useReducer(reducer, {
@@ -24,7 +23,7 @@ const LoginTest: React.FC = () => {
     sendStatus: "",
     loadingState: false,
   });
-  const [turnstile, setTurnstile] = useState<boolean>(false);
+  const [openTurnstileModal, setOpenTurnstileModal] = useState<boolean>(false);
 
   const userRef: any = useRef();
   const dispatch = useDispatch();
@@ -38,45 +37,47 @@ const LoginTest: React.FC = () => {
     dispatchReducer({ type: "setErrMsg", payload: "" });
   }, [state.user, state.pwd]);
 
-  const loginHandler = async (event: React.FormEvent) => {
-    event.preventDefault();
-
-    if (!turnstile) {
-      return;
-    }
-    try {
-      const response = await axios.post(URL_LOGIN, {
-        email: state.user,
-        password: state.pwd,
-        returnSecureToken: true,
-      });
-      dispatchReducer({ type: "setUser", payload: "" });
-      dispatchReducer({ type: "setPwd", payload: "" });
-      const expTime = new Date(
-        new Date().getTime() + +response.data.expiresIn * 1000
-      ).toISOString();
-      dispatch(authActions.login([response.data.idToken, expTime]));
-      navigate(`/home`);
-    } catch (err: any) {
-      if (!err?.response) {
-        dispatchReducer({ type: "setErrMsg", payload: "No Server Response" });
-      } else if (err.response?.status === 400) {
-        dispatchReducer({
-          type: "setErrMsg",
-          payload: "Wrong Username or Password",
+  async function setConfirmAccess(accessGranted: boolean) {
+    if (accessGranted) {
+      try {
+        const response = await axios.post(URL_LOGIN, {
+          email: state.user,
+          password: state.pwd,
+          returnSecureToken: true,
         });
-      } else if (err.response?.status === 401) {
-        dispatchReducer({ type: "setErrMsg", payload: "Unauthorized" });
-      } else {
-        dispatchReducer({ type: "setErrMsg", payload: "Login Failed" });
+        dispatchReducer({ type: "setUser", payload: "" });
+        dispatchReducer({ type: "setPwd", payload: "" });
+        const expTime = new Date(
+          new Date().getTime() + +response.data.expiresIn * 1000
+        ).toISOString();
+        dispatch(authActions.login([response.data.idToken, expTime]));
+        navigate(`/home`);
+      } catch (err: any) {
+        if (!err?.response) {
+          dispatchReducer({ type: "setErrMsg", payload: "No Server Response" });
+        } else if (err.response?.status === 400) {
+          dispatchReducer({
+            type: "setErrMsg",
+            payload: "Wrong Username or Password",
+          });
+        } else if (err.response?.status === 401) {
+          dispatchReducer({ type: "setErrMsg", payload: "Unauthorized" });
+        } else {
+          dispatchReducer({ type: "setErrMsg", payload: "Login Failed" });
+        }
       }
+    } else {
+      dispatchReducer({ type: "setErrMsg", payload: "Try again" });
     }
+  }
+
+  const turnstile2Handler = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setOpenTurnstileModal(true);
   };
+
   const resetPassword = async (event: React.FormEvent) => {
     event.preventDefault();
-    if (!turnstile) {
-      return;
-    }
     dispatchReducer({ type: "setSendStatus", payload: "" });
     dispatchReducer({ type: "setLoadingState", payload: true });
     if (state.resetEmail.trim() === "" || !MAIL_REGEX.test(state.resetEmail)) {
@@ -112,14 +113,6 @@ const LoginTest: React.FC = () => {
     }
     dispatchReducer({ type: "setLoadingState", payload: false });
   };
-  function TurnstilewWidget() {
-    return (
-      <Turnstile
-        sitekey={TURNSTILE_TOKEN}
-        onVerify={() => setTurnstile(true)}
-      />
-    );
-  }
   return (
     <Wrapper
       as={motion.div}
@@ -127,9 +120,15 @@ const LoginTest: React.FC = () => {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.2 }}
     >
+      {openTurnstileModal && (
+        <TurnstileModal
+          confirmTurnstile={setConfirmAccess}
+          closeModal={setOpenTurnstileModal}
+        />
+      )}
       <p className={state.errMsg ? "errmsg" : "offscreen"}>{state.errMsg}</p>
       <h1>Log in</h1>
-      <form onSubmit={loginHandler} className="cf-turnstile">
+      <form onSubmit={(e) => turnstile2Handler(e)} className="cf-turnstile">
         <label htmlFor="email">
           <b>Email</b>
         </label>
@@ -165,7 +164,6 @@ const LoginTest: React.FC = () => {
         >
           Forgot password?
         </p>
-        <div>{TurnstilewWidget()}</div>
       </form>
       {state.loadingState && <LoadingSmall />}
       {!state.loadingState && (
