@@ -12,23 +12,17 @@ const TurnstileModal: React.FC<{
   if (confirmPass) {
     buttonHandler();
   }
-  // useEffect(() => {
-  //   if (confirmPass) {
-  //     buttonHandler();
-  //   }
-  //   console.log("doing useEffect");
-  // }, [confirmPass]);
+  function autoLogin() {
+    confirmPass = true;
+    closeModal(false);
+    confirmTurnstile(confirmPass);
+  }
   function buttonHandler() {
     closeModal(false);
     confirmTurnstile(confirmPass);
   }
   function TurnstilewWidget() {
-    return (
-      <Turnstile
-        sitekey={TURNSTILE_TOKEN}
-        onVerify={() => (confirmPass = true)}
-      />
-    );
+    return <Turnstile sitekey={TURNSTILE_TOKEN} onVerify={autoLogin} />;
   }
 
   return (
