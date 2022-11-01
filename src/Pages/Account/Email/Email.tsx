@@ -93,7 +93,6 @@ function Email() {
     }
   };
 
-  console.log("render");
   return (
     <Wrapper>
       {state.openConfirmModal && (

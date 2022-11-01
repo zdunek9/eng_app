@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Blur, Message } from "./TurnstileModal.style";
 import Turnstile from "react-turnstile";
 
@@ -10,6 +10,11 @@ const TurnstileModal: React.FC<{
 }> = ({ confirmTurnstile, closeModal }) => {
   let confirmPass = false;
 
+  useEffect(() => {
+    if (confirmPass) {
+      buttonHandler();
+    }
+  }, [confirmPass]);
   function buttonHandler() {
     closeModal(false);
     confirmTurnstile(confirmPass);

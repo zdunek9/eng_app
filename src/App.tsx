@@ -57,7 +57,6 @@ function App() {
 
   useEffect(() => {
     if (tokenData) {
-      // console.log(tokenData);           // if you want to check how much time left for auto logout, uncomment 
       logoutTimer = setTimeout(
         () => dispatch(authActions.logout()),
         tokenData.duration

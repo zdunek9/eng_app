@@ -2,8 +2,8 @@ import styled from "styled-components";
 
 export const Blur = styled.div`
   position: absolute;
-  top:0;
-  right: 30px;
+  top:10px;
+  right: 28px;
   background-color: #cee4ef;
   z-index: 2;
   width: 100%;
