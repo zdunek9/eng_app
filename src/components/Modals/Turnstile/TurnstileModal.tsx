@@ -16,13 +16,19 @@ const TurnstileModal: React.FC<{
     confirmPass = true;
     closeModal(false);
     confirmTurnstile(confirmPass);
+    console.log("now");
   }
   function buttonHandler() {
     closeModal(false);
     confirmTurnstile(confirmPass);
   }
   function TurnstilewWidget() {
-    return <Turnstile sitekey={TURNSTILE_TOKEN} onVerify={autoLogin} />;
+    return (
+      <Turnstile
+        sitekey={TURNSTILE_TOKEN}
+        onVerify={() => setTimeout(autoLogin, 1000)}
+      />
+    );
   }
 
   return (
