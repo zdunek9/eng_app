@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Blur, Message } from "./TurnstileModal.style";
 import Turnstile from "react-turnstile";
 import LoadingSmall from "../LoadingSmall/LoadingSmall";
@@ -20,7 +20,7 @@ const TurnstileModal: React.FC<{
   }
   function buttonHandler() {
     closeModal(false);
-    confirmTurnstile(true);
+    confirmTurnstile(confirmPass);
   }
   function TurnstilewWidget() {
     return (

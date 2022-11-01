@@ -136,6 +136,7 @@ const LoginTest: React.FC = () => {
           type="text"
           id="email"
           ref={userRef}
+          maxLength={60}
           autoComplete="off"
           onChange={(e) =>
             dispatchReducer({ type: "setUser", payload: e.target.value })
@@ -149,6 +150,7 @@ const LoginTest: React.FC = () => {
         <input
           type="password"
           id="password"
+          maxLength={24}
           onChange={(e) =>
             dispatchReducer({ type: "setPwd", payload: e.target.value })
           }
@@ -174,6 +176,7 @@ const LoginTest: React.FC = () => {
               type="text"
               id="emailReset"
               autoComplete="off"
+              maxLength={60}
               onChange={(e) =>
                 dispatchReducer({
                   type: "setResetEmail",

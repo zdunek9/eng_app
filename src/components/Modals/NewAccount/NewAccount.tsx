@@ -113,6 +113,7 @@ const NewAccountTest = () => {
         <input
           type="email"
           id="email"
+          maxLength={60}
           ref={userRef}
           autoComplete="off"
           required
@@ -149,6 +150,7 @@ const NewAccountTest = () => {
         <input
           type="password"
           id="password"
+          maxLength={24}
           onChange={(e) =>
             dispatchReducer({ type: "setPwd", payload: e.target.value })
           }
@@ -193,6 +195,7 @@ const NewAccountTest = () => {
         <input
           type="password"
           id="confirm_pwd"
+          maxLength={24}
           onChange={(e) =>
             dispatchReducer({ type: "setMatchPwd", payload: e.target.value })
           }
