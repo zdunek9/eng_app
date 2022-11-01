@@ -24,6 +24,7 @@ const LoginTest: React.FC = () => {
     loadingState: false,
   });
   const [openTurnstileModal, setOpenTurnstileModal] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const userRef: any = useRef();
   const dispatch = useDispatch();
@@ -38,6 +39,7 @@ const LoginTest: React.FC = () => {
   }, [state.user, state.pwd]);
 
   async function setConfirmAccess(accessGranted: boolean) {
+    setLoading(true);
     if (accessGranted) {
       try {
         const response = await axios.post(URL_LOGIN, {
@@ -69,6 +71,7 @@ const LoginTest: React.FC = () => {
     } else {
       dispatchReducer({ type: "setErrMsg", payload: "Try again" });
     }
+    setLoading(false);
   }
 
   const turnstile2Handler = (e: React.FormEvent<HTMLFormElement>) => {
@@ -114,83 +117,90 @@ const LoginTest: React.FC = () => {
     dispatchReducer({ type: "setLoadingState", payload: false });
   };
   return (
-    <Wrapper
-      as={motion.div}
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.2 }}
-    >
-      {openTurnstileModal && (
-        <TurnstileModal
-          confirmTurnstile={setConfirmAccess}
-          closeModal={setOpenTurnstileModal}
-        />
-      )}
-      <p className={state.errMsg ? "errmsg" : "offscreen"}>{state.errMsg}</p>
-      <h1>Log in</h1>
-      <form onSubmit={(e) => turnstile2Handler(e)} className="cf-turnstile">
-        <label htmlFor="email">
-          <b>Email</b>
-        </label>
-        <input
-          type="text"
-          id="email"
-          ref={userRef}
-          maxLength={60}
-          autoComplete="off"
-          onChange={(e) =>
-            dispatchReducer({ type: "setUser", payload: e.target.value })
-          }
-          value={state.user}
-          required
-        />
-        <label htmlFor="password">
-          <b>Password</b>
-        </label>
-        <input
-          type="password"
-          id="password"
-          maxLength={24}
-          onChange={(e) =>
-            dispatchReducer({ type: "setPwd", payload: e.target.value })
-          }
-          value={state.pwd}
-          required
-        />
-        <button>Log In</button>
-        <p
-          className="errmsg"
-          onClick={() =>
-            dispatchReducer({ type: "setShowResetPwd", payload: true })
-          }
+    <>
+      {loading && <LoadingSmall />}
+      {!loading && (
+        <Wrapper
+          as={motion.div}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.2 }}
         >
-          Forgot password?
-        </p>
-      </form>
-      {state.loadingState && <LoadingSmall />}
-      {!state.loadingState && (
-        <div className={state.showResetPwd ? "sendPassword" : "offscreen"}>
-          <form onSubmit={resetPassword}>
-            <h3>Your email address:</h3>
+          {openTurnstileModal && (
+            <TurnstileModal
+              confirmTurnstile={setConfirmAccess}
+              closeModal={setOpenTurnstileModal}
+            />
+          )}
+          <p className={state.errMsg ? "errmsg" : "offscreen"}>
+            {state.errMsg}
+          </p>
+          <h1>Log in</h1>
+          <form onSubmit={(e) => turnstile2Handler(e)} className="cf-turnstile">
+            <label htmlFor="email">
+              <b>Email</b>
+            </label>
             <input
               type="text"
-              id="emailReset"
-              autoComplete="off"
+              id="email"
+              ref={userRef}
               maxLength={60}
+              autoComplete="off"
               onChange={(e) =>
-                dispatchReducer({
-                  type: "setResetEmail",
-                  payload: e.target.value,
-                })
+                dispatchReducer({ type: "setUser", payload: e.target.value })
               }
-              value={state.resetEmail}
+              value={state.user}
+              required
             />
-            <button>Send me new password !</button>
-            <div className="sendStatus">{state.sendStatus}</div>
+            <label htmlFor="password">
+              <b>Password</b>
+            </label>
+            <input
+              type="password"
+              id="password"
+              maxLength={24}
+              onChange={(e) =>
+                dispatchReducer({ type: "setPwd", payload: e.target.value })
+              }
+              value={state.pwd}
+              required
+            />
+            <button>Log In</button>
+            <p
+              className="errmsg"
+              onClick={() =>
+                dispatchReducer({ type: "setShowResetPwd", payload: true })
+              }
+            >
+              Forgot password?
+            </p>
           </form>
-        </div>
+          {state.loadingState && <LoadingSmall />}
+          {!state.loadingState && (
+            <div className={state.showResetPwd ? "sendPassword" : "offscreen"}>
+              <form onSubmit={resetPassword}>
+                <h3>Your email address:</h3>
+                <input
+                  type="text"
+                  id="emailReset"
+                  autoComplete="off"
+                  maxLength={60}
+                  onChange={(e) =>
+                    dispatchReducer({
+                      type: "setResetEmail",
+                      payload: e.target.value,
+                    })
+                  }
+                  value={state.resetEmail}
+                />
+                <button>Send me new password !</button>
+                <div className="sendStatus">{state.sendStatus}</div>
+              </form>
+            </div>
+          )}
+        </Wrapper>
       )}
-    </Wrapper>
+    </>
   );
 };
 export default LoginTest;
