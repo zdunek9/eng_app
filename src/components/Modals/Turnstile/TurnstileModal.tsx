@@ -16,7 +16,7 @@ const TurnstileModal: React.FC<{
   function autoLogin() {
     confirmPass = true;
     confirmTurnstile(confirmPass);
-    return <LoadingSmall />;
+    // return <LoadingSmall />;
   }
   function buttonHandler() {
     closeModal(false);
