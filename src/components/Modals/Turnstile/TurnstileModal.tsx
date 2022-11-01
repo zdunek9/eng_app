@@ -9,12 +9,15 @@ const TurnstileModal: React.FC<{
   closeModal: React.Dispatch<React.SetStateAction<boolean>>;
 }> = ({ confirmTurnstile, closeModal }) => {
   let confirmPass = false;
-
-  useEffect(() => {
-    if (confirmPass) {
-      buttonHandler();
-    }
-  }, [confirmPass]);
+  if (confirmPass) {
+    buttonHandler();
+  }
+  // useEffect(() => {
+  //   if (confirmPass) {
+  //     buttonHandler();
+  //   }
+  //   console.log("doing useEffect");
+  // }, [confirmPass]);
   function buttonHandler() {
     closeModal(false);
     confirmTurnstile(confirmPass);
