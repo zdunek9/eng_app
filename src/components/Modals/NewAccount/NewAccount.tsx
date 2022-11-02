@@ -69,19 +69,25 @@ const NewAccountTest = () => {
         navigate("/home");
       } catch (err: any) {
         if (!err?.response) {
+          dispatchReducer({ type: "setPwd", payload: "" });
+          dispatchReducer({ type: "setMatchPwd", payload: "" });
           dispatchReducer({ type: "setErrMsg", payload: "No Server Response" });
         } else if (err.response?.data.error.message === "EMAIL_EXISTS") {
+          dispatchReducer({ type: "setPwd", payload: "" });
+          dispatchReducer({ type: "setMatchPwd", payload: "" });
           dispatchReducer({ type: "setErrMsg", payload: "Mail Taken" });
         } else {
+          dispatchReducer({ type: "setPwd", payload: "" });
+          dispatchReducer({ type: "setMatchPwd", payload: "" });
           dispatchReducer({
             type: "setErrMsg",
             payload: "Registration Failed",
           });
         }
-        dispatchReducer({ type: "setPwd", payload: "" });
-        dispatchReducer({ type: "setMatchPwd", payload: "" });
       }
     } else {
+      dispatchReducer({ type: "setPwd", payload: "" });
+      dispatchReducer({ type: "setMatchPwd", payload: "" });
       dispatchReducer({ type: "setErrMsg", payload: "Try again" });
     }
     setLoading(false);
