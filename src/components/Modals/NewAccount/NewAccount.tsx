@@ -73,6 +73,9 @@ const NewAccountTest = () => {
         } else if (err.response?.data.error.message === "EMAIL_EXISTS") {
           dispatchReducer({ type: "setErrMsg", payload: "Mail Taken" });
         } else {
+          dispatchReducer({ type: "setPwd", payload: "" });
+          dispatchReducer({ type: "setMatchPwd", payload: "" });
+          dispatchReducer({ type: "setValidName", payload: false })
           dispatchReducer({
             type: "setErrMsg",
             payload: "Registration Failed",
@@ -80,10 +83,12 @@ const NewAccountTest = () => {
         }
       }
     } else {
+      dispatchReducer({ type: "setPwd", payload: "" });
+      dispatchReducer({ type: "setMatchPwd", payload: "" });
+      dispatchReducer({ type: "setValidName", payload: false })
       dispatchReducer({ type: "setErrMsg", payload: "Try again" });
     }
-    dispatchReducer({ type: "setPwd", payload: "" });
-    dispatchReducer({ type: "setMatchPwd", payload: "" });
+
     setLoading(false);
   }
 

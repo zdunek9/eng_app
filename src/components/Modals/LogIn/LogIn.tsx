@@ -40,7 +40,6 @@ const LoginTest: React.FC = () => {
 
   async function setConfirmAccess(accessGranted: boolean) {
     setLoading(true);
-    console.log(loading);
     if (accessGranted) {
       try {
         const response = await axios.post(URL_LOGIN, {

@@ -17,7 +17,10 @@ export const Wrapper = styled.div`
   h3 {
   }
   .sendStatus {
+    align-self: flex-start;
+    padding: 5px 15px;
     font-size: 1.3rem;
+    background-color: lightpink;
     margin-top: 15px;
     font-style: italic;
   }
