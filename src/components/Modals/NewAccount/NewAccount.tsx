@@ -14,6 +14,7 @@ import LoadingSmall from "../LoadingSmall/LoadingSmall";
 const MAIL_REGEX = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
 const PASSWORD_REGEX =
   /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
+const URL = `${process.env.REACT_APP_SIGN_IN}`;
 
 const NewAccountTest = () => {
   const userRef: any = useRef();
@@ -48,9 +49,9 @@ const NewAccountTest = () => {
     dispatchReducer({ type: "setValidMatch", payload: match });
   }, [state.pwd, state.matchPwd]);
   useEffect(() => {
+    console.log("object");
     dispatchReducer({ type: "setErrMsg", payload: "" });
-  }, [state.user, state.pwd, state.matchPwd]);
-  const URL = `${process.env.REACT_APP_SIGN_IN}`;
+  }, [state.user]);
 
   async function setConfirmAccess(accessGranted: boolean) {
     setLoading(true);
@@ -69,16 +70,10 @@ const NewAccountTest = () => {
         navigate("/home");
       } catch (err: any) {
         if (!err?.response) {
-          dispatchReducer({ type: "setPwd", payload: "" });
-          dispatchReducer({ type: "setMatchPwd", payload: "" });
           dispatchReducer({ type: "setErrMsg", payload: "No Server Response" });
         } else if (err.response?.data.error.message === "EMAIL_EXISTS") {
-          dispatchReducer({ type: "setPwd", payload: "" });
-          dispatchReducer({ type: "setMatchPwd", payload: "" });
           dispatchReducer({ type: "setErrMsg", payload: "Mail Taken" });
         } else {
-          dispatchReducer({ type: "setPwd", payload: "" });
-          dispatchReducer({ type: "setMatchPwd", payload: "" });
           dispatchReducer({
             type: "setErrMsg",
             payload: "Registration Failed",
