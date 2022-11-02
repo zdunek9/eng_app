@@ -42,7 +42,7 @@ export const Wrapper = styled.div`
     z-index: 2;
     position: absolute;
     top: 20px;
-    right: 20px;
+    right: 8px;
     font-size: 3rem;
     cursor: pointer;
   }

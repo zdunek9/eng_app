@@ -16,11 +16,10 @@ export const Wrapper = styled.div`
   }
   h3 {
   }
-  .sendStatus{
+  .sendStatus {
     font-size: 1.3rem;
     margin-top: 15px;
     font-style: italic;
-
   }
   #email {
     width: 80%;
@@ -81,6 +80,9 @@ export const Wrapper = styled.div`
     width: 50%;
     cursor: pointer;
   }
+  .errmsg:nth-child(1) {
+    background-color: lightpink;
+  }
 
   @media screen and (max-width: 700px) {
     width: 100%;
@@ -98,47 +100,44 @@ export const Wrapper = styled.div`
     #emailReset {
       width: 80vw;
     }
-    .sendPassword{
+    .sendPassword {
       width: 80vw;
     }
     button {
       width: 100%;
     }
   }
-  @media(max-height:900px){
+  @media (max-height: 900px) {
     h1 {
-    margin: 10px 0
-  }
-  h3 {
-  }
-  .sendStatus{
-    font-size: 1rem;
-    margin-top: 10px;
+      margin: 10px 0;
+    }
+    h3 {
+    }
+    .sendStatus {
+      font-size: 1rem;
+      margin-top: 10px;
+    }
+    #email {
+      width: 80%;
+      padding: 10px 25px;
+      margin: 10px 0;
+    }
+    #emailReset {
+      padding: 10px 25px;
+      margin: 10px 0;
+    }
+    #password {
+      padding: 10px 25px;
+      margin: 10px 0;
+    }
+    button {
+      padding: 10px 25px;
+      margin: 10px 0;
+    }
 
-  }
-  #email {
-    width: 80%;
-    padding: 10px 25px;
-    margin: 10px 0;
-  }
-  #emailReset {
-    padding: 10px 25px;
-    margin: 10px 0;
-  }
-  #password {
-    padding: 10px 25px;
-    margin: 10px 0;
-  }
-  button {
-    padding: 10px 25px;
-    margin: 10px 0;
-
-  }
-
-  .errmsg {
-    padding: 5px;
-    margin-bottom: 0.1rem;
-
-  }
+    .errmsg {
+      padding: 5px;
+      margin-bottom: 0.1rem;
+    }
   }
 `;

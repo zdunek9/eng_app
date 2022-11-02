@@ -34,7 +34,6 @@ const NewAccountTest = () => {
   const [openTurnstileModal, setOpenTurnstileModal] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
 
-
   useEffect(() => {
     userRef.current.focus();
   }, []);
@@ -83,8 +82,9 @@ const NewAccountTest = () => {
     } else {
       dispatchReducer({ type: "setErrMsg", payload: "Try again" });
     }
+    dispatchReducer({ type: "setPwd", payload: "" });
+    dispatchReducer({ type: "setMatchPwd", payload: "" });
     setLoading(false);
-
   }
 
   const turnstile2Handler = (e: React.FormEvent<HTMLFormElement>) => {
