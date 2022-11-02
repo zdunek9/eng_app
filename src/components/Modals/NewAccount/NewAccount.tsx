@@ -80,7 +80,6 @@ const NewAccountTest = () => {
         }
         dispatchReducer({ type: "setPwd", payload: "" });
         dispatchReducer({ type: "setMatchPwd", payload: "" });
-        dispatchReducer({ type: "setValidName", payload: false });
       }
     } else {
       dispatchReducer({ type: "setErrMsg", payload: "Try again" });

@@ -97,7 +97,7 @@ const LoginTest: React.FC = () => {
         dispatchReducer({
           type: "setSendStatus",
           payload:
-            "Email with password restart instructions sent successfully. Check your email.",
+            "Restart instructions sent successfully. Check your email.",
         });
       }
     } catch (err: any) {
@@ -105,7 +105,7 @@ const LoginTest: React.FC = () => {
         dispatchReducer({
           type: "setSendStatus",
           payload:
-            "We could not find your email address. Please check your email and try again",
+            "We could not find your email address. Please check and try again",
         });
       } else {
         dispatchReducer({

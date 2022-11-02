@@ -19,9 +19,10 @@ export const Wrapper = styled.div`
   .sendStatus {
     align-self: flex-start;
     padding: 0px 15px;
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     background-color: lightpink;
-    margin-top: 15px;
+    width: 80%;
+    margin: 15px 0px 30px 0;
     font-style: italic;
   }
   #email {

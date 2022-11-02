@@ -48,7 +48,7 @@ export const Wrapper = styled.div`
   }
   .btn {
     position: absolute;
-    bottom: 30px;
+    bottom: 15px;
     right: 3vw;
     font-size: 1.1rem;
     padding: 10px 30px;
