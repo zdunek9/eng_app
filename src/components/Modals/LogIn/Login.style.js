@@ -18,7 +18,7 @@ export const Wrapper = styled.div`
   }
   .sendStatus {
     align-self: flex-start;
-    padding: 5px 15px;
+    padding: 0px 15px;
     font-size: 1.3rem;
     background-color: lightpink;
     margin-top: 15px;
