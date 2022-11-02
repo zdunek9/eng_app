@@ -1,7 +1,7 @@
 import React from "react";
 import { Blur, Message } from "./TurnstileModal.style";
 import Turnstile from "react-turnstile";
-import LoadingSmall from "../LoadingSmall/LoadingSmall";
+// import LoadingSmall from "../LoadingSmall/LoadingSmall";
 
 const TURNSTILE_TOKEN = `${process.env.REACT_APP_TURNSTILE_TOKEN}`;
 
@@ -16,6 +16,7 @@ const TurnstileModal: React.FC<{
   function autoLogin() {
     confirmPass = true;
     confirmTurnstile(confirmPass);
+    closeModal(false);
     // return <LoadingSmall />;
   }
   function buttonHandler() {
