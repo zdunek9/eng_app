@@ -6,40 +6,35 @@ export const Wrapper = styled.div`
   padding: 5vw;
   display: flex;
   flex-direction: column;
-  align-items:center;
-  .number {
-    font-size: 7rem;
-    padding: 0;
-    margin-right: 10px;
-    color: #397393;
-    min-width: 40px;
-  }
+  align-items: center;
+
   @media (max-width: 1200px) {
     padding-top: 10vw;
   }
   @media (max-width: 600px) {
-    padding-top: 25vw;
-    .number{
-      min-width: 10px;
-    }
+    padding-top: 20vw;
   }
 `;
 export const PartingWrapper = styled.div`
   border-bottom: 1px solid var(--greyColor);
   padding-bottom: 50px;
+  @media (max-width: 600px) {
+    padding-bottom: 20px;
+  }
 `;
 export const PartingWrapperSecond = styled.div`
   padding-top: 50px;
+  @media (max-width: 600px) {
+    padding-top: 20px;
+  }
 `;
 export const WelcomeScreen = styled.div`
   width: 60vw;
   display: flex;
   flex-direction: column;
   font-family: "Inter", sans-serif;
-    box-sizing: border-box;
-    margin-right: 20vw;
-
-
+  box-sizing: border-box;
+  margin-right: 20vw;
   h1 {
     font-size: 3rem;
     margin: 0;
@@ -63,8 +58,8 @@ export const WelcomeScreen = styled.div`
       padding: 0;
     }
   }
-  @media(max-width: 1000px) {
-    margin-right:0;
+  @media (max-width: 1000px) {
+    margin-right: 0;
     width: 100%;
   }
 `;
@@ -75,8 +70,30 @@ export const BoxWrapper = styled.div`
   font-size: 1rem;
   border-bottom: none !important;
   margin-top: 60px;
-  @media(max-width: 1000px) {
+  .number {
+    font-size: 7rem;
+    padding: 0;
+    margin-right: 10px;
+    color: #397393;
+    min-width: 40px;
+  }
+  @media (max-width: 1000px) {
     width: 100vw;
+    .number {
+      min-width: 10px;
+    }
+  }
+  @media (max-width: 800px) {
+    .number {
+      min-width: 40px;
+    }
+  }
+  @media (max-width: 700px) {
+    flex-direction: column;
+    align-items: center;
+    .number {
+      font-size: 3rem;
+    }
   }
 `;
 export const Box = styled.div`
@@ -84,7 +101,7 @@ export const Box = styled.div`
   width: 15vw;
   min-width: 180px;
   padding: 20px;
-  margin:0 10px;
+  margin: 0 10px;
   display: flex;
   align-items: flex-start;
   div {
@@ -103,9 +120,11 @@ export const Box = styled.div`
     width: 25vw;
     padding: 10px;
     min-width: unset;
-    margin:0px;
-
-
+    margin: 0px;
+  }
+  @media (max-width: 700px) {
+    align-items: center;
+    width: 90%;
   }
   @media (max-width: 600px) {
     h4 {
@@ -119,5 +138,8 @@ export const Box = styled.div`
 export const ProgressWrapper = styled.div`
   display: flex;
   justify-content: space-between;
- margin-top: 20px;
+  margin-top: 20px;
+  @media (max-width: 700px) {
+    display: none;
+  }
 `;

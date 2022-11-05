@@ -49,12 +49,13 @@ export const Wrapper = styled.div`
   .btn {
     position: absolute;
     bottom: 15px;
-    right: 3vw;
-    font-size: 1.1rem;
-    padding: 10px 30px;
+    font-size: 1.5rem;
+    padding: 5px 30px;
+    margin-top: 10px;
     color: black;
     cursor: pointer;
     user-select: none;
+    border-bottom:1px solid black;
   }
   @media screen and (max-width: 1200px) {
     top: 0;
@@ -70,16 +71,16 @@ export const Wrapper = styled.div`
     padding: 0;
 
   }
-  @media screen and (max-width: 700px) {
+  @media(max-width: 700px) {
     flex-direction: column;
     img {
       display: none;
     }
     .btn {
       position: relative;
+      margin: auto;
       bottom: 30px;
-      right: 3vw;
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       padding: 10px 30px;
       color: black;
       cursor: pointer;

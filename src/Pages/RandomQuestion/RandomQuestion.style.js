@@ -79,12 +79,16 @@ export const MainWrapper = styled.div`
       width: 30vw;
     }
   }
+  
   @media (max-width: 600px) {
     padding: 50px 50px;
     margin-top: 15vw;
-    width: 70%;
+    width: 100%;
+    h1{
+      font-size: 1.5rem;
+    }
     span {
-      font-size: 3rem;
+      font-size: 2rem;
       margin: 30px 0;
       width: 50vw;
     }

@@ -42,7 +42,7 @@ export const Wrapper = styled.div`
     cursor: pointer;
   }
   @media screen and (max-width: 1200px) {
-    input{
+    input {
       width: 40vw;
     }
   }
@@ -69,6 +69,17 @@ export const Wrapper = styled.div`
       width: 100%;
       margin-top: 20px;
     }
+  }
+  @media screen and (max-width: 500px) {
+    h1 {
+      margin: 10px;
+      font-size: 1.5rem;
+    }
+    p{
+      margin: 10px 0;
+      font-size: 1.3rem;
+    }
+
   }
 `;
 export const Verified = styled.span`

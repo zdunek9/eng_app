@@ -34,4 +34,17 @@ export const ItemWrapper = styled.div`
       font-size: 1.5rem;
     }
   }
+  @media (max-width: 600px) {
+    p{
+      margin: 10px;
+      font-size: 1rem;
+    }
+    div{
+      div{
+        /* border:1px solid black; */
+        width: 80px;
+        height: 80px;
+      }
+    }
+  }
 `;

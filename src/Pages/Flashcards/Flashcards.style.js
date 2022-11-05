@@ -24,6 +24,15 @@ export const Wrapper = styled.div`
   h3 {
     font-weight: 400;
   }
+  @media (max-width: 600px) {
+    padding-top: 20vw;
+    h1{
+      font-size: 2.5rem;
+    }
+    h2{
+      margin-top: 20px;
+    }
+  }
 `;
 
 export const Buttons = styled.button`

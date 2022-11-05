@@ -96,16 +96,16 @@ export const Wrapper = styled.div`
     margin-top: 120px;
 
     #email {
-      width: 80vw;
+      width: 100%;
     }
     #password {
-      width: 80vw;
+      width: 100%;
     }
     #emailReset {
-      width: 80vw;
+      width: 100%;
     }
     .sendPassword {
-      width: 80vw;
+      width: 70vw;
     }
     button {
       width: 100%;
@@ -122,7 +122,6 @@ export const Wrapper = styled.div`
       margin-top: 10px;
     }
     #email {
-      width: 80%;
       padding: 10px 25px;
       margin: 10px 0;
     }

@@ -49,7 +49,6 @@ const NewAccountTest = () => {
     dispatchReducer({ type: "setValidMatch", payload: match });
   }, [state.pwd, state.matchPwd]);
   useEffect(() => {
-    console.log("object");
     dispatchReducer({ type: "setErrMsg", payload: "" });
   }, [state.user]);
 

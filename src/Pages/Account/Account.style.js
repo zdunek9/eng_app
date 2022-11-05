@@ -32,7 +32,7 @@ export const Category = styled.div`
     padding:100px 10px;
     font-size: 1.3rem;
     div{
-      margin:30px 0;
+      margin:20px 0;
       padding:10px;
     }
   }
@@ -42,7 +42,6 @@ export const Details = styled.div`
   height: 100%;
   padding: 20px 50px;
   @media(max-width:600px){
-
-    padding: 20px;
+    padding: 10px;
   }
 `;

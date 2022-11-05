@@ -40,7 +40,7 @@ const LoginTest: React.FC = () => {
 
   async function setConfirmAccess(accessGranted: boolean) {
     setLoading(true);
-    if (accessGranted) {
+    // if (accessGranted) {
       try {
         const response = await axios.post(URL_LOGIN, {
           email: state.user,
@@ -68,9 +68,9 @@ const LoginTest: React.FC = () => {
           dispatchReducer({ type: "setErrMsg", payload: "Login Failed" });
         }
       }
-    } else {
-      dispatchReducer({ type: "setErrMsg", payload: "Try again" });
-    }
+    // } else {
+      // dispatchReducer({ type: "setErrMsg", payload: "Try again" });
+    // }
     setLoading(false);
   }
 

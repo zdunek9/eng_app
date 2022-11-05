@@ -109,14 +109,10 @@ export const MobileInfo = styled.div`
       text-align: center;
     }
   }
-  @media screen and (max-height: 800px) {
-    p {
-      font-size: 0.7rem;
-      padding: 0 10px;
-      text-align: center;
-    }
+  @media screen and (max-width: 500px) {
+    display: none;
   }
-  @media screen and (max-height: 600px) {
+  @media screen and (max-height: 800px) {
     display: none;
   }
 `;
