@@ -14,7 +14,7 @@ export const BlurWrapper = styled.div`
 `;
 export const Wrapper = styled.div`
   position: absolute;
-  padding: 20px;
+  padding: 30px;
   top: 50%;
   left: 50%;
   width: 65vw;
@@ -60,11 +60,11 @@ export const Wrapper = styled.div`
   @media screen and (max-width: 1200px) {
     top: 0;
     left: 0;
+    height: 100vh;
     width: 100vw;
     max-width: unset;
     min-width: unset;
     max-height: unset;
-    height: 100vh;
     background-color: #cee4ef;
     transform: unset;
     border-radius: unset;
@@ -79,6 +79,7 @@ export const Wrapper = styled.div`
     .btn {
       position: relative;
       margin: auto;
+      margin-bottom: 30px;
       bottom: 30px;
       font-size: 1.1rem;
       padding: 10px 30px;
@@ -86,5 +87,10 @@ export const Wrapper = styled.div`
       cursor: pointer;
       user-select: none;
     }
+    .AiOutlineClose {
+    top: 40px;
+    right: 20px;
+    font-size: 2.5rem;
+  }
   }
 `;

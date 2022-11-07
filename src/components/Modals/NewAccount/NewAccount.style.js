@@ -114,4 +114,29 @@ export const Wrapper = styled.div`
       width: 100%;
     }
   }
+  @media (max-height: 900px) {
+    h1 {
+      margin: 10px 0;
+    }
+    #email {
+      padding: 10px 25px;
+      margin: 5px 0;
+    }
+    #password {
+      padding: 10px 25px;
+      margin: 5px 0;
+    }
+    #confirm_pwd{
+      padding: 10px 25px;
+      margin: 5px 0;
+    }
+    button {
+      padding: 10px 25px;
+      margin: 5px 0;
+    }
+    .errmsg {
+      padding: 5px;
+      margin-bottom: 0.1rem;
+    }
+  }
 `;

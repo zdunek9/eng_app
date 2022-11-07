@@ -68,9 +68,6 @@ const LoginTest: React.FC = () => {
           dispatchReducer({ type: "setErrMsg", payload: "Login Failed" });
         }
       }
-    // } else {
-      // dispatchReducer({ type: "setErrMsg", payload: "Try again" });
-    // }
     setLoading(false);
   }
 

@@ -47,6 +47,23 @@ export const Wrapper = styled.div`
       font-weight: 300;
     }
   }
+  @media (max-width: 500px) {
+
+    img {
+      height: 30vh;
+    }
+    h1 {
+      margin: 15px 0;
+      width: 100%;
+      font-size: 1.1rem;
+    }
+    h2 {
+      margin: 15px 0;
+      color: var(--greyColor);
+      font-weight: 300;
+      font-size: 0.9rem;
+    }
+  }
 `;
 export const WrapperCenter = styled.div`
   display: flex;
@@ -60,6 +77,7 @@ export const WrapperCenter = styled.div`
     padding: 0;
   }
   @media screen and (max-width: 600px) {
+    
     font-size: 0.7rem;
   }
 `;

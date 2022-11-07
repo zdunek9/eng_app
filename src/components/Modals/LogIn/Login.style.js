@@ -14,8 +14,6 @@ export const Wrapper = styled.div`
   h1 {
     margin: 10px 10px 20px 0;
   }
-  h3 {
-  }
   .sendStatus {
     align-self: flex-start;
     padding: 0px 15px;
@@ -93,8 +91,7 @@ export const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 120px;
-
+    margin-top: 80px;
     #email {
       width: 100%;
     }
@@ -116,6 +113,7 @@ export const Wrapper = styled.div`
       margin: 10px 0;
     }
     h3 {
+      margin:15px 5px 0px 5px;
     }
     .sendStatus {
       font-size: 1rem;
@@ -123,21 +121,20 @@ export const Wrapper = styled.div`
     }
     #email {
       padding: 10px 25px;
-      margin: 10px 0;
+      margin: 5px 0;
     }
     #emailReset {
       padding: 10px 25px;
-      margin: 10px 0;
+      margin: 5px 0;
     }
     #password {
       padding: 10px 25px;
-      margin: 10px 0;
+      margin: 5px 0;
     }
     button {
       padding: 10px 25px;
-      margin: 10px 0;
+      margin: 5px 0;
     }
-
     .errmsg {
       padding: 5px;
       margin-bottom: 0.1rem;
