@@ -3,9 +3,9 @@ import styled from "styled-components";
 export const Wrapper = styled.div`
   position: absolute;
   right: 5vw;
-  top: 60vh;
+  top: 55vh;
   width: 300px;
-  padding: 20px;
+  padding: 15px;
   font-size: 1.3rem;
   border: 2px solid rgb(179, 179, 179);
   border-radius: 20px;
@@ -45,7 +45,7 @@ export const Wrapper = styled.div`
     right: none;
     top: none;
     width: 200px;
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     position: unset;
     span {
       margin: 5px;

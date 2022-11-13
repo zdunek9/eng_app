@@ -13,20 +13,19 @@ export const Wrapper = styled.div`
   }
   @media (max-width: 600px) {
     padding-top: 20vw;
+    margin-top: 25px;
+    overflow-y: auto;
+  }
+  @media (max-height: 600px) {
+    overflow-y: auto;
   }
 `;
 export const PartingWrapper = styled.div`
   border-bottom: 1px solid var(--greyColor);
-  padding-bottom: 50px;
-  @media (max-width: 600px) {
-    padding-bottom: 20px;
-  }
+  padding-bottom: 20px;
 `;
 export const PartingWrapperSecond = styled.div`
-  padding-top: 50px;
-  @media (max-width: 600px) {
-    padding-top: 20px;
-  }
+  padding-top: 20px;
 `;
 export const WelcomeScreen = styled.div`
   width: 60vw;

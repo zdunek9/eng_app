@@ -40,7 +40,7 @@ const LoginTest: React.FC = () => {
 
   async function setConfirmAccess(accessGranted: boolean) {
     setLoading(true);
-    // if (accessGranted) {
+    if (accessGranted) {
       try {
         const response = await axios.post(URL_LOGIN, {
           email: state.user,
@@ -68,7 +68,8 @@ const LoginTest: React.FC = () => {
           dispatchReducer({ type: "setErrMsg", payload: "Login Failed" });
         }
       }
-    setLoading(false);
+      setLoading(false);
+    }
   }
 
   const turnstile2Handler = (e: React.FormEvent<HTMLFormElement>) => {
@@ -93,8 +94,7 @@ const LoginTest: React.FC = () => {
       if (response.status === 200) {
         dispatchReducer({
           type: "setSendStatus",
-          payload:
-            "Restart instructions sent successfully. Check your email.",
+          payload: "Restart instructions sent successfully. Check your email.",
         });
       }
     } catch (err: any) {

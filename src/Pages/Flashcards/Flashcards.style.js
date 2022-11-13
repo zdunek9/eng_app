@@ -27,10 +27,13 @@ export const Wrapper = styled.div`
   @media (max-width: 600px) {
     padding-top: 20vw;
     h1{
-      font-size: 2.5rem;
+      font-size: 1.7rem;
     }
     h2{
       margin-top: 20px;
+    }
+    h3{
+      font-size: 1rem;
     }
   }
 `;

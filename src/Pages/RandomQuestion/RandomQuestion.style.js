@@ -89,7 +89,7 @@ export const MainWrapper = styled.div`
     }
     span {
       font-size: 2rem;
-      margin: 30px 0;
+      margin: 0 0;
       width: 50vw;
     }
   }
