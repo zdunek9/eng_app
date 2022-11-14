@@ -29,12 +29,13 @@ export const ItemWrapper = styled.div`
     font-size: 1.8rem;
   }
   @media (max-width: 1000px) {
-    margin-top: 10vh;
+    margin-top: 5vh;
     p {
       font-size: 1.5rem;
     }
   }
   @media (max-width: 600px) {
+    margin-top: 15vh;
     p{
       margin: 10px;
       font-size: 1rem;

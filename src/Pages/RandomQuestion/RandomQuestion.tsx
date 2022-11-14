@@ -1,4 +1,4 @@
-import { MainWrapper, Wrapper } from "./RandomQuestion.style";
+import { HearthWrapper, MainWrapper, Wrapper } from "./RandomQuestion.style";
 import { MdAutorenew } from "react-icons/md";
 import { GiConfirmed } from "react-icons/gi";
 import { RootState } from "../../Store/store";
@@ -61,10 +61,12 @@ const RandomQuestion = () => {
             style={{ color: doneItem ? "green" : "grey" }}
           />
         </span>
-        <Hearth
-          favoritesHandler={favoritesHandler}
-          isChecked={questionn.isFavorites}
-        />
+        <HearthWrapper>
+          <Hearth
+            favoritesHandler={favoritesHandler}
+            isChecked={questionn.isFavorites}
+          />
+        </HearthWrapper>
       </MainWrapper>
       <DailyProgres />
     </Wrapper>

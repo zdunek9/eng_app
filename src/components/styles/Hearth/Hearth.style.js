@@ -1,9 +1,9 @@
-import styled from "styled-components"
+import styled from "styled-components";
 
 export const HearthIcon = styled.div`
   position: absolute;
   top: 0;
-  left:0;
+  left: 0;
   input {
     display: none;
   }
@@ -43,12 +43,15 @@ export const HearthIcon = styled.div`
     }
   }
 
-  @media (hover: hover) {
+  .like:hover {
+    background-color: #e1255e15;
+    .hearth {
+      background-position-x: calc(100px * (var(--frames) * -1 + 1));
+    }
+  }
+  @media (max-width: 600px) {
     .like:hover {
-      background-color: #e1255e15;
-      .hearth {
-        background-position-x: calc(100px * (var(--frames) * -1 + 1));
-      }
+      background-color: unset;
     }
   }
 `;

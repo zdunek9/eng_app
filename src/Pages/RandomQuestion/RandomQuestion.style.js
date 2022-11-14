@@ -94,3 +94,11 @@ export const MainWrapper = styled.div`
     }
   }
 `;
+export const HearthWrapper = styled.div`
+position: absolute;
+top:-10px;
+right: 5%;
+width: 100px;
+height: 100px;
+
+`
