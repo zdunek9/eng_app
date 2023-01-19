@@ -5,35 +5,33 @@ export const Wrapper = styled.div`
   position: relative;
   padding: 3vw;
   display: flex;
-  flex-direction: row;
-  overflow-y: auto;
+  flex-direction: column;
   @media (max-width: 1500px) {
-    padding:3vw 1vw;
-}
-@media (max-width: 600px) {
+    padding: 3vw 1vw;
+  }
+  @media (max-width: 600px) {
     margin: 100px 0;
-}
+  }
 `;
 export const Category = styled.div`
   display: flex;
-  flex-direction: column;
-  padding: 50px 10px;
-  height: 100%;
-  border-right: 1px solid var(--lines);
-  font-size: 1.5rem;
+  flex-direction: row;
+  padding: 30px 0px;
   div {
-    margin: 30px 0;
-    padding: 10px;
-    transition: 0.3s;
     cursor: pointer;
+    border: 1px solid var(--visibleBorder1);
+    border-radius: 10px;
+    background-color: #eef3f7;
   }
 
-  @media(max-width:600px){
-    padding:100px 10px;
-    font-size: 1.3rem;
-    div{
-      margin:20px 0;
-      padding:10px;
+  @media (max-width: 600px) {
+    height: unset;
+    justify-content: space-around;
+    align-items: flex-start;
+    div {
+      width: 100%;
+      text-align: center;
+      font-size: 1.2rem;
     }
   }
 `;
@@ -41,7 +39,7 @@ export const Details = styled.div`
   width: 100%;
   height: 100%;
   padding: 20px 50px;
-  @media(max-width:600px){
-    padding: 10px;
+  @media (max-width: 600px) {
+    padding: 0px;
   }
 `;

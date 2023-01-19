@@ -2,7 +2,13 @@ import axios from "axios";
 import { useEffect, useReducer } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../Store/store";
-import { SectionRow, SendBtn, Verified, Wrapper } from "./Email.style";
+import {
+  SectionRow,
+  SendBtn,
+  Verified,
+  Wrapper,
+  VerifySection,
+} from "./Email.style";
 import { TiTick, TiTimes } from "react-icons/ti";
 import { authActions } from "../../../Store/authSlice";
 import LoadingSmall from "../../../components/Modals/LoadingSmall/LoadingSmall";
@@ -114,44 +120,46 @@ function Email() {
           ) : (
             <p className="errMsg">Something goes wrong, try later</p>
           )}
-          <h1>Change email</h1>
+          {/* <h1>Change email</h1> */}
           <SectionRow>
-            <p>Email:</p>
-            <input
-              type="text"
-              autoComplete="off"
-              value={state.newEmail}
-              onChange={(e) =>
-                dispatchReducer({
-                  type: "setNewEmail",
-                  payload: e.target.value,
-                })
-              }
-            />
+            <label>
+              Email:
+              <input
+                type="text"
+                autoComplete="off"
+                value={state.newEmail}
+                onChange={(e) =>
+                  dispatchReducer({
+                    type: "setNewEmail",
+                    payload: e.target.value,
+                  })
+                }
+              />
+            </label>
           </SectionRow>
-          <SectionRow>
+          <VerifySection>
             <p>Verified:</p>
             <Verified emailVerified={state.userData.emailVerified}>
               {state.userData.emailVerified ? <TiTick /> : <TiTimes />}
             </Verified>
-            {state.loading ? (
-              <p>Sending....</p>
-            ) : state.userData.emailVerified ? (
-              ""
-            ) : state.sendEmail ? (
-              state.sendSuccess ? (
-                <SendBtn success={true}>
-                  Verification link sent successfully.
-                </SendBtn>
+            <p>
+              {state.loading ? (
+                <i>Sending...</i>
+              ) : state.userData.emailVerified ? (
+                ""
+              ) : state.sendEmail ? (
+                state.sendSuccess ? (
+                  <SendBtn success={true}>
+                    Verification link sent successfully.
+                  </SendBtn>
+                ) : (
+                  <SendBtn success={false}>{state.errorData} </SendBtn>
+                )
               ) : (
-                <SendBtn success={false}>{state.errorData} </SendBtn>
-              )
-            ) : (
-              <SendBtn onClick={sendVerifyMail}>
-                The email is not verified. Verify it now
-              </SendBtn>
-            )}
-          </SectionRow>
+                <SendBtn onClick={sendVerifyMail}>Verify now!</SendBtn>
+              )}
+            </p>
+          </VerifySection>
           <button
             onClick={() =>
               dispatchReducer({ type: "setOpenConfirmModal", payload: true })

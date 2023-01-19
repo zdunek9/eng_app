@@ -46,11 +46,6 @@ export const Wrapper = styled.div`
   button:hover {
     background-color: rgb(92, 72, 61);
   }
-  h3 {
-    margin: 20px 0;
-    color: #9ca0ac;
-    font-weight: 400;
-  }
 
   .instructions {
     color: red;

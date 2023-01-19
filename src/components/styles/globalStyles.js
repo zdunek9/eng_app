@@ -13,6 +13,7 @@ export const GlobalStyle = createGlobalStyle`
         --greyColor:#78758D;
         --greenColor:#00e673;
         --redColor:	#ff0000;
+        --visibleBorder1:#bedbf3;
         --lines:rgb(179, 179, 179)
     }
     *{

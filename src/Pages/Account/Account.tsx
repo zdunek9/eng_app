@@ -15,8 +15,14 @@ function Account() {
       transition={{ duration: 0.2 }}
     >
       <Category>
-        <div onClick={() => setCategorySelect(false)}>Email</div>
-        <div onClick={() => setCategorySelect(true)}>Password</div>
+        <div onClick={() => setCategorySelect(false)}>
+          <p>Email</p>
+          {/* <p>Change your password or verify your email address.</p> */}
+        </div>
+        <div onClick={() => setCategorySelect(true)}>
+          <p>Password</p>
+          {/* <p>Change your password</p> */}
+        </div>
       </Category>
       <Details>
         {!categorySelect && <Email />}

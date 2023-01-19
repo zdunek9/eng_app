@@ -92,7 +92,7 @@ function Password() {
           </p>
           <h1>Change password</h1>
           <form onSubmit={openConfirmModalHandler}>
-            <label htmlFor="password">
+            <label>
               Password:
               <FontAwesomeIcon
                 icon={faCheck}
@@ -102,22 +102,21 @@ function Password() {
                 icon={faTimes}
                 className={state.validPwd || !state.pwd ? "hide" : "invalid"}
               />
+              <input
+                type="password"
+                onChange={(e) =>
+                  dispatchReducer({ type: "setPwd", payload: e.target.value })
+                }
+                value={state.pwd}
+                required
+                onFocus={() =>
+                  dispatchReducer({ type: "setPwdFocus", payload: true })
+                }
+                onBlur={() =>
+                  dispatchReducer({ type: "setPwdFocus", payload: false })
+                }
+              />
             </label>
-            <input
-              type="password"
-              id="password"
-              onChange={(e) =>
-                dispatchReducer({ type: "setPwd", payload: e.target.value })
-              }
-              value={state.pwd}
-              required
-              onFocus={() =>
-                dispatchReducer({ type: "setPwdFocus", payload: true })
-              }
-              onBlur={() =>
-                dispatchReducer({ type: "setPwdFocus", payload: false })
-              }
-            />
             <p
               className={
                 state.pwdFocus && !state.validPwd ? "instructions" : "offscreen"
@@ -135,7 +134,7 @@ function Password() {
               <span>$</span>
               <span>%</span>
             </p>
-            <label htmlFor="confirm_pwd">
+            <label>
               Confirm Password:
               <FontAwesomeIcon
                 icon={faCheck}
@@ -149,25 +148,24 @@ function Password() {
                   state.validMatch || !state.matchPwd ? "hide" : "invalid"
                 }
               />
+              <input
+                type="password"
+                onChange={(e) =>
+                  dispatchReducer({
+                    type: "setMatchPwd",
+                    payload: e.target.value,
+                  })
+                }
+                value={state.matchPwd}
+                required
+                onFocus={() =>
+                  dispatchReducer({ type: "setMatchFocus", payload: true })
+                }
+                onBlur={() =>
+                  dispatchReducer({ type: "setMatchFocus", payload: false })
+                }
+              />
             </label>
-            <input
-              type="password"
-              id="confirm_pwd"
-              onChange={(e) =>
-                dispatchReducer({
-                  type: "setMatchPwd",
-                  payload: e.target.value,
-                })
-              }
-              value={state.matchPwd}
-              required
-              onFocus={() =>
-                dispatchReducer({ type: "setMatchFocus", payload: true })
-              }
-              onBlur={() =>
-                dispatchReducer({ type: "setMatchFocus", payload: false })
-              }
-            />
             <p
               id="confirmnote"
               className={
