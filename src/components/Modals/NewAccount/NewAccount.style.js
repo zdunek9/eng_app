@@ -15,6 +15,9 @@ export const Wrapper = styled.div`
   h1 {
     margin: 40px 10px 20px 0;
   }
+  label{
+    font-weight: 600;
+  }
   #email {
     width: 80%;
     padding: 15px 25px;
@@ -44,6 +47,7 @@ export const Wrapper = styled.div`
     font-size: 16px;
     cursor: pointer;
   }
+
   button:disabled {
     background-color: grey;
     cursor: auto;

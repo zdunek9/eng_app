@@ -120,7 +120,6 @@ function Email() {
           ) : (
             <p className="errMsg">Something goes wrong, try later</p>
           )}
-          {/* <h1>Change email</h1> */}
           <SectionRow>
             <label>
               Email:

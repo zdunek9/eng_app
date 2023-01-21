@@ -12,7 +12,10 @@ export const Wrapper = styled.div`
     flex-direction: column;
   }
   h1 {
-    margin: 10px 10px 20px 0;
+    margin: 40px 10px 20px 0;
+  }
+  label {
+    font-weight: 600;
   }
   .sendStatus {
     align-self: flex-start;
@@ -104,16 +107,13 @@ export const Wrapper = styled.div`
     .sendPassword {
       width: 70vw;
     }
-    button {
-      width: 100%;
-    }
   }
   @media (max-height: 900px) {
     h1 {
       margin: 10px 0;
     }
     h3 {
-      margin:15px 5px 0px 5px;
+      margin: 15px 5px 0px 5px;
     }
     .sendStatus {
       font-size: 1rem;

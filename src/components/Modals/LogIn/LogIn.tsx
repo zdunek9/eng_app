@@ -135,7 +135,7 @@ const LoginTest: React.FC = () => {
           <h1>Log in</h1>
           <form onSubmit={(e) => turnstile2Handler(e)} className="cf-turnstile">
             <label htmlFor="email">
-              <b>Email</b>
+              Email
             </label>
             <input
               type="text"
@@ -150,7 +150,7 @@ const LoginTest: React.FC = () => {
               required
             />
             <label htmlFor="password">
-              <b>Password</b>
+              Password
             </label>
             <input
               type="password"
@@ -176,7 +176,7 @@ const LoginTest: React.FC = () => {
           {!state.loadingState && (
             <div className={state.showResetPwd ? "sendPassword" : "offscreen"}>
               <form onSubmit={resetPassword}>
-                <h3>Your email address:</h3>
+                <label htmlFor="emailReset">Your email address:</label>
                 <input
                   type="text"
                   id="emailReset"

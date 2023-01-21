@@ -14,32 +14,46 @@ export const Wrapper = styled.div`
   }
 `;
 export const Category = styled.div`
-  display: flex;
-  flex-direction: row;
-  padding: 30px 0px;
-  div {
-    cursor: pointer;
-    border: 1px solid var(--visibleBorder1);
-    border-radius: 10px;
-    background-color: #eef3f7;
-  }
-
   @media (max-width: 600px) {
-    height: unset;
+    display: flex;
+    flex-direction: row;
     justify-content: space-around;
     align-items: flex-start;
+    padding: 30px 0px;
     div {
       width: 100%;
       text-align: center;
       font-size: 1.2rem;
+      cursor: pointer;
+      border: 1px solid var(--visibleBorder1);
+      border-radius: 10px;
+      background-color: #eef3f7;
     }
   }
 `;
-export const Details = styled.div`
+export const DetailsSmallScreen = styled.div`
+  display: none;
+  @media (max-width: 600px) {
+    display: unset;
+  }
+`;
+export const DetailsHighResolution = styled.div`
   width: 100%;
+  max-width: 650px;
   height: 100%;
   padding: 20px 50px;
+
   @media (max-width: 600px) {
-    padding: 0px;
+    display: none;
+  }
+`;
+export const SectionWrapper = styled.div`
+  padding:20px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  background-color: #eef3f7;
+  p {
+    font-size: 1.5rem;
+    margin:5px;
   }
 `;

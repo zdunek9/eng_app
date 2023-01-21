@@ -90,10 +90,9 @@ function Password() {
           <p className={state.errMsg ? "errmsg" : "offscreen"}>
             {state.errMsg}
           </p>
-          <h1>Change password</h1>
           <form onSubmit={openConfirmModalHandler}>
             <label>
-              Password:
+              New Password:
               <FontAwesomeIcon
                 icon={faCheck}
                 className={state.validPwd ? "valid" : "hide"}
@@ -117,23 +116,6 @@ function Password() {
                 }
               />
             </label>
-            <p
-              className={
-                state.pwdFocus && !state.validPwd ? "instructions" : "offscreen"
-              }
-            >
-              8 to 24 characters.
-              <br />
-              Must include uppercase and lowercase letters,
-              <br /> a number and a special character.
-              <br />
-              Allowed special characters:
-              <span>!</span>
-              <span>@</span>
-              <span>#</span>
-              <span>$</span>
-              <span>%</span>
-            </p>
             <label>
               Confirm Password:
               <FontAwesomeIcon
@@ -166,6 +148,28 @@ function Password() {
                 }
               />
             </label>
+            <button
+              disabled={!state.validPwd || !state.validMatch ? true : false}
+            >
+              Change
+            </button>
+            <p
+              className={
+                state.pwdFocus && !state.validPwd ? "instructions" : "offscreen"
+              }
+            >
+              8 to 24 characters.
+              <br />
+              Must include uppercase and lowercase letters,
+              <br /> a number and a special character.
+              <br />
+              Allowed special characters:
+              <span>!</span>
+              <span>@</span>
+              <span>#</span>
+              <span>$</span>
+              <span>%</span>
+            </p>
             <p
               id="confirmnote"
               className={
@@ -176,11 +180,6 @@ function Password() {
             >
               Must match the first password input field.
             </p>
-            <button
-              disabled={!state.validPwd || !state.validMatch ? true : false}
-            >
-              Change
-            </button>
           </form>
         </>
       )}

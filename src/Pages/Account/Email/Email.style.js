@@ -2,7 +2,6 @@ import styled from "styled-components";
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  height: 100%;
   border: 1px solid var(--visibleBorder1);
   border-radius: 15px;
   padding: 30px;
@@ -16,9 +15,9 @@ export const Wrapper = styled.div`
     width: 70%;
   }
   input {
-    width: 20vw;
+    width: 300px;
     padding: 10px 20px;
-    margin: 10px 0px 20px 0;
+    margin: 10px 0px 20px 28px;
     border-radius: 5px;
     border: 1px solid #9ca0ac;
     background-color: #f6f4f4;
@@ -32,7 +31,6 @@ export const Wrapper = styled.div`
   }
   button {
     font-size: 1.1rem;
-    margin-top: 100px;
     height: 40px;
     width: 120px;
     background-color: rgb(61, 48, 41);
@@ -43,9 +41,12 @@ export const Wrapper = styled.div`
   }
   @media (max-width: 600px) {
     height: 350px;
-
     button {
       margin-top: 50px;
+      width: 100%;
+    }
+    input {
+      margin: 10px 0px 20px 0;
       width: 100%;
     }
   }
@@ -56,14 +57,13 @@ export const Verified = styled.span`
     props.emailVerified ? "var(--greenColor)" : "var(--redColor)"};
   font-size: 2.5rem;
   display: flex;
-  margin-right: 5vw;
   @media (max-width: 600px) {
     margin-right: unset;
   }
 `;
 export const SendBtn = styled.span`
   display: inline;
-  font-size: 1.3rem;
+  font-size: 1rem;
   padding: 5px 10px;
   cursor: pointer;
   color: ${(props) =>
@@ -76,7 +76,6 @@ export const SendBtn = styled.span`
 export const SectionRow = styled.div`
   font-size: 18px;
   display: flex;
-  padding: 30px;
   border-radius: 20px;
   &:hover {
     background-color: #bedbf3;
@@ -84,17 +83,8 @@ export const SectionRow = styled.div`
   &:hover {
     background-color: unset;
   }
-  @media screen and (max-width: 1200px) {
-    input {
-      width: 40vw;
-    }
-  }
   @media screen and (max-width: 600px) {
     flex-direction: column;
-    padding: unset;
-    input {
-      width: 100%;
-    }
     div {
       display: flex;
       align-items: center;
@@ -107,6 +97,7 @@ export const VerifySection = styled.div`
   align-items: center;
   p:first-child {
     font-size: 18px;
+    margin: 0;
   }
   p:last-child {
     width: 70%;

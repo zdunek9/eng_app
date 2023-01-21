@@ -3,8 +3,12 @@ import styled from "styled-components";
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  height: 100%;
+  border: 1px solid var(--visibleBorder1);
+  border-radius: 15px;
   padding: 30px;
+  font-size: 18px;
+  height: 350px;
+
   .success {
     color: var(--greenColor);
     font-size: 1rem;
@@ -13,27 +17,30 @@ export const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
   }
-  h1 {
-    margin: 0px 10px 50px 0;
-  }
   input {
-    width: 30%;
+    width: 300px;
     padding: 10px 20px;
-    margin: 10px 0px 20px 0;
+    margin: 10px 0px 20px 28px;
     border-radius: 5px;
     border: 1px solid #9ca0ac;
     background-color: #f6f4f4;
     font-size: 16px;
+    opacity: 0.7;
+  }
+  input:focus {
+    outline: unset;
+    border: 1px solid #747b8b;
+    opacity: 1;
   }
   button {
-    width: 30%;
-    padding: 10px 20px;
-    margin: 10px 0px 20px 0;
+    margin: 10px 0;
+    font-size: 1.1rem;
+    height: 40px;
+    width: 120px;
     background-color: rgb(61, 48, 41);
     border: 0;
     border-radius: 5px;
     color: white;
-    font-size: 16px;
     cursor: pointer;
   }
   button:disabled {
@@ -85,20 +92,13 @@ export const Wrapper = styled.div`
   .line {
     display: inline-block;
   }
-  @media screen and (max-width: 1000px) {
-
-    input {
-      width: 80%;
-    }
+  @media (max-width: 600px) {
+    height: 350px;
     button {
-      width: 80%;
-    }
-  }
-  @media screen and (max-width: 700px) {
-    input {
       width: 100%;
     }
-    button {
+    input {
+      margin: 10px 0px 20px 0;
       width: 100%;
     }
   }
