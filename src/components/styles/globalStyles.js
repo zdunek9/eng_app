@@ -3,6 +3,7 @@ import { createGlobalStyle } from "styled-components";
 export const GlobalStyle = createGlobalStyle`
     :root{
         --frames: 62;
+        --mainBackground:#e6f1fa;
         --background2:#d4e7f7;
         --background3:#bedbf3;
         --thinFont:#A7CDEE;
@@ -25,7 +26,7 @@ export const GlobalStyle = createGlobalStyle`
         min-height: 100vh;
         margin:0;
         padding:0;
-        background-color: #e6f1fa;
+        background-color: var(--mainBackground);
         overflow: hidden;
     }
     a,a:link,a:visited,button{

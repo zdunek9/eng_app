@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
+import Loading from "../../components/Modals/Loading/Loading";
 
 import {
   Category,
@@ -13,6 +14,8 @@ import Password from "./Password/Password";
 
 function Account() {
   const [categorySelect, setCategorySelect] = useState<boolean>(false);
+  const [modal, setModal] = useState<boolean>(false);
+console.log(modal);
   return (
     <Wrapper
       as={motion.div}
@@ -29,17 +32,18 @@ function Account() {
             <p>Password</p>
           </div>
         </Category>
-        {!categorySelect && <Email />}
+        {!categorySelect && <Email setModal={setModal} />}
         {categorySelect && <Password />}
       </DetailsSmallScreen>
       <DetailsHighResolution>
+        {modal && <Loading />}
         <SectionWrapper>
           <p>Your Email</p>
-          <Email />
+          <Email setModal={setModal} />
         </SectionWrapper>
         <SectionWrapper>
           <p>Your Password</p>
-        <Password />
+          <Password />
         </SectionWrapper>
       </DetailsHighResolution>
     </Wrapper>

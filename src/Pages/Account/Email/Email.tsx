@@ -14,12 +14,15 @@ import { authActions } from "../../../Store/authSlice";
 import LoadingSmall from "../../../components/Modals/LoadingSmall/LoadingSmall";
 import ConfirmModal from "../../../components/Modals/ConfirmModal/ConfirmModal";
 import { reducer } from "./EmailReducer";
+import Loading from "../../../components/Modals/Loading/Loading";
 
 const URL_VERIFY = `${process.env.REACT_APP_VERIFY_USER}`;
 const URL_GET_DATA = `${process.env.REACT_APP_GET_USER_DATA}`;
 const URL_CHANGE_EMAIL = `${process.env.REACT_APP_CHANGE_EMAIL}`;
 
-function Email() {
+const Email: React.FC<{
+  setModal: React.Dispatch<React.SetStateAction<boolean>>;
+}> = ({ setModal }) => {
   const [state, dispatchReducer] = useReducer(reducer, {
     userData: {
       email: "",
@@ -38,6 +41,7 @@ function Email() {
   const idToken = useSelector((state: RootState) => state.auth.apiKey);
   const dispatch = useDispatch();
   useEffect(() => {
+    setModal(state.saveFormLoading);
     const getUserData = async () => {
       const response = await axios.post(URL_GET_DATA, {
         idToken,
@@ -101,6 +105,7 @@ function Email() {
 
   return (
     <Wrapper>
+      {/* {state.saveFormLoading && <Loading />} */}
       {state.openConfirmModal && (
         <ConfirmModal
           confirmHandler={() => changeEmailHandler()}
@@ -170,6 +175,6 @@ function Email() {
       )}
     </Wrapper>
   );
-}
+};
 
 export default Email;

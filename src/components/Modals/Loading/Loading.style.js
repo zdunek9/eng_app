@@ -1,15 +1,18 @@
 import styled from "styled-components";
 export const Wrapper = styled.div`
-  height: 100vh;
-  width: 100vw;
+  /* height: 100vh; */
+  /* width: 100vw; */
+  height: 100%;
+  width: 100%;
   z-index: 2;
   position: absolute;
-  top: 10;
+  top: 0;
   left: 0;
   display: flex;
   justify-content: center;
+  overflow: hidden;
   align-items: center;
-  background-color: #e6f1fa;
+  background-color: var(--mainBackground);
 `;
 export const Roller = styled.div`
   display: inline-block;
