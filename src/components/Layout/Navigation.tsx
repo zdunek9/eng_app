@@ -7,7 +7,6 @@ import { useNavigate } from "react-router-dom";
 import BurgerMenu from "../AuthItems/BurgerMenu/BurgerMenu";
 import { useState } from "react";
 import Burger from "../AuthItems/BurgerMenu/Burger";
-import logo from "./../styles/Images/CoolNameLogo.png";
 
 const Navigation: React.FC = () => {
   const dispatch = useDispatch();
@@ -29,14 +28,14 @@ const Navigation: React.FC = () => {
     <>
       <Wrapper isLoggedIn={isLoggedIn}>
         <NavLink to="home">
-          <img src={logo} alt="page_logo" />
+          <p>Cool Name</p>
         </NavLink>
         {isLoggedIn && (
           <NavLink
             to="flashcards"
             className={({ isActive }) => (isActive ? activeClass : undefined)}
           >
-            <p>Flashcards</p>
+            Flashcards
           </NavLink>
         )}
         {isLoggedIn && (

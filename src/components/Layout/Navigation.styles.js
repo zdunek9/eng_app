@@ -6,7 +6,7 @@ export const Wrapper = styled.div`
   background-color: #e6f1fa;
   justify-content: space-between;
   align-items: center;
-  /* padding: 0 20px; */
+  padding: 0 20px;
   box-sizing: border-box;
   border-bottom: 1px solid var(--lines);
   z-index: 1;
@@ -14,22 +14,16 @@ export const Wrapper = styled.div`
   a:first-child::before {
     border-bottom: none;
   }
-  /* p {
+  p {
     margin: 0;
-    font-size: 2.6rem;
+    font-size: 2.8rem;
     color: var(--biggerFont);
     font-family: "Darker Grotesque", sans-serif;
-  } */
-  img {
-    /* height: 150px; */
-    width:160px;
   }
   a {
-    display: flex;
-    align-items: center;
     margin: 0;
-    /* padding: 15px; */
-    font-size: 1.5rem;
+    padding: 20px;
+    font-size: 1.6rem;
     cursor: pointer;
     position: relative;
     font-family: "Darker Grotesque", sans-serif;
@@ -39,7 +33,7 @@ export const Wrapper = styled.div`
   a::before {
     content: "";
     left: 0;
-    bottom: -5px;
+    bottom: -4px;
     position: absolute;
     width: 100%;
     border-bottom: 3px solid rgb(77, 77, 77);
@@ -54,13 +48,13 @@ export const Wrapper = styled.div`
     font-weight: 600;
   }
   @media screen and (max-width: 1100px) {
-    /* padding: 0 10px;
+    padding: 0 10px;
     p {
       font-size: 1.6rem;
     }
     a {
       font-size: 1.2rem;
-    } */
+    }
   }
   @media (max-width: 1000px) {
     a::before {
