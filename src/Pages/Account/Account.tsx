@@ -1,7 +1,9 @@
+import axios from "axios";
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import Loading from "../../components/Modals/Loading/Loading";
-
+import { RootState } from "../../Store/store";
 import {
   Category,
   DetailsHighResolution,
@@ -12,10 +14,28 @@ import {
 import Email from "./Email/Email";
 import Password from "./Password/Password";
 
+const URL_GET_DATA = `${process.env.REACT_APP_GET_USER_DATA}`;
+
 function Account() {
   const [categorySelect, setCategorySelect] = useState<boolean>(false);
   const [modal, setModal] = useState<boolean>(false);
-console.log(modal);
+  const [data, setData] = useState<{ email: string; emailVerified: boolean }>({
+    email: "",
+    emailVerified: false,
+  });
+  const idToken = useSelector((state: RootState) => state.auth.apiKey);
+
+  useEffect(() => {
+    setModal(true);
+    const getUserData = async () => {
+      const response = await axios.post(URL_GET_DATA, {
+        idToken,
+      });
+      setData(response.data.users[0]);
+      setModal(false);
+    };
+    getUserData();
+  }, []);
   return (
     <Wrapper
       as={motion.div}
@@ -32,19 +52,30 @@ console.log(modal);
             <p>Password</p>
           </div>
         </Category>
-        {!categorySelect && <Email setModal={setModal} />}
-        {categorySelect && <Password />}
+        {modal ? (
+          <Loading />
+        ) : (
+          <>
+            {!categorySelect && <Email data={data} />}
+            {categorySelect && <Password />}
+          </>
+        )}
       </DetailsSmallScreen>
       <DetailsHighResolution>
-        {modal && <Loading />}
-        <SectionWrapper>
-          <p>Your Email</p>
-          <Email setModal={setModal} />
-        </SectionWrapper>
-        <SectionWrapper>
-          <p>Your Password</p>
-          <Password />
-        </SectionWrapper>
+        {modal ? (
+          <Loading />
+        ) : (
+          <>
+            <SectionWrapper>
+              <p>Your Email</p>
+              <Email data={data} />
+            </SectionWrapper>
+            <SectionWrapper>
+              <p>Your Password</p>
+              <Password />
+            </SectionWrapper>
+          </>
+        )}
       </DetailsHighResolution>
     </Wrapper>
   );

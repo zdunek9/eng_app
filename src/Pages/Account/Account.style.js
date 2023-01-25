@@ -6,7 +6,7 @@ export const Wrapper = styled.div`
   padding: 3vw;
   display: flex;
   flex-direction: column;
-  /* overflow-y:auto; */
+  overflow-y:auto;
   @media (max-width: 1500px) {
     padding: 3vw 1vw;
   }
