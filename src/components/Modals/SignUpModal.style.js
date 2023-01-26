@@ -14,7 +14,7 @@ export const BlurWrapper = styled.div`
 `;
 export const Wrapper = styled.div`
   position: absolute;
-  padding: 30px;
+  padding: 0px;
   top: 50%;
   left: 50%;
   width: 65vw;
@@ -25,17 +25,15 @@ export const Wrapper = styled.div`
   min-height: 650px;
   background-color: #cee4ef;
   transform: translate(-50%, -50%);
-  border-radius: 10px;
+  border-radius: 15px;
   display: flex;
-  justify-content: space-around;
-  align-items: center;
-  align-content: space-around;
   box-shadow: -1px 8px 19px -1px rgb(86, 105, 126);
   z-index: 1;
+  overflow: hidden;
   img {
-    height: 85%;
-    width: 45%;
-    border-radius: 10px;
+    height: 101%;
+    width: 50%;
+    border-radius: 5px;
     object-fit:cover;
   }
   .AiOutlineClose {
@@ -45,17 +43,6 @@ export const Wrapper = styled.div`
     right: 8px;
     font-size: 3rem;
     cursor: pointer;
-  }
-  .btn {
-    position: absolute;
-    bottom: 15px;
-    font-size: 1.5rem;
-    padding: 5px 30px;
-    margin-top: 10px;
-    color: black;
-    cursor: pointer;
-    user-select: none;
-    border-bottom:1px solid black;
   }
   @media screen and (max-width: 1200px) {
     top: 0;
@@ -75,17 +62,6 @@ export const Wrapper = styled.div`
     flex-direction: column;
     img {
       display: none;
-    }
-    .btn {
-      position: relative;
-      margin: auto;
-      margin-bottom: 30px;
-      bottom: 30px;
-      font-size: 1.1rem;
-      padding: 10px 30px;
-      color: black;
-      cursor: pointer;
-      user-select: none;
     }
     .AiOutlineClose {
     top: 40px;

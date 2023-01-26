@@ -132,14 +132,17 @@ const LoginTest: React.FC = () => {
           <p className={state.errMsg ? "errmsg" : "offscreen"}>
             {state.errMsg}
           </p>
-          <h1>Log in</h1>
+          <h1>Sign in</h1>
+          <h3>
+            New to Cool App?{" "}
+            <span onClick={() => dispatch(authActions.changeSigninPage())}>
+              Sign up for free
+            </span>
+          </h3>
           <form onSubmit={(e) => turnstile2Handler(e)} className="cf-turnstile">
-            <label htmlFor="email">
-              Email
-            </label>
             <input
+              placeholder="Email"
               type="text"
-              id="email"
               ref={userRef}
               maxLength={60}
               autoComplete="off"
@@ -149,12 +152,9 @@ const LoginTest: React.FC = () => {
               value={state.user}
               required
             />
-            <label htmlFor="password">
-              Password
-            </label>
             <input
+              placeholder="Password"
               type="password"
-              id="password"
               maxLength={24}
               onChange={(e) =>
                 dispatchReducer({ type: "setPwd", payload: e.target.value })
@@ -163,37 +163,36 @@ const LoginTest: React.FC = () => {
               required
             />
             <button>Log In</button>
-            <p
-              className="errmsg"
+            <div
               onClick={() =>
                 dispatchReducer({ type: "setShowResetPwd", payload: true })
               }
             >
-              Forgot password?
-            </p>
+              <p>Forgot password?</p>
+            </div>
           </form>
           {state.loadingState && <LoadingSmall />}
           {!state.loadingState && (
-            <div className={state.showResetPwd ? "sendPassword" : "offscreen"}>
-              <form onSubmit={resetPassword}>
-                <label htmlFor="emailReset">Your email address:</label>
-                <input
-                  type="text"
-                  id="emailReset"
-                  autoComplete="off"
-                  maxLength={60}
-                  onChange={(e) =>
-                    dispatchReducer({
-                      type: "setResetEmail",
-                      payload: e.target.value,
-                    })
-                  }
-                  value={state.resetEmail}
-                />
-                <button>Send me new password !</button>
-                <div className="sendStatus">{state.sendStatus}</div>
-              </form>
-            </div>
+            <form
+              onSubmit={resetPassword}
+              className={state.showResetPwd ? "" : "offscreen"}
+            >
+              <input
+                placeholder="Your email address:"
+                type="text"
+                autoComplete="off"
+                maxLength={60}
+                onChange={(e) =>
+                  dispatchReducer({
+                    type: "setResetEmail",
+                    payload: e.target.value,
+                  })
+                }
+                value={state.resetEmail}
+              />
+              <button>Send me new password !</button>
+              <div className="sendStatus">{state.sendStatus}</div>
+            </form>
           )}
         </Wrapper>
       )}

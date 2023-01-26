@@ -3,16 +3,14 @@ import bonjoue from "../styles/Images/bonjoue.jpg";
 import { AiOutlineClose } from "react-icons/ai";
 import Login from "./LogIn/LogIn";
 import NewAccount from "./NewAccount/NewAccount";
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import { useSelector } from "react-redux";
+import { RootState } from "../../Store/store";
 
 const SignUpModal: React.FC = (props) => {
-  const [signUpModal, setSignUpModal] = useState<boolean>(false);
+  const pageStatus = useSelector((state:RootState)=>state.auth.signinPageStatus)
   let navigate = useNavigate();
-  const signUpToggle = () => {
-    setSignUpModal((prevState) => !prevState);
-  };
   const backHandler = () => {
     navigate(-1);
   };
@@ -26,18 +24,8 @@ const SignUpModal: React.FC = (props) => {
       <Wrapper>
         <img src={bonjoue} alt="balony" />
         <AiOutlineClose onClick={backHandler} className="AiOutlineClose" />
-        {!signUpModal && <Login />}
-        {signUpModal && <NewAccount />}
-        {!signUpModal && (
-          <div className="btn" onClick={signUpToggle}>
-            Can't log in? - Sign up for an account
-          </div>
-        )}
-        {signUpModal && (
-          <div className="btn" onClick={signUpToggle}>
-            Back to log in!
-          </div>
-        )}
+        {!pageStatus && <Login />}
+        {pageStatus && <NewAccount />}
       </Wrapper>
     </BlurWrapper>
   );
