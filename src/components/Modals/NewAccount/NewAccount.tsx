@@ -1,7 +1,14 @@
 import { useEffect, useReducer, useRef, useState } from "react";
 import { faCheck, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Wrapper } from "./NewAccount.style";
+import {
+  ErrorMsgLogin,
+  HintImage,
+  IconWrapper,
+  InputWrapper,
+  HintWrapper,
+  Wrapper,
+} from "./NewAccount.style";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useDispatch } from "react-redux";
@@ -10,6 +17,7 @@ import { motion } from "framer-motion";
 import { reducer } from "./NewAccountReducer";
 import TurnstileModal from "../Turnstile/TurnstileModal";
 import LoadingSmall from "../LoadingSmall/LoadingSmall";
+import Hint from "./../../styles/Images/idea.png";
 
 const MAIL_REGEX = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
 const PASSWORD_REGEX =
@@ -31,6 +39,7 @@ const NewAccountTest = () => {
     validMatch: false,
     matchFocus: false,
     errMsg: false,
+    openHint: false,
   });
   const [openTurnstileModal, setOpenTurnstileModal] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
@@ -71,7 +80,10 @@ const NewAccountTest = () => {
         if (!err?.response) {
           dispatchReducer({ type: "setErrMsg", payload: "No Server Response" });
         } else if (err.response?.data.error.message === "EMAIL_EXISTS") {
-          dispatchReducer({ type: "setErrMsg", payload: "Mail Taken" });
+          dispatchReducer({
+            type: "setErrMsg",
+            payload: "A user with this email exists!",
+          });
         } else {
           dispatchReducer({
             type: "setErrMsg",
@@ -80,10 +92,10 @@ const NewAccountTest = () => {
         }
       }
     } else {
-      dispatchReducer({ type: "setPwd", payload: "" });
-      dispatchReducer({ type: "setMatchPwd", payload: "" });
       dispatchReducer({ type: "setErrMsg", payload: "Try again" });
     }
+    dispatchReducer({ type: "setPwd", payload: "" });
+    dispatchReducer({ type: "setMatchPwd", payload: "" });
     setLoading(false);
   }
 
@@ -107,138 +119,158 @@ const NewAccountTest = () => {
               closeModal={setOpenTurnstileModal}
             />
           )}
-          <p className={state.errMsg ? "errmsg" : "offscreen"}>
-            {state.errMsg}
-          </p>
+
           <h1>Register</h1>
+          <h3>
+            Already registred?{" "}
+            <span onClick={() => dispatch(authActions.changeSigninPage())}>
+              Sign in!
+            </span>
+          </h3>
           <form onSubmit={(e) => turnstile2Handler(e)}>
-            <label htmlFor="email">
-              Email:
-              <span className={state.validName ? "valid" : "hide"}>
-                <FontAwesomeIcon icon={faCheck} />
-              </span>
-              <span
-                className={state.validName || !state.user ? "hide" : "invalid"}
-              >
-                <FontAwesomeIcon icon={faTimes} />
-              </span>
-            </label>
-            <input
-              type="email"
-              id="email"
-              maxLength={60}
-              ref={userRef}
-              autoComplete="off"
-              required
-              onChange={(e) =>
-                dispatchReducer({ type: "setUser", payload: e.target.value })
-              }
-              onFocus={() =>
-                dispatchReducer({ type: "setUserFocus", payload: true })
-              }
-              onBlur={() =>
-                dispatchReducer({ type: "setUserFocus", payload: false })
-              }
-            />
-            <p
-              className={
-                state.userFocus && state.user && !state.validName
-                  ? "instructions"
-                  : "offscreen"
-              }
-            >
-              Enter a valid email address
-            </p>
-            <label htmlFor="password">
-              Password:
-              <FontAwesomeIcon
-                icon={faCheck}
-                className={state.validPwd ? "valid" : "hide"}
-              />
-              <FontAwesomeIcon
-                icon={faTimes}
-                className={state.validPwd || !state.pwd ? "hide" : "invalid"}
-              />
-            </label>
-            <input
-              type="password"
-              id="password"
-              maxLength={24}
-              onChange={(e) =>
-                dispatchReducer({ type: "setPwd", payload: e.target.value })
-              }
-              value={state.pwd}
-              required
-              onFocus={() =>
-                dispatchReducer({ type: "setPwdFocus", payload: true })
-              }
-              onBlur={() =>
-                dispatchReducer({ type: "setPwdFocus", payload: false })
-              }
-            />
-            <p
-              className={
-                state.pwdFocus && !state.validPwd ? "instructions" : "offscreen"
-              }
-            >
-              8 to 24 characters.
-              <br />
-              Must include uppercase and lowercase letters,
-              <br /> a number and a special character.
-              <br />
-              Allowed special characters:
-              <span>!</span>
-              <span>@</span>
-              <span>#</span>
-              <span>$</span>
-              <span>%</span>
-            </p>
+            <InputWrapper>
+              {state.validName &&
+                state.errMsg !== "A user with this email exists!" && (
+                  <IconWrapper>
+                    <FontAwesomeIcon
+                      icon={faCheck}
+                      style={{ color: "var(--greenColor)" }}
+                    />
+                  </IconWrapper>
+                )}
+              {(!(state.validName || !state.user) ||
+                state.errMsg === "A user with this email exists!") && (
+                <IconWrapper>
+                  <FontAwesomeIcon
+                    icon={faTimes}
+                    style={{ color: "var(--redColor)" }}
+                  />
+                </IconWrapper>
+              )}
 
-            <label htmlFor="confirm_pwd">
-              Confirm Password:
-              <FontAwesomeIcon
-                icon={faCheck}
+              <input
+                placeholder="Email"
                 className={
-                  state.validMatch && state.matchPwd ? "valid" : "hide"
+                  !(state.validName || !state.user) ? "errorInput" : ""
+                }
+                type="email"
+                maxLength={60}
+                ref={userRef}
+                autoComplete="off"
+                required
+                onChange={(e) =>
+                  dispatchReducer({ type: "setUser", payload: e.target.value })
+                }
+                onFocus={() =>
+                  dispatchReducer({ type: "setUserFocus", payload: true })
+                }
+                onBlur={() =>
+                  dispatchReducer({ type: "setUserFocus", payload: false })
                 }
               />
-              <FontAwesomeIcon
-                icon={faTimes}
-                className={
-                  state.validMatch || !state.matchPwd ? "hide" : "invalid"
+              {state.userFocus && state.user && !state.validName && (
+                <p>Enter a valid email address</p>
+              )}
+            </InputWrapper>
+
+            <InputWrapper>
+              {state.validPwd && (
+                <IconWrapper>
+                  <FontAwesomeIcon
+                    icon={faCheck}
+                    style={{ color: "var(--greenColor)" }}
+                  />
+                </IconWrapper>
+              )}
+              {!(state.validPwd || !state.pwd) && (
+                <IconWrapper>
+                  <FontAwesomeIcon
+                    icon={faTimes}
+                    style={{ color: "var(--redColor)" }}
+                  />
+                </IconWrapper>
+              )}
+              <input
+                placeholder="Password"
+                className={!(state.validPwd || !state.pwd) ? "errorInput" : ""}
+                type="password"
+                maxLength={24}
+                onChange={(e) =>
+                  dispatchReducer({ type: "setPwd", payload: e.target.value })
+                }
+                value={state.pwd}
+                required
+                onFocus={() =>
+                  dispatchReducer({ type: "setPwdFocus", payload: true })
+                }
+                onBlur={() =>
+                  dispatchReducer({ type: "setPwdFocus", payload: false })
                 }
               />
-            </label>
-            <input
-              type="password"
-              id="confirm_pwd"
-              maxLength={24}
-              onChange={(e) =>
-                dispatchReducer({
-                  type: "setMatchPwd",
-                  payload: e.target.value,
-                })
-              }
-              value={state.matchPwd}
-              required
-              onFocus={() =>
-                dispatchReducer({ type: "setMatchFocus", payload: true })
-              }
-              onBlur={() =>
-                dispatchReducer({ type: "setMatchFocus", payload: false })
-              }
-            />
-            <p
-              id="confirmnote"
-              className={
-                state.matchFocus && !state.validMatch
-                  ? "instructions"
-                  : "offscreen"
-              }
-            >
-              Must match the first password input field.
-            </p>
-
+              {state.pwdFocus && !(state.validPwd || !state.pwd) && (
+                <p>Invalid password</p>
+              )}
+              <HintImage
+                src={Hint}
+                alt="hint"
+                onClick={() =>
+                  dispatchReducer({
+                    type: "setOpenHint",
+                    payload: !state.openHint,
+                  })
+                }
+              />
+              {state.openHint && (
+                <HintWrapper>
+                  8 to 24 characters. Must include uppercase and lowercase
+                  letters, a number and a special character. Allowed special
+                  characters: ! @ # $ %
+                </HintWrapper>
+              )}
+            </InputWrapper>
+            <InputWrapper>
+              {state.validMatch && state.matchPwd && (
+                <IconWrapper>
+                  <FontAwesomeIcon
+                    icon={faCheck}
+                    style={{ color: "var(--greenColor)" }}
+                  />
+                </IconWrapper>
+              )}
+              {!(state.validMatch || !state.matchPwd) && (
+                <IconWrapper>
+                  <FontAwesomeIcon
+                    icon={faTimes}
+                    style={{ color: "var(--redColor)" }}
+                  />
+                </IconWrapper>
+              )}
+              <input
+                placeholder="Confirm password"
+                className={
+                  !(state.validMatch || !state.matchPwd) ? "errorInput" : ""
+                }
+                type="password"
+                maxLength={24}
+                onChange={(e) =>
+                  dispatchReducer({
+                    type: "setMatchPwd",
+                    payload: e.target.value,
+                  })
+                }
+                value={state.matchPwd}
+                required
+                onFocus={() =>
+                  dispatchReducer({ type: "setMatchFocus", payload: true })
+                }
+                onBlur={() =>
+                  dispatchReducer({ type: "setMatchFocus", payload: false })
+                }
+              />
+              {state.matchFocus && !state.validMatch && (
+                <p>Must match the first password input field.</p>
+              )}
+            </InputWrapper>
             <button
               disabled={
                 !state.validName || !state.validPwd || !state.validMatch
@@ -248,6 +280,7 @@ const NewAccountTest = () => {
             >
               Sign Up
             </button>
+            {state.errMsg && <ErrorMsgLogin>{state.errMsg}</ErrorMsgLogin>}
           </form>
         </Wrapper>
       )}

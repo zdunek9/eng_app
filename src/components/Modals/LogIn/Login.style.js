@@ -13,7 +13,6 @@ export const Wrapper = styled.div`
     width: 70%;
     display: flex;
     flex-direction: column;
-    /* overflow-y: scroll;÷ */
   }
   h3 {
     width: 70%;
@@ -29,7 +28,7 @@ export const Wrapper = styled.div`
   span {
     cursor: pointer;
     font-weight: 600;
-    color: #5779cb;
+    color: var(--buttonBlue);
   }
   input {
     width: 100%;
@@ -59,20 +58,18 @@ export const Wrapper = styled.div`
   button:hover {
     background-color: var(--buttonBlueHover);
   }
-  .errorInput {
-    border-bottom: 1px solid var(--redColor);
+  button:disabled {
+    color: red;
   }
-  @media screen and (max-width: 700px) {
+  .errorInput {
+    border-bottom: 2px solid var(--redColor);
+  }
+  @media (max-width: 700px) {
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-top: 80px;
-  }
-  @media (max-height: 900px) {
-    h1 {
-      margin: 10px 0;
-    }
   }
 `;
 
@@ -96,7 +93,7 @@ export const ErrorMsgForgotPwd = styled.div`
     top: 25px;
     right: 10px;
   }
-  @media(max-width:350px){
+  @media (max-width: 350px) {
     height: 100px;
   }
 `;

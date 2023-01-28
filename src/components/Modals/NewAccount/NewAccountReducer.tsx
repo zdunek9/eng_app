@@ -20,5 +20,7 @@ export const reducer = (state: any, action: { type: any; payload: any }) => {
       return { ...state, matchFocus: action.payload };
     case "setErrMsg":
       return { ...state, errMsg: action.payload };
+    case "setOpenHint":
+      return { ...state, openHint: action.payload };
   }
 };
