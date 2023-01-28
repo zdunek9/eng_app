@@ -1,7 +1,13 @@
 import { useEffect, useReducer, useRef, useState } from "react";
+import { AiFillWarning } from "react-icons/ai";
 import { useDispatch } from "react-redux";
 import { authActions } from "../../../Store/authSlice";
-import { Wrapper } from "./Login.style";
+import {
+  Wrapper,
+  ErrorMsgForgotPwd,
+  ForgotPwd,
+  ErrorMsgLogin,
+} from "./Login.style";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import axios from "axios";
@@ -20,7 +26,7 @@ const LoginTest: React.FC = () => {
     errMsg: "",
     resetEmail: "",
     showResetPwd: false,
-    sendStatus: "",
+    sendStatus: [true, ""],
     loadingState: false,
   });
   const [openTurnstileModal, setOpenTurnstileModal] = useState<boolean>(false);
@@ -79,10 +85,13 @@ const LoginTest: React.FC = () => {
 
   const resetPassword = async (event: React.FormEvent) => {
     event.preventDefault();
-    dispatchReducer({ type: "setSendStatus", payload: "" });
+    dispatchReducer({ type: "setSendStatus", payload: [false, ""] });
     dispatchReducer({ type: "setLoadingState", payload: true });
     if (state.resetEmail.trim() === "" || !MAIL_REGEX.test(state.resetEmail)) {
-      dispatchReducer({ type: "setSendStatus", payload: "Incorrect email" });
+      dispatchReducer({
+        type: "setSendStatus",
+        payload: [false, "Incorrect email"],
+      });
       dispatchReducer({ type: "setLoadingState", payload: false });
       return;
     }
@@ -94,20 +103,25 @@ const LoginTest: React.FC = () => {
       if (response.status === 200) {
         dispatchReducer({
           type: "setSendStatus",
-          payload: "Restart instructions sent successfully. Check your email.",
+          payload: [
+            true,
+            "Restart instructions sent successfully. Check your email.",
+          ],
         });
       }
     } catch (err: any) {
       if (err.response.data.error.message === "EMAIL_NOT_FOUND") {
         dispatchReducer({
           type: "setSendStatus",
-          payload:
+          payload: [
+            false,
             "We could not find your email address. Please check and try again",
+          ],
         });
       } else {
         dispatchReducer({
           type: "setSendStatus",
-          payload: "Something went wrong, try again",
+          payload: [false, "Something went wrong, try again"],
         });
       }
     }
@@ -129,9 +143,6 @@ const LoginTest: React.FC = () => {
               closeModal={setOpenTurnstileModal}
             />
           )}
-          <p className={state.errMsg ? "errmsg" : "offscreen"}>
-            {state.errMsg}
-          </p>
           <h1>Sign in</h1>
           <h3>
             New to Cool App?{" "}
@@ -143,8 +154,9 @@ const LoginTest: React.FC = () => {
             <input
               placeholder="Email"
               type="text"
+              className={state.errMsg&&'errorInput'}
               ref={userRef}
-              maxLength={60}
+              maxLength={40}
               autoComplete="off"
               onChange={(e) =>
                 dispatchReducer({ type: "setUser", payload: e.target.value })
@@ -155,6 +167,7 @@ const LoginTest: React.FC = () => {
             <input
               placeholder="Password"
               type="password"
+              className={state.errMsg&&'errorInput'}
               maxLength={24}
               onChange={(e) =>
                 dispatchReducer({ type: "setPwd", payload: e.target.value })
@@ -162,36 +175,42 @@ const LoginTest: React.FC = () => {
               value={state.pwd}
               required
             />
+            {state.errMsg && <ErrorMsgLogin>{state.errMsg}</ErrorMsgLogin>}
             <button>Log In</button>
             <div
               onClick={() =>
                 dispatchReducer({ type: "setShowResetPwd", payload: true })
               }
             >
-              <p>Forgot password?</p>
+              <ForgotPwd>Forgot password?</ForgotPwd>
             </div>
           </form>
           {state.loadingState && <LoadingSmall />}
-          {!state.loadingState && (
+          {!state.loadingState && state.showResetPwd && (
             <form
               onSubmit={resetPassword}
-              className={state.showResetPwd ? "" : "offscreen"}
             >
-              <input
-                placeholder="Your email address:"
-                type="text"
-                autoComplete="off"
-                maxLength={60}
-                onChange={(e) =>
-                  dispatchReducer({
-                    type: "setResetEmail",
-                    payload: e.target.value,
-                  })
-                }
-                value={state.resetEmail}
-              />
+              <ErrorMsgForgotPwd>
+                <input
+                  placeholder="Your email address:"
+                  className={state.sendStatus[0] ? "" : "errorInput"}
+                  type="text"
+                  autoComplete="off"
+                  maxLength={40}
+                  onChange={(e) =>
+                    dispatchReducer({
+                      type: "setResetEmail",
+                      payload: e.target.value,
+                    })
+                  }
+                  value={state.resetEmail}
+                />
+                {!state.sendStatus[0] && <AiFillWarning />}
+                <div className={state.sendStatus[0] ? "success" : ""}>
+                  {state.sendStatus[1]}
+                </div>
+              </ErrorMsgForgotPwd>
               <button>Send me new password !</button>
-              <div className="sendStatus">{state.sendStatus}</div>
             </form>
           )}
         </Wrapper>

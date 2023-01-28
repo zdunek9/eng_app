@@ -15,7 +15,10 @@ export const GlobalStyle = createGlobalStyle`
         --greenColor:#00e673;
         --redColor:	#ff0000;
         --visibleBorder1:#bedbf3;
-        --lines:rgb(179, 179, 179)
+        --lines:rgb(179, 179, 179);
+        --notAvaliableGray: #b1b0b4;
+        --buttonBlue:#5779cb;
+        --buttonBlueHover:#3c6cdd;
     }
     *{
       box-sizing: border-box;

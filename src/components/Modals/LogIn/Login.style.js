@@ -10,20 +10,20 @@ export const Wrapper = styled.div`
   text-align: left;
   form {
     margin-top: 20px;
-    width: 65%;
-    height: 500px;
+    width: 70%;
     display: flex;
     flex-direction: column;
+    /* overflow-y: scroll;÷ */
   }
   h3 {
-    width: 65%;
+    width: 70%;
     margin: 0;
-    color: #b1b0b4;
+    color: var(--notAvaliableGray);
     font-size: 0.9rem;
     font-weight: 400;
   }
   h1 {
-    width: 65%;
+    width: 70%;
     margin: 40px 10px 20px 0;
   }
   span {
@@ -32,12 +32,13 @@ export const Wrapper = styled.div`
     color: #5779cb;
   }
   input {
+    width: 100%;
     outline: unset;
     margin: 15px 0;
     padding: 10px 5px;
     border: none;
-    opacity: 0.6;
-    border-bottom: 1px solid var(--greyColor);
+    opacity: 0.7;
+    border-bottom: 2px solid var(--notAvaliableGray);
     background-color: unset;
     font-size: 15px;
   }
@@ -47,8 +48,8 @@ export const Wrapper = styled.div`
   button {
     width: 100%;
     padding: 10px 25px;
-    margin: 20px 0;
-    background-color: #5779cb;
+    margin: 10px 0;
+    background-color: var(--buttonBlue);
     border: 0;
     border-radius: 5px;
     color: white;
@@ -56,23 +57,11 @@ export const Wrapper = styled.div`
     cursor: pointer;
   }
   button:hover {
-    background-color: rgb(92, 72, 61);
+    background-color: var(--buttonBlueHover);
   }
-  p {
-    display: inline;
-    cursor: pointer;
-    color: #5779cb;
-    font-style: italic;
-    margin-top: 0;
+  .errorInput {
+    border-bottom: 1px solid var(--redColor);
   }
-  .errmsg {
-    color: red;
-  }
-  .offscreen {
-    position: absolute;
-    left: -9999px;
-  }
-
   @media screen and (max-width: 700px) {
     width: 100%;
     display: flex;
@@ -85,4 +74,42 @@ export const Wrapper = styled.div`
       margin: 10px 0;
     }
   }
+`;
+
+export const ErrorMsgForgotPwd = styled.div`
+  position: relative;
+  height: 90px;
+  div {
+    font-size: 0.8rem;
+    position: absolute;
+    left: 0;
+    bottom: 0px;
+    color: var(--redColor);
+  }
+  .success {
+    color: var(--greenColor);
+  }
+  svg {
+    font-size: 24px;
+    color: var(--redColor);
+    position: absolute;
+    top: 25px;
+    right: 10px;
+  }
+  @media(max-width:350px){
+    height: 100px;
+  }
+`;
+
+export const ForgotPwd = styled.p`
+  display: inline;
+  color: var(--greyColor);
+  cursor: pointer;
+  margin-top: -10px;
+`;
+
+export const ErrorMsgLogin = styled.p`
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--redColor);
 `;
