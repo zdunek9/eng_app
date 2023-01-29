@@ -46,6 +46,7 @@ const LoginTest: React.FC = () => {
 
   async function setConfirmAccess(accessGranted: boolean) {
     setLoading(true);
+    dispatchReducer({ type: "setShowResetPwd", payload: false });
     if (accessGranted) {
       try {
         const response = await axios.post(URL_LOGIN, {
@@ -154,7 +155,7 @@ const LoginTest: React.FC = () => {
             <input
               placeholder="Email"
               type="text"
-              className={state.errMsg&&'errorInput'}
+              className={state.errMsg && "errorInput"}
               ref={userRef}
               maxLength={40}
               autoComplete="off"
@@ -167,7 +168,7 @@ const LoginTest: React.FC = () => {
             <input
               placeholder="Password"
               type="password"
-              className={state.errMsg&&'errorInput'}
+              className={state.errMsg && "errorInput"}
               maxLength={24}
               onChange={(e) =>
                 dispatchReducer({ type: "setPwd", payload: e.target.value })
@@ -187,9 +188,7 @@ const LoginTest: React.FC = () => {
           </form>
           {state.loadingState && <LoadingSmall />}
           {!state.loadingState && state.showResetPwd && (
-            <form
-              onSubmit={resetPassword}
-            >
+            <form onSubmit={resetPassword}>
               <ErrorMsgForgotPwd>
                 <input
                   placeholder="Your email address:"

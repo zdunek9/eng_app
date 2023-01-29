@@ -6,7 +6,7 @@ export const Wrapper = styled.div`
   align-items: center;
   flex-direction: column;
   font-size: 16px;
-  margin-top: 100px;
+  margin-top: 60px;
   text-align: left;
   form {
     position: relative;
