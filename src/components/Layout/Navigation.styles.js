@@ -56,7 +56,8 @@ export const Wrapper = styled.div`
       font-size: 1.2rem;
     }
   }
-  @media (max-width: 1000px) {
+
+  @media (max-width: 1100px) {
     a::before {
       bottom: -8px;
     }

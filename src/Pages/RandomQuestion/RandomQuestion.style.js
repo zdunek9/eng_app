@@ -7,6 +7,7 @@ export const Wrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  /* justify-content: flex-end; */
   flex-wrap: wrap;
   @media (max-width: 1400px) {
     padding: 1vw;
@@ -22,7 +23,7 @@ export const MainWrapper = styled.div`
   align-items: center;
 
   h1 {
-    font-size: 2.3rem;
+    font-size: 2rem;
     text-align: center;
   }
   h3 {
@@ -89,7 +90,7 @@ export const MainWrapper = styled.div`
     }
     span {
       font-size: 2rem;
-      margin: 0 0;
+      margin: 0;
       width: 50vw;
     }
   }

@@ -2,9 +2,10 @@ import styled from "styled-components";
 
 export const Wrapper = styled.div`
   position: absolute;
-  right: 5vw;
-  top: 55vh;
+  right: 20px;
+  top: 250px;
   width: 300px;
+  height: 150px;
   padding: 15px;
   font-size: 1.3rem;
   border: 2px solid rgb(179, 179, 179);
@@ -12,14 +13,15 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
   background-color: none;
   p {
-    margin: 20px;
+    margin: 0;
     font-size: 2rem;
   }
 
   span {
-    margin: 20px;
+    margin: 0;
     font-size: 3rem;
     cursor: pointer;
   }
@@ -30,21 +32,10 @@ export const Wrapper = styled.div`
     display: flex;
     justify-content: space-around;
   }
-  @media (max-width: 1400px) {
-    right: 1vw;
-    width: 200px;
-    top: 60vh;
-    p {
-      font-size: 1.2rem;
-    }
-    span {
-      font-size: 2rem;
-    }
-  }
+
   @media (max-width: 1000px) {
     right: none;
     top: none;
-    width: 200px;
     font-size: 1.1rem;
     position: unset;
     span {

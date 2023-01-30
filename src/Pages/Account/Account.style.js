@@ -6,7 +6,7 @@ export const Wrapper = styled.div`
   padding: 3vw;
   display: flex;
   flex-direction: column;
-  overflow-y:auto;
+  overflow-y: auto;
   @media (max-width: 1500px) {
     padding: 3vw 1vw;
   }
@@ -39,22 +39,32 @@ export const DetailsSmallScreen = styled.div`
   }
 `;
 export const DetailsHighResolution = styled.div`
-  width: 100%;
-  max-width: 650px;
-  height: 100%;
+  display: flex;
+  align-items: flex-start;
+  max-width: 1000px;
   padding: 20px 50px;
+
+  @media (max-width: 1000px) {
+    display: unset;
+    padding: 20px;
+    width: 600px;
+  }
 
   @media (max-width: 600px) {
     display: none;
   }
 `;
 export const SectionWrapper = styled.div`
-  padding:20px;
-  margin-bottom: 20px;
+  padding: 20px;
+  margin: 20px;
   border-radius: 10px;
   background-color: #eef3f7;
+  /* height: auto; */
   p {
     font-size: 1.5rem;
-    margin:5px;
+    margin: 5px;
+  }
+  @media (max-width: 1000px) {
+    margin-bottom: 20px;
   }
 `;

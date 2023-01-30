@@ -10,7 +10,6 @@ import { RootState } from "./Store/store";
 import Flashcards from "./Pages/Flashcards/Flashcards";
 import { AnimatePresence } from "framer-motion";
 import Navigation from "./components/Layout/Navigation";
-import { MainWrapper } from "./App.styles";
 import Account from "./Pages/Account/Account";
 import { useEffect } from "react";
 import { authActions } from "./Store/authSlice";
@@ -65,7 +64,7 @@ function App() {
   }, [tokenData]);
 
   return (
-    <MainWrapper>
+    <>
       <GlobalStyle />
       <Navigation />
       <AnimatePresence>
@@ -83,7 +82,7 @@ function App() {
           />
         </Routes>
       </AnimatePresence>
-    </MainWrapper>
+    </>
   );
 }
 

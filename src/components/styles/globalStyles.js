@@ -23,10 +23,12 @@ export const GlobalStyle = createGlobalStyle`
     *{
       box-sizing: border-box;
       max-width: 100%;
+      /* height: 100%; */
     }
     body{
       font-family: "Inter", sans-serif,'Montserrat', sans-serif;;
         min-height: 100vh;
+        /* height: 100%; */
         margin:0;
         padding:0;
         background-color: var(--mainBackground);
