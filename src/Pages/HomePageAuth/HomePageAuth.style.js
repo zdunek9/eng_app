@@ -1,12 +1,13 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
+  height: calc(100vh - 81px);
   position: relative;
   display: flex;
   flex-direction: column;
+  overflow-y: auto;
+  overflow-x: hidden;
   align-items: center;
-  overflow: auto;
-  justify-content: center;
 `;
 export const PartingWrapper = styled.div`
   border-bottom: 1px solid var(--greyColor);
@@ -19,7 +20,7 @@ export const WelcomeScreen = styled.div`
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  margin: 70px 370px 0px 45px;
+  margin: 100px 370px 0px 45px;
 
   h1 {
     font-size: 2.6rem;
@@ -49,7 +50,6 @@ export const WelcomeScreen = styled.div`
 `;
 export const BoxWrapper = styled.div`
   display: flex;
-  flex-wrap: wrap;
   margin-top: 60px;
   min-width: 550px;
   margin: auto;
@@ -60,6 +60,10 @@ export const BoxWrapper = styled.div`
     margin-right: 10px;
     color: #397393;
     min-width: 40px;
+  }
+  @media(max-width: 1350px){
+    flex-wrap: wrap;
+
   }
   @media (max-width: 1000px) {
     width: 500px;
@@ -78,8 +82,8 @@ export const BoxWrapper = styled.div`
 `;
 export const Box = styled.div`
   border: 1px solid var(--greyColor);
-  width: 250px;
-  height: 170px;
+  width: 230px;
+  height: 160px;
   padding: 20px;
   margin: 10px;
   display: flex;
@@ -90,10 +94,12 @@ export const Box = styled.div`
     flex-direction: column;
   }
   h4 {
+    font-size: 0.9rem;
     margin: 0;
     color: var(--greyColor);
   }
   p {
+    font-size: 0.9rem;
     font-weight: 600;
   }
 

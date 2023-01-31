@@ -21,7 +21,7 @@ export const Wrapper = styled.div`
   }
 
   span {
-    margin: 0;
+    margin: 0 10px;
     font-size: 3rem;
     cursor: pointer;
   }
