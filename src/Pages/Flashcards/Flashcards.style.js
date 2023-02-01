@@ -9,6 +9,8 @@ export const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   text-align: center;
+  overflow-x: hidden;
+
   h1 {
     font-size: 3rem;
     text-align: center;
@@ -26,13 +28,13 @@ export const Wrapper = styled.div`
   }
   @media (max-width: 600px) {
     padding-top: 20vw;
-    h1{
+    h1 {
       font-size: 1.7rem;
     }
-    h2{
+    h2 {
       margin-top: 20px;
     }
-    h3{
+    h3 {
       font-size: 1rem;
     }
   }

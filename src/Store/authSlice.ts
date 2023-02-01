@@ -4,13 +4,15 @@ interface authState {
   isLogged: boolean;
   apiKey: string;
   preventLoading: boolean;
-  signinPageStatus:boolean;
+  signinPageStatus: boolean;
+  userName: string;
 }
 const initialState: authState = {
   isLogged: false,
   apiKey: "",
   preventLoading: false,
-  signinPageStatus:false
+  signinPageStatus: false,
+  userName: "",
 };
 const authSlice = createSlice({
   name: "auth",
@@ -26,6 +28,7 @@ const authSlice = createSlice({
       state.isLogged = false;
       state.apiKey = "";
       state.preventLoading = false;
+      state.userName = "";
       localStorage.removeItem("token");
       localStorage.removeItem("expirationTime");
     },
@@ -39,9 +42,12 @@ const authSlice = createSlice({
     setToken(state, action) {
       state.apiKey = action.payload;
     },
-    changeSigninPage(state){
-      state.signinPageStatus = !state.signinPageStatus
-    }
+    changeSigninPage(state) {
+      state.signinPageStatus = !state.signinPageStatus;
+    },
+    setUsername(state, action) {
+      state.userName = action.payload;
+    },
   },
 });
 export const authActions = authSlice.actions;

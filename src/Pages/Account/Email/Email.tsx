@@ -113,20 +113,19 @@ function Email({ data: { email, emailVerified } }: DataType) {
         <p className="errMsg">Something goes wrong, try later</p>
       )}
       <SectionRow>
-        <label>
-          Email:
-          <input
-            type="text"
-            autoComplete="off"
-            value={state.newEmail}
-            onChange={(e) =>
-              dispatchReducer({
-                type: "setNewEmail",
-                payload: e.target.value,
-              })
-            }
-          />
-        </label>
+        <label htmlFor="emailAddress">Email:</label>
+        <input
+          id="emailAddress"
+          type="text"
+          autoComplete="off"
+          value={state.newEmail}
+          onChange={(e) =>
+            dispatchReducer({
+              type: "setNewEmail",
+              payload: e.target.value,
+            })
+          }
+        />
       </SectionRow>
       <VerifySection>
         <p>Verified:</p>

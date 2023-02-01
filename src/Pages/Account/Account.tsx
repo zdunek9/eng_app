@@ -10,6 +10,7 @@ import {
   DetailsSmallScreen,
   Wrapper,
   SectionWrapper,
+  HideElement,
 } from "./Account.style";
 import Email from "./Email/Email";
 import Password from "./Password/Password";
@@ -55,10 +56,10 @@ function Account() {
         {modal ? (
           <Loading />
         ) : (
-          <>
+          <HideElement>
             {!categorySelect && <Email data={data} />}
             {categorySelect && <Password />}
-          </>
+          </HideElement>
         )}
       </DetailsSmallScreen>
       <DetailsHighResolution>

@@ -59,12 +59,17 @@ export const SectionWrapper = styled.div`
   margin: 20px;
   border-radius: 10px;
   background-color: #eef3f7;
-  /* height: auto; */
   p {
     font-size: 1.5rem;
     margin: 5px;
   }
   @media (max-width: 1000px) {
     margin-bottom: 20px;
+  }
+`;
+export const HideElement = styled.div`
+  display: none;
+  @media (max-width: 600px) {
+    display: unset;
   }
 `;

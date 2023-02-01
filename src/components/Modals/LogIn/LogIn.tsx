@@ -60,6 +60,7 @@ const LoginTest: React.FC = () => {
           new Date().getTime() + +response.data.expiresIn * 1000
         ).toISOString();
         dispatch(authActions.login([response.data.idToken, expTime]));
+        dispatch(authActions.setUsername(state.user));
         navigate(`/home`);
       } catch (err: any) {
         if (!err?.response) {
@@ -153,12 +154,13 @@ const LoginTest: React.FC = () => {
           </h3>
           <form onSubmit={(e) => turnstile2Handler(e)} className="cf-turnstile">
             <input
+              aria-label="Email"
               placeholder="Email"
               type="text"
               className={state.errMsg && "errorInput"}
               ref={userRef}
               maxLength={40}
-              autoComplete="off"
+              autoComplete="username"
               onChange={(e) =>
                 dispatchReducer({ type: "setUser", payload: e.target.value })
               }
@@ -166,10 +168,12 @@ const LoginTest: React.FC = () => {
               required
             />
             <input
+              aria-label="Password"
               placeholder="Password"
               type="password"
               className={state.errMsg && "errorInput"}
               maxLength={24}
+              autoComplete="current-password"
               onChange={(e) =>
                 dispatchReducer({ type: "setPwd", payload: e.target.value })
               }
@@ -194,8 +198,8 @@ const LoginTest: React.FC = () => {
                   placeholder="Your email address:"
                   className={state.sendStatus[0] ? "" : "errorInput"}
                   type="text"
-                  autoComplete="off"
                   maxLength={40}
+                  autoComplete="off"
                   onChange={(e) =>
                     dispatchReducer({
                       type: "setResetEmail",

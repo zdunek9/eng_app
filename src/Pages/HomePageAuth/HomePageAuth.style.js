@@ -106,9 +106,12 @@ export const Box = styled.div`
   @media (max-width: 700px) {
     align-items: center;
     width: 80%;
-    height: 80px;
+    height: 100px;
     padding: 5px;
     font-size: 0.8rem;
+    p{
+      margin: 5px 0;
+    }
   }
 `;
 export const ProgressWrapper = styled.div`
@@ -117,7 +120,4 @@ export const ProgressWrapper = styled.div`
   @media (max-width: 700px) {
     display: none;
   }
-  /* @media (max-height: 1000px) {
-    display: none;
-  } */
 `;

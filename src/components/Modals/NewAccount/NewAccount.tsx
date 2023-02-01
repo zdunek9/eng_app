@@ -75,6 +75,8 @@ const NewAccountTest = () => {
         ).toISOString();
 
         dispatch(authActions.login([response.data.idToken, expTime]));
+        dispatch(authActions.setUsername(state.user));
+
         navigate("/home");
       } catch (err: any) {
         if (!err?.response) {
@@ -149,6 +151,7 @@ const NewAccountTest = () => {
               )}
 
               <input
+                aria-label="Email"
                 placeholder="Email"
                 className={
                   !(state.validName || !state.user) ? "errorInput" : ""
@@ -156,8 +159,8 @@ const NewAccountTest = () => {
                 type="email"
                 maxLength={60}
                 ref={userRef}
-                autoComplete="off"
                 required
+                autoComplete="email"
                 onChange={(e) =>
                   dispatchReducer({ type: "setUser", payload: e.target.value })
                 }
@@ -191,6 +194,8 @@ const NewAccountTest = () => {
                 </IconWrapper>
               )}
               <input
+                aria-label="Password"
+                autoComplete="new-password"
                 placeholder="Password"
                 className={!(state.validPwd || !state.pwd) ? "errorInput" : ""}
                 type="password"
@@ -246,6 +251,8 @@ const NewAccountTest = () => {
                 </IconWrapper>
               )}
               <input
+                aria-label="Password"
+                autoComplete="new-password"
                 placeholder="Confirm password"
                 className={
                   !(state.validMatch || !state.matchPwd) ? "errorInput" : ""

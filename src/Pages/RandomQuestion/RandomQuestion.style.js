@@ -7,10 +7,14 @@ export const Wrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  /* justify-content: flex-end; */
   flex-wrap: wrap;
   @media (max-width: 1400px) {
     padding: 1vw;
+  }
+  @media (max-width:600px){
+    flex-direction: column;
+    justify-content: space-between;
+    flex-wrap: nowrap;
   }
 `;
 export const MainWrapper = styled.div`
@@ -82,7 +86,7 @@ export const MainWrapper = styled.div`
   }
   
   @media (max-width: 600px) {
-    padding: 50px 50px;
+    padding: 20px;
     margin-top: 15vw;
     width: 100%;
     h1{
@@ -97,8 +101,8 @@ export const MainWrapper = styled.div`
 `;
 export const HearthWrapper = styled.div`
 position: absolute;
-top:-10px;
-right: 5%;
+top:-50px;
+right: 0px;
 width: 100px;
 height: 100px;
 

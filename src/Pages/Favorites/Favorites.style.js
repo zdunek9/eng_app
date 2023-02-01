@@ -6,16 +6,16 @@ export const Wrapper = styled.div`
   padding: 5vw;
   display: flex;
   flex-direction: column;
-  overflow-y: auto;
+  overflow-x: hidden;
 `;
 export const NoItemsInformation = styled.p`
-    position: absolute;
-    top:40%;
-    left:50%;
-    text-align: center;
-    transform: translate(-50%, -50%);
-    font-size: 2rem;
-`
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  text-align: center;
+  transform: translate(-50%, -50%);
+  font-size: 2rem;
+`;
 export const ItemWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -27,6 +27,7 @@ export const ItemWrapper = styled.div`
   p {
     margin: 40px;
     font-size: 1.8rem;
+    font-weight: 500;
   }
   @media (max-width: 1000px) {
     margin-top: 5vh;
@@ -36,12 +37,12 @@ export const ItemWrapper = styled.div`
   }
   @media (max-width: 600px) {
     margin-top: 15vh;
-    p{
+    p {
       margin: 10px;
       font-size: 1rem;
     }
-    div{
-      div{
+    div {
+      div {
         /* border:1px solid black; */
         width: 80px;
         height: 80px;
