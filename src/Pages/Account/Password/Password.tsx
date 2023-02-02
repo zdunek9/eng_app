@@ -74,7 +74,6 @@ function Password() {
     event.preventDefault();
     dispatchReducer({ type: "setOpenConfirmModal", payload: true });
   };
-  console.log(userName);
   return (
     <Wrapper>
       {state.openConfirmModal && (

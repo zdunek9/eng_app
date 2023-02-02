@@ -82,8 +82,8 @@ export const NextBtn = styled.button`
   margin-top: 40px;
   border: none;
   cursor: pointer;
-  background-color: var(--biggerFont);
+  background-color: var(--buttonBlue);
   &:hover {
-    background-color: #91bdd4;
+    background-color: var(--buttonBlueHover);
   }
 `;
