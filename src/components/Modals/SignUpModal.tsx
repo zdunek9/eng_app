@@ -5,13 +5,19 @@ import Login from "./LogIn/LogIn";
 import NewAccount from "./NewAccount/NewAccount";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../Store/store";
+import { authActions } from "../../Store/authSlice";
 
 const SignUpModal: React.FC = (props) => {
-  const pageStatus = useSelector((state:RootState)=>state.auth.signinPageStatus)
+  const pageStatus = useSelector(
+    (state: RootState) => state.auth.signinPageStatus
+  );
+  const dispatch = useDispatch();
   let navigate = useNavigate();
+
   const backHandler = () => {
+    dispatch(authActions.changeSigninPage(false));
     navigate(-1);
   };
   return (

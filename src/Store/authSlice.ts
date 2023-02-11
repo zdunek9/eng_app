@@ -42,8 +42,8 @@ const authSlice = createSlice({
     setToken(state, action) {
       state.apiKey = action.payload;
     },
-    changeSigninPage(state) {
-      state.signinPageStatus = !state.signinPageStatus;
+    changeSigninPage(state, action) {
+      state.signinPageStatus = action.payload;
     },
     setUsername(state, action) {
       state.userName = action.payload;

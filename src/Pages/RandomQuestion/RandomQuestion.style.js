@@ -101,8 +101,8 @@ export const MainWrapper = styled.div`
 `;
 export const HearthWrapper = styled.div`
 position: absolute;
-top:-50px;
-right: 0px;
+top:-40px;
+right: 30px;
 width: 100px;
 height: 100px;
 

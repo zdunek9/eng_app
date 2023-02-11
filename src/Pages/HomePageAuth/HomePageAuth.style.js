@@ -35,6 +35,9 @@ export const WelcomeScreen = styled.div`
   b {
     color: black;
   }
+  @media (max-height: 800px) {
+    margin-top: 50px;
+  }
   @media (max-width: 1000px) {
     margin: 70px 45px;
   }

@@ -14,14 +14,14 @@ const TurnstileModal: React.FC<{
   }
   function autoLogin() {
     confirmPass = true;
-    confirmTurnstile(confirmPass);
-    // confirmTurnstile(true)
+    // confirmTurnstile(confirmPass);
+    confirmTurnstile(true)
     closeModal(false);
   }
   function buttonHandler() {
     closeModal(false);
-    confirmTurnstile(confirmPass);
-    // confirmTurnstile(true)
+    // confirmTurnstile(confirmPass);
+    confirmTurnstile(true)
   }
   function TurnstilewWidget() {
     return (

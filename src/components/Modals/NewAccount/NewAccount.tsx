@@ -125,7 +125,7 @@ const NewAccountTest = () => {
           <h1>Register</h1>
           <h3>
             Already registred?{" "}
-            <span onClick={() => dispatch(authActions.changeSigninPage())}>
+            <span onClick={() => dispatch(authActions.changeSigninPage(false))}>
               Sign in!
             </span>
           </h3>

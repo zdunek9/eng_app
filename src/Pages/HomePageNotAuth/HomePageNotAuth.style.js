@@ -3,8 +3,8 @@ import styled from "styled-components";
 export const Wrapper = styled.div`
   display: flex;
   align-items: center;
-  height: calc(100vh - 81px);
   justify-content: center;
+  height: calc(100vh - 81px);
   padding: 0 20px;
   background: rgb(255, 255, 255);
   background: linear-gradient(
@@ -19,7 +19,7 @@ export const Wrapper = styled.div`
     object-fit: contain;
   }
   h1 {
-    margin: 50px 0;
+    margin: 20px 0;
     font-family: "Inter", sans-serif;
   }
   h2 {

@@ -148,7 +148,7 @@ const LoginTest: React.FC = () => {
           <h1>Sign in</h1>
           <h3>
             New to Cool App?{" "}
-            <span onClick={() => dispatch(authActions.changeSigninPage())}>
+            <span onClick={() => dispatch(authActions.changeSigninPage(true))}>
               Sign up for free
             </span>
           </h3>
