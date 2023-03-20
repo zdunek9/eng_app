@@ -45,7 +45,8 @@ export const Wrapper = styled.div`
   }
   .activeClass {
     opacity: 1;
-    font-weight: 600;
+    font-weight: 900;
+    color: #3e91da;
   }
   @media screen and (max-width: 1100px) {
     padding: 0 10px;
