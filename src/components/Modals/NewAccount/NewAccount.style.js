@@ -112,6 +112,8 @@ export const HintImage = styled.img`
   top: 20px;
   height: 30px !important;
   width: 30px !important;
+  display: block !important;
+  
 `;
 export const HintWrapper = styled.div`
   position: absolute;
