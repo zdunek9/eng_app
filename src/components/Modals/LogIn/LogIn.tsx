@@ -200,6 +200,7 @@ const LoginTest: React.FC = () => {
                   type="text"
                   maxLength={40}
                   autoComplete="off"
+                  onFocus={()=>console.log('jeden')}
                   onChange={(e) =>
                     dispatchReducer({
                       type: "setResetEmail",

@@ -12,7 +12,7 @@ export const GlobalStyle = createGlobalStyle`
         --buttonColor:#fdc561;
         --infoColor: #edb7bd;
         --greyColor:#78758D;
-        --greenColor:#00e673;
+        --greenColor:#00b359;
         --redColor:	#ff0000;
         --visibleBorder1:#bedbf3;
         --lines:rgb(179, 179, 179);

@@ -225,6 +225,7 @@ const NewAccountTest = () => {
                   })
                 }
               />
+              
               {state.openHint && (
                 <HintWrapper>
                   8 to 24 characters. Must include uppercase and lowercase

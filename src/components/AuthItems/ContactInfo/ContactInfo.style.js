@@ -20,12 +20,13 @@ export const Wrapper = styled.div`
     font-size: 2rem;
   }
 
-  span {
+  a {
     margin: 0 10px;
     font-size: 3rem;
     cursor: pointer;
+    color: black;
   }
-  span:last-child {
+  a:last-child {
     color: #0e76a8;
   }
   div {
@@ -38,7 +39,7 @@ export const Wrapper = styled.div`
     top: none;
     font-size: 1.1rem;
     position: unset;
-    span {
+    a {
       margin: 5px;
     }
   }
