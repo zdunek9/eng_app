@@ -129,6 +129,16 @@ const LoginTest: React.FC = () => {
     }
     dispatchReducer({ type: "setLoadingState", payload: false });
   };
+
+  const restorePasswordFunc = (value: String) => {
+    dispatchReducer({
+      type: "setResetEmail",
+      payload: value,
+    });
+    dispatchReducer({ type: "setSendStatus", payload: [true, ""] });
+
+
+  };
   return (
     <>
       {loading && <LoadingSmall />}
@@ -200,13 +210,7 @@ const LoginTest: React.FC = () => {
                   type="text"
                   maxLength={40}
                   autoComplete="off"
-                  onFocus={()=>console.log('jeden')}
-                  onChange={(e) =>
-                    dispatchReducer({
-                      type: "setResetEmail",
-                      payload: e.target.value,
-                    })
-                  }
+                  onChange={(e) => restorePasswordFunc(e.target.value)}
                   value={state.resetEmail}
                 />
                 {!state.sendStatus[0] && <AiFillWarning />}
