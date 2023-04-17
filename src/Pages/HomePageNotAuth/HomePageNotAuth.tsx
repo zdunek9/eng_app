@@ -4,7 +4,7 @@ import {
   WrapperCenter,
   MobileButton,
 } from "./HomePageNotAuth.style";
-import image_eng from "../../components/styles/Images/bck_img.jpg";
+import image_eng from "../../components/styles/Images/bck_img.webp";
 import { useNavigate } from "react-router-dom";
 import { AiOutlineMobile } from "react-icons/ai";
 import { useDispatch } from "react-redux";
@@ -21,7 +21,7 @@ const HomePageNotAuth: React.FC = () => {
       dispatch(authActions.checkForToken(intitialToken));
       navigate(`/home`);
     }
-  }, [dispatch]);
+  }, [dispatch,navigate]);
   return (
     <Wrapper
       as={motion.div}

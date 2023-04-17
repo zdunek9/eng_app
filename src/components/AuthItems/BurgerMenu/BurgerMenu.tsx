@@ -23,18 +23,16 @@ const BurgerMenu: React.FC<{
       <NavLink to="flashcards" onClick={() => setOpen(false)}>
         Flashcards
       </NavLink>
-
       <NavLink to="random" onClick={() => setOpen(false)}>
         Random Questinon
       </NavLink>
-
       <NavLink to="favorites" onClick={() => setOpen(false)}>
         Favorite Question
       </NavLink>
       <NavLink to="account" onClick={() => setOpen(false)}>
         Account
       </NavLink>
-      <a onClick={onLogOutHandler}>Logout</a>
+      <span onClick={onLogOutHandler}>Logout</span>
     </StyledMenu>
   );
 };

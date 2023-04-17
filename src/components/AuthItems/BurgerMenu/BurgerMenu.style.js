@@ -20,7 +20,7 @@ export const StyledMenu = styled.nav`
     width: 100%;
   }
 
-  a {
+  a,span {
     font-size: 2rem;
     text-transform: uppercase;
     padding: 2rem 0;
@@ -30,7 +30,7 @@ export const StyledMenu = styled.nav`
     text-decoration: none;
     transition: color 0.3s linear;
     cursor: pointer;
-    
+
     @media (max-width: 576px) {
       font-size: 1.5rem;
       text-align: center;

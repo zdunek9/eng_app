@@ -1,13 +1,13 @@
 import { Wrapper } from "./Error.style";
 import { MdAccessible } from "react-icons/md";
-const Error = () => {
+const Error = (msg:any) => {
   return (
     <Wrapper>
       <span>
         <MdAccessible />
       </span>
       <h1>
-        We had a probem with downloading data from the server. Try again later
+        {msg}
       </h1>
       <span>
         <MdAccessible />

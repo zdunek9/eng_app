@@ -1,5 +1,5 @@
 import { Wrapper, BlurWrapper } from "./SignUpModal.style";
-import bonjoue from "../styles/Images/bonjoue.jpg";
+import bonjoue from "../styles/Images/bonjoue.webp";
 import { AiOutlineClose } from "react-icons/ai";
 import Login from "./LogIn/LogIn";
 import NewAccount from "./NewAccount/NewAccount";
@@ -28,7 +28,7 @@ const SignUpModal: React.FC = (props) => {
       transition={{ duration: 0.2 }}
     >
       <Wrapper>
-        <img src={bonjoue} alt="balony" />
+        <img src={bonjoue} alt="welcome" />
         <AiOutlineClose onClick={backHandler} className="AiOutlineClose" />
         {!pageStatus && <Login />}
         {pageStatus && <NewAccount />}
