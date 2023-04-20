@@ -110,3 +110,29 @@ export const ErrorMsgLogin = styled.p`
   font-size: 0.8rem;
   color: var(--redColor);
 `;
+
+export const InputPasswordWrapper = styled.div`
+  position: relative;
+  svg {
+    position: absolute;
+    font-size: 1.5rem;
+    right: 10px;
+    bottom: 25px;
+    cursor: pointer;
+    color: ${(props) =>
+      props.showPassword ? "var(--notAvaliableGray)" : "var(--buttonBlue)"};
+  }
+`;
+
+export const PhoneVersion = styled.div`
+  display: none;
+
+  @media (max-width: 700px) {
+    display: block;
+  }
+`;
+export const DesktopVersion = styled.div`
+  @media (max-width: 700px) {
+    display: none;
+  }
+`;

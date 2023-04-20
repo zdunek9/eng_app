@@ -8,7 +8,11 @@ import {
   InputWrapper,
   HintWrapper,
   Wrapper,
+  InputPasswordWrapper,
+  DesktopVersion,
+  PhoneVersion,
 } from "./NewAccount.style";
+import { BiShow, BiHide } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useDispatch } from "react-redux";
@@ -43,6 +47,9 @@ const NewAccountTest = () => {
   });
   const [openTurnstileModal, setOpenTurnstileModal] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
+  const [showPassword, setShowPassword] = useState<boolean>(false);
+  const [showConfirmPassword, setShowConfirmPassword] =
+    useState<boolean>(false);
 
   useEffect(() => {
     userRef.current.focus();
@@ -193,25 +200,46 @@ const NewAccountTest = () => {
                   />
                 </IconWrapper>
               )}
-              <input
-                aria-label="Password"
-                autoComplete="new-password"
-                placeholder="Password"
-                className={!(state.validPwd || !state.pwd) ? "errorInput" : ""}
-                type="password"
-                maxLength={24}
-                onChange={(e) =>
-                  dispatchReducer({ type: "setPwd", payload: e.target.value })
-                }
-                value={state.pwd}
-                required
-                onFocus={() =>
-                  dispatchReducer({ type: "setPwdFocus", payload: true })
-                }
-                onBlur={() =>
-                  dispatchReducer({ type: "setPwdFocus", payload: false })
-                }
-              />
+              <InputPasswordWrapper showPassword={showPassword}>
+                <input
+                  aria-label="Password"
+                  autoComplete="new-password"
+                  placeholder="Password"
+                  className={
+                    !(state.validPwd || !state.pwd) ? "errorInput" : ""
+                  }
+                  type={showPassword ? "text" : "password"}
+                  maxLength={24}
+                  onChange={(e) =>
+                    dispatchReducer({ type: "setPwd", payload: e.target.value })
+                  }
+                  value={state.pwd}
+                  required
+                  onFocus={() =>
+                    dispatchReducer({ type: "setPwdFocus", payload: true })
+                  }
+                  onBlur={() =>
+                    dispatchReducer({ type: "setPwdFocus", payload: false })
+                  }
+                />
+                <DesktopVersion>
+                  {showPassword && (
+                    <BiShow
+                      onMouseUp={() => setShowPassword(false)}
+                      onMouseLeave={() => setShowPassword(false)}
+                    />
+                  )}
+                  {!showPassword && (
+                    <BiHide onMouseDown={() => setShowPassword(true)} />
+                  )}
+                </DesktopVersion>
+                <PhoneVersion>
+                  <BiShow
+                    onTouchEnd={() => setShowPassword(false)}
+                    onTouchStart={() => setShowPassword(true)}
+                  />
+                </PhoneVersion>
+              </InputPasswordWrapper>
               {state.pwdFocus && !(state.validPwd || !state.pwd) && (
                 <p>Invalid password</p>
               )}
@@ -225,7 +253,7 @@ const NewAccountTest = () => {
                   })
                 }
               />
-              
+
               {state.openHint && (
                 <HintWrapper>
                   8 to 24 characters. Must include uppercase and lowercase
@@ -251,30 +279,50 @@ const NewAccountTest = () => {
                   />
                 </IconWrapper>
               )}
-              <input
-                aria-label="Password"
-                autoComplete="new-password"
-                placeholder="Confirm password"
-                className={
-                  !(state.validMatch || !state.matchPwd) ? "errorInput" : ""
-                }
-                type="password"
-                maxLength={24}
-                onChange={(e) =>
-                  dispatchReducer({
-                    type: "setMatchPwd",
-                    payload: e.target.value,
-                  })
-                }
-                value={state.matchPwd}
-                required
-                onFocus={() =>
-                  dispatchReducer({ type: "setMatchFocus", payload: true })
-                }
-                onBlur={() =>
-                  dispatchReducer({ type: "setMatchFocus", payload: false })
-                }
-              />
+              <InputPasswordWrapper showConfirmPassword={showConfirmPassword}>
+                <input
+                  aria-label="Password"
+                  autoComplete="new-password"
+                  placeholder="Confirm password"
+                  className={
+                    !(state.validMatch || !state.matchPwd) ? "errorInput" : ""
+                  }
+                  type={showConfirmPassword ? "text" : "password"}
+                  maxLength={24}
+                  onChange={(e) =>
+                    dispatchReducer({
+                      type: "setMatchPwd",
+                      payload: e.target.value,
+                    })
+                  }
+                  value={state.matchPwd}
+                  required
+                  onFocus={() =>
+                    dispatchReducer({ type: "setMatchFocus", payload: true })
+                  }
+                  onBlur={() =>
+                    dispatchReducer({ type: "setMatchFocus", payload: false })
+                  }
+                />
+                <DesktopVersion>
+                  {showConfirmPassword && (
+                    <BiShow
+                      onMouseUp={() => setShowConfirmPassword(false)}
+                      onMouseLeave={() => setShowConfirmPassword(false)}
+                    />
+                  )}
+                  {!showConfirmPassword && (
+                    <BiHide onMouseDown={() => setShowConfirmPassword(true)} />
+                  )}
+                </DesktopVersion>
+                <PhoneVersion>
+                  <BiShow
+                    onTouchEnd={() => setShowConfirmPassword(false)}
+                    onTouchStart={() => setShowConfirmPassword(true)}
+                  />
+                </PhoneVersion>
+              </InputPasswordWrapper>
+
               {state.matchFocus && !state.validMatch && (
                 <p>Must match the first password input field.</p>
               )}

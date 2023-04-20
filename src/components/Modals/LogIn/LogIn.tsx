@@ -1,5 +1,6 @@
 import { useEffect, useReducer, useRef, useState } from "react";
 import { AiFillWarning } from "react-icons/ai";
+import { BiShow, BiHide } from "react-icons/bi";
 import { useDispatch } from "react-redux";
 import { authActions } from "../../../Store/authSlice";
 import {
@@ -7,6 +8,9 @@ import {
   ErrorMsgForgotPwd,
   ForgotPwd,
   ErrorMsgLogin,
+  InputPasswordWrapper,
+  PhoneVersion,
+  DesktopVersion,
 } from "./Login.style";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -31,11 +35,11 @@ const LoginTest: React.FC = () => {
   });
   const [openTurnstileModal, setOpenTurnstileModal] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
+  const [showPassword, setShowPassword] = useState<boolean>(false);
 
   const userRef: any = useRef();
   const dispatch = useDispatch();
   let navigate = useNavigate();
-
   useEffect(() => {
     userRef.current.focus();
   }, []);
@@ -136,8 +140,6 @@ const LoginTest: React.FC = () => {
       payload: value,
     });
     dispatchReducer({ type: "setSendStatus", payload: [true, ""] });
-
-
   };
   return (
     <>
@@ -177,19 +179,39 @@ const LoginTest: React.FC = () => {
               value={state.user}
               required
             />
-            <input
-              aria-label="Password"
-              placeholder="Password"
-              type="password"
-              className={state.errMsg && "errorInput"}
-              maxLength={24}
-              autoComplete="current-password"
-              onChange={(e) =>
-                dispatchReducer({ type: "setPwd", payload: e.target.value })
-              }
-              value={state.pwd}
-              required
-            />
+            <InputPasswordWrapper showPassword={showPassword}>
+              <input
+                aria-label="Password"
+                placeholder="Password"
+                type={showPassword ? "text" : "password"}
+                className={state.errMsg && "errorInput"}
+                maxLength={24}
+                autoComplete="current-password"
+                onChange={(e) =>
+                  dispatchReducer({ type: "setPwd", payload: e.target.value })
+                }
+                value={state.pwd}
+                required
+              />
+              <DesktopVersion>
+                {showPassword && (
+                  <BiShow
+                    onMouseUp={() => setShowPassword(false)}
+                    onMouseLeave={() => setShowPassword(false)}
+                  />
+                )}
+                {!showPassword && (
+                  <BiHide onMouseDown={() => setShowPassword(true)} />
+                )}
+              </DesktopVersion>
+              <PhoneVersion>
+                <BiShow
+                  onTouchEnd={() => setShowPassword(false)}
+                  onTouchStart={() => setShowPassword(true)}
+                />
+              </PhoneVersion>
+            </InputPasswordWrapper>
+
             {state.errMsg && <ErrorMsgLogin>{state.errMsg}</ErrorMsgLogin>}
             <button>Log In</button>
             <div
