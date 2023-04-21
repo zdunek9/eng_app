@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { QuestionModel } from "../models/question";
+import { QuestionModel } from "../models/interface";
 
 interface CounterState {
   questions: QuestionModel[];

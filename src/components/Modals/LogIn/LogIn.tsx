@@ -194,21 +194,23 @@ const LoginTest: React.FC = () => {
                 required
               />
               <DesktopVersion>
-                {showPassword && (
+                {showPassword && state.pwd && (
                   <BiShow
                     onMouseUp={() => setShowPassword(false)}
                     onMouseLeave={() => setShowPassword(false)}
                   />
                 )}
-                {!showPassword && (
+                {!showPassword && state.pwd && (
                   <BiHide onMouseDown={() => setShowPassword(true)} />
                 )}
               </DesktopVersion>
               <PhoneVersion>
-                <BiShow
-                  onTouchEnd={() => setShowPassword(false)}
-                  onTouchStart={() => setShowPassword(true)}
-                />
+                {state.pwd && (
+                  <BiShow
+                    onTouchEnd={() => setShowPassword(false)}
+                    onTouchStart={() => setShowPassword(true)}
+                  />
+                )}
               </PhoneVersion>
             </InputPasswordWrapper>
 

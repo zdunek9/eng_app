@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { FlashcardModel } from "../models/flashcard";
+import { FlashcardModel } from "../models/interface";
 
 interface flashcardState {
   flashcards: FlashcardModel[];
