@@ -25,6 +25,7 @@ function Account() {
     emailVerified: false,
   });
   const idToken = useSelector((state: RootState) => state.auth.apiKey);
+  const emailNumber:number = 1;
 
   useEffect(() => {
     setModal(true);
@@ -57,7 +58,7 @@ function Account() {
           <Loading />
         ) : (
           <HideElement>
-            {!categorySelect && <Email data={data} />}
+            {!categorySelect && <Email data={data} emailNumber={emailNumber}/>}
             {categorySelect && <Password />}
           </HideElement>
         )}

@@ -34,6 +34,7 @@ export const Category = styled.div`
 `;
 export const DetailsSmallScreen = styled.div`
   display: none;
+
   @media (max-width: 600px) {
     display: unset;
   }
@@ -69,6 +70,7 @@ export const SectionWrapper = styled.div`
 `;
 export const HideElement = styled.div`
   display: none;
+
   @media (max-width: 600px) {
     display: unset;
   }

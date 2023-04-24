@@ -28,3 +28,11 @@ export interface InputPasswordProps {
   validPasswordProp: boolean;
   passwordMatchProp:boolean
 }
+
+export interface DataType {
+  data: {
+    email: string;
+    emailVerified: boolean;
+  };
+  emailNumber?: number;
+}

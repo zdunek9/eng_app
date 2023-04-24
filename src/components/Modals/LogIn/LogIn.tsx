@@ -1,11 +1,9 @@
 import { useEffect, useReducer, useRef, useState } from "react";
-import { AiFillWarning } from "react-icons/ai";
 import { BiShow, BiHide } from "react-icons/bi";
 import { useDispatch } from "react-redux";
 import { authActions } from "../../../Store/authSlice";
 import {
   Wrapper,
-  ErrorMsgForgotPwd,
   ForgotPwd,
   ErrorMsgLogin,
   InputPasswordWrapper,
@@ -18,10 +16,9 @@ import axios from "axios";
 import LoadingSmall from "../LoadingSmall/LoadingSmall";
 import { reducer } from "./LoginReducer";
 import TurnstileModal from "../Turnstile/TurnstileModal";
+import ResetPassword from "./ResetPassword";
 
-const MAIL_REGEX = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
 const URL_LOGIN = `${process.env.REACT_APP_AUTH}`;
-const URL_RESET = `${process.env.REACT_APP_RESET_PWD}`;
 
 const LoginTest: React.FC = () => {
   const [state, dispatchReducer] = useReducer(reducer, {
@@ -30,8 +27,6 @@ const LoginTest: React.FC = () => {
     errMsg: "",
     resetEmail: "",
     showResetPwd: false,
-    sendStatus: [true, ""],
-    loadingState: false,
   });
   const [openTurnstileModal, setOpenTurnstileModal] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
@@ -89,58 +84,6 @@ const LoginTest: React.FC = () => {
     setOpenTurnstileModal(true);
   };
 
-  const resetPassword = async (event: React.FormEvent) => {
-    event.preventDefault();
-    dispatchReducer({ type: "setSendStatus", payload: [false, ""] });
-    dispatchReducer({ type: "setLoadingState", payload: true });
-    if (state.resetEmail.trim() === "" || !MAIL_REGEX.test(state.resetEmail)) {
-      dispatchReducer({
-        type: "setSendStatus",
-        payload: [false, "Incorrect email"],
-      });
-      dispatchReducer({ type: "setLoadingState", payload: false });
-      return;
-    }
-    try {
-      const response = await axios.post(URL_RESET, {
-        requestType: "PASSWORD_RESET",
-        email: state.resetEmail,
-      });
-      if (response.status === 200) {
-        dispatchReducer({
-          type: "setSendStatus",
-          payload: [
-            true,
-            "Restart instructions sent successfully. Check your email.",
-          ],
-        });
-      }
-    } catch (err: any) {
-      if (err.response.data.error.message === "EMAIL_NOT_FOUND") {
-        dispatchReducer({
-          type: "setSendStatus",
-          payload: [
-            false,
-            "We could not find your email address. Please check and try again",
-          ],
-        });
-      } else {
-        dispatchReducer({
-          type: "setSendStatus",
-          payload: [false, "Something went wrong, try again"],
-        });
-      }
-    }
-    dispatchReducer({ type: "setLoadingState", payload: false });
-  };
-
-  const restorePasswordFunc = (value: String) => {
-    dispatchReducer({
-      type: "setResetEmail",
-      payload: value,
-    });
-    dispatchReducer({ type: "setSendStatus", payload: [true, ""] });
-  };
   return (
     <>
       {loading && <LoadingSmall />}
@@ -224,27 +167,7 @@ const LoginTest: React.FC = () => {
               <ForgotPwd>Forgot password?</ForgotPwd>
             </div>
           </form>
-          {state.loadingState && <LoadingSmall />}
-          {!state.loadingState && state.showResetPwd && (
-            <form onSubmit={resetPassword}>
-              <ErrorMsgForgotPwd>
-                <input
-                  placeholder="Your email address:"
-                  className={state.sendStatus[0] ? "" : "errorInput"}
-                  type="text"
-                  maxLength={40}
-                  autoComplete="off"
-                  onChange={(e) => restorePasswordFunc(e.target.value)}
-                  value={state.resetEmail}
-                />
-                {!state.sendStatus[0] && <AiFillWarning />}
-                <div className={state.sendStatus[0] ? "success" : ""}>
-                  {state.sendStatus[1]}
-                </div>
-              </ErrorMsgForgotPwd>
-              <button>Send me new password !</button>
-            </form>
-          )}
+          {state.showResetPwd && <ResetPassword />}
         </Wrapper>
       )}
     </>

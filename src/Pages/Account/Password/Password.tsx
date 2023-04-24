@@ -29,7 +29,7 @@ function Password() {
 
   const idToken = useSelector((state: RootState) => state.auth.apiKey);
   const dispatch = useDispatch();
-  const userName = useSelector((state: RootState) => state.auth.userName);
+  // const userName = useSelector((state: RootState) => state.auth.userName);
 
   useEffect(() => {
     const result = PASSWORD_REGEX.test(state.pwd);
@@ -92,62 +92,68 @@ function Password() {
             {state.errMsg}
           </p>
           <form onSubmit={openConfirmModalHandler}>
-            <input type="text" hidden autoComplete="username" value={userName} />
-            <label htmlFor="newpassword">New Password:</label>
-            <FontAwesomeIcon
-              icon={faCheck}
-              className={state.validPwd ? "valid" : "hide"}
-            />
-            <FontAwesomeIcon
-              icon={faTimes}
-              className={state.validPwd || !state.pwd ? "hide" : "invalid"}
-            />
-            <input
-              id="newpassword"
-              type="password"
-              autoComplete="new-password"
-              onChange={(e) =>
-                dispatchReducer({ type: "setPwd", payload: e.target.value })
-              }
-              value={state.pwd}
-              required
-              onFocus={() =>
-                dispatchReducer({ type: "setPwdFocus", payload: true })
-              }
-              onBlur={() =>
-                dispatchReducer({ type: "setPwdFocus", payload: false })
-              }
-            />
-            <label htmlFor="confirmnewpassword">Confirm Password:</label>
-            <FontAwesomeIcon
-              icon={faCheck}
-              className={state.validMatch && state.matchPwd ? "valid" : "hide"}
-            />
-            <FontAwesomeIcon
-              icon={faTimes}
-              className={
-                state.validMatch || !state.matchPwd ? "hide" : "invalid"
-              }
-            />
-            <input
-              id="confirmnewpassword"
-              type="password"
-              autoComplete="new-password"
-              onChange={(e) =>
-                dispatchReducer({
-                  type: "setMatchPwd",
-                  payload: e.target.value,
-                })
-              }
-              value={state.matchPwd}
-              required
-              onFocus={() =>
-                dispatchReducer({ type: "setMatchFocus", payload: true })
-              }
-              onBlur={() =>
-                dispatchReducer({ type: "setMatchFocus", payload: false })
-              }
-            />
+            {/* <input type="text" hidden autoComplete="username" value={userName} />  */}
+            <label htmlFor="newpassword">
+              New Password:
+              <FontAwesomeIcon
+                icon={faCheck}
+                className={state.validPwd ? "valid" : "hide"}
+              />
+              <FontAwesomeIcon
+                icon={faTimes}
+                className={state.validPwd || !state.pwd ? "hide" : "invalid"}
+              />
+              <input
+                id="newpassword"
+                type="password"
+                autoComplete="new-password"
+                onChange={(e) =>
+                  dispatchReducer({ type: "setPwd", payload: e.target.value })
+                }
+                value={state.pwd}
+                required
+                onFocus={() =>
+                  dispatchReducer({ type: "setPwdFocus", payload: true })
+                }
+                onBlur={() =>
+                  dispatchReducer({ type: "setPwdFocus", payload: false })
+                }
+              />
+            </label>
+            <label htmlFor="confirmnewpassword">
+              Confirm Password:
+              <FontAwesomeIcon
+                icon={faCheck}
+                className={
+                  state.validMatch && state.matchPwd ? "valid" : "hide"
+                }
+              />
+              <FontAwesomeIcon
+                icon={faTimes}
+                className={
+                  state.validMatch || !state.matchPwd ? "hide" : "invalid"
+                }
+              />
+              <input
+                id="confirmnewpassword"
+                type="password"
+                autoComplete="new-password"
+                onChange={(e) =>
+                  dispatchReducer({
+                    type: "setMatchPwd",
+                    payload: e.target.value,
+                  })
+                }
+                value={state.matchPwd}
+                required
+                onFocus={() =>
+                  dispatchReducer({ type: "setMatchFocus", payload: true })
+                }
+                onBlur={() =>
+                  dispatchReducer({ type: "setMatchFocus", payload: false })
+                }
+              />
+            </label>
             <button
               disabled={!state.validPwd || !state.validMatch ? true : false}
             >

@@ -10,9 +10,5 @@ export const reducer = (state: any, action: { type: any; payload: any }) => {
       return { ...state, resetEmail: action.payload };
     case "setShowResetPwd":
       return { ...state, showResetPwd: action.payload };
-    case "setSendStatus":
-      return { ...state, sendStatus: action.payload };
-    case "setLoadingState":
-      return { ...state, loadingState: action.payload };
   }
 };

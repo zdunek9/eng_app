@@ -13,18 +13,12 @@ import { TiTick, TiTimes } from "react-icons/ti";
 import { authActions } from "../../../Store/authSlice";
 import ConfirmModal from "../../../components/Modals/ConfirmModal/ConfirmModal";
 import { reducer } from "./EmailReducer";
+import { DataType } from "../../../models/interface";
 
 const URL_VERIFY = `${process.env.REACT_APP_VERIFY_USER}`;
 const URL_CHANGE_EMAIL = `${process.env.REACT_APP_CHANGE_EMAIL}`;
 
-interface DataType {
-  data: {
-    email: string;
-    emailVerified: boolean;
-  };
-}
-
-function Email({ data: { email, emailVerified } }: DataType) {
+function Email({ data: { email, emailVerified }, emailNumber }: DataType) {
   const [state, dispatchReducer] = useReducer(reducer, {
     userData: {
       email,
@@ -115,7 +109,7 @@ function Email({ data: { email, emailVerified } }: DataType) {
       <SectionRow>
         <label htmlFor="emailAddress">Email:</label>
         <input
-          id="emailAddress"
+          id={`emailAddress ${emailNumber}`}
           type="text"
           autoComplete="off"
           value={state.newEmail}
